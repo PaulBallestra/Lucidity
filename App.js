@@ -22,9 +22,9 @@ export default function App() {
         }}
         initialRouteName={'Calendar'}
      >
-       <Stack.Screen name='Learning' component={Nav}/>
+       <Stack.Screen name='Learning' component={Learning}/>
        <Stack.Screen name='Calendar' component={Nav}/>
-       <Stack.Screen name='Tools' component={Nav}/>
+       <Stack.Screen name='Tools' component={Tools}/>
 
      </Stack.Navigator>
    </NavigationContainer>
