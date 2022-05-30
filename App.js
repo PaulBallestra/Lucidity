@@ -9,7 +9,7 @@ import Nav from './src/navigation'
 
 const Stack = createStackNavigator()
 
-import Calendar from './src/features/calendar/calendar.screen'
+import Landing from './src/features/landing/landing.screen'
 import Tools from './src/features/tools/tools.screen'
 import Learning from './src/features/learning/learning.screen'
 
@@ -18,12 +18,12 @@ export default function App() {
    <NavigationContainer>
      <Stack.Navigator
         screenOptions={{
-          headerShown :false
+          headerShown: false
         }}
-        initialRouteName={'Calendar'}
+        initialRouteName={'Landing'}
      >
        <Stack.Screen name='Learning' component={Learning}/>
-       <Stack.Screen name='Calendar' component={Nav}/>
+       <Stack.Screen name='Landing' component={Nav}/>
        <Stack.Screen name='Tools' component={Tools}/>
 
      </Stack.Navigator>

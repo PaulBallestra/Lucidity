@@ -6,5 +6,8 @@ export const COLORS = {
     purple: '#B56CFF',
     backgroundTop: '#121123',
     backgroundBottom: '#0A172D',
-    backgroundComponent: '#202740'
+    customLightDark: '#202740',
+    customDark: '#101225',
+    customDisabledDark: '#4A4B61',
+
 }

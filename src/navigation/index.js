@@ -17,7 +17,7 @@ export default function index() {
         //NAV BAR BOTTOM    
         <Nav.Navigator tabBarOptions={{
             showLabel : false,
-            activeBackgroundColor: COLORS.backgroundComponent,
+            activeBackgroundColor: COLORS.customLightDark,
             inactiveBackgroundColor: COLORS.backgroundBottom
         }}>
         <Nav.Screen 
