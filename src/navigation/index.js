@@ -3,7 +3,7 @@ import { Image } from 'react-native'
 
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs'
 
-import Calendar from '../features/calendar/calendar.screen'
+import Landing from '../features/landing/landing.screen'
 import Tools from '../features/tools/tools.screen'
 import Learning from '../features/learning/learning.screen'
 
@@ -40,8 +40,8 @@ export default function index() {
                 }}
         />
         <Nav.Screen 
-                name='Calendar'
-                component={Calendar}
+                name='Landing'
+                component={Landing}
                 options = {{
                     tabBarIcon:({focused})=>(
                         <Image 

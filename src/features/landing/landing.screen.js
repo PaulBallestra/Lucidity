@@ -2,12 +2,13 @@ import { View, Text } from 'react-native'
 import React from 'react'
 
 import LinearGradient from 'react-native-linear-gradient';
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 
-import styles from './calendar.styles'
+import styles from './landing.styles'
 import { COLORS } from '../../constants/themes'
 
 
-class Calendar extends React.Component {
+class Landing extends React.Component {
 
   //CALENDAR PAGE
     render(){
@@ -21,6 +22,9 @@ class Calendar extends React.Component {
                   <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
                 </View>
 
+
+
+
             
               </LinearGradient>
               
@@ -30,4 +34,4 @@ class Calendar extends React.Component {
 
 }
 
-export default Calendar;
+export default Landing;
