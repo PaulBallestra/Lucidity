@@ -4,7 +4,7 @@ export const COLORS = {
     textDisabled: '#4A4C62',
     blue: '#2BB7F7',
     purple: '#B56CFF',
-    backgroundTop: '#111124',
-    backgroundBottom: '#0A162C',
+    backgroundTop: '#121123',
+    backgroundBottom: '#0A172D',
     backgroundComponent: '#202740'
 }

@@ -14,9 +14,15 @@ const Nav = createBottomTabNavigator();
 
 export default function index() {
     return (
-        <Nav.Navigator tabBarOptions={{showLabel : false}}>
+        //NAV BAR BOTTOM    
+        <Nav.Navigator tabBarOptions={{
+            showLabel : false,
+            activeBackgroundColor: COLORS.backgroundComponent,
+            inactiveBackgroundColor: COLORS.backgroundBottom
+        }}>
         <Nav.Screen 
                 name='Learning'
+                
                 component={Learning}
                 options = {{
                     tabBarIcon:({focused})=>(
@@ -25,7 +31,7 @@ export default function index() {
                             resizeMode = 'contain'
                             style = {{
                                 width: 33,
-                                heigth: 33,
+                                height: 33,
                                 tintColor : focused ? COLORS.blue : COLORS.text
                             }}
                         />
@@ -43,7 +49,7 @@ export default function index() {
                             resizeMode = 'contain'
                             style = {{
                                 width: 33,
-                                heigth: 33,
+                                height: 33,
                                 tintColor : focused ? COLORS.blue : COLORS.text
                             }}
                         />
@@ -61,11 +67,10 @@ export default function index() {
                             resizeMode = 'contain'
                             style = {{
                                 width: 33,
-                                heigth: 33,
+                                height: 33,
                                 tintColor : focused ? COLORS.blue : COLORS.text
                             }}
                         />
-                        
                     )
                 }}
         /> 
