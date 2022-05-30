@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -19,7 +19,33 @@ class Tools extends React.Component {
               <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
             </View>
 
-        
+
+            <View style={styles.dreambook}>
+
+              <View style={styles.dreambookHeader}>
+                <Text style={styles.dreambookHeaderTitle}> DREAMBOOK </Text>
+                <Image source={require('../../assets/icons/dreambook_picto.png')} style={styles.dreambookHeaderImage}/>
+              </View>
+
+              <View style={styles.dreambookContent}>
+                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                  <View style={styles.dreambookContentTexts}>
+                    <Text style={styles.dreambookContentTextHeaderLeft}>DREAMS</Text>
+                    <Text style={styles.dreambookContentTextContentLeft}>0</Text>
+                  </View>
+                  <View>
+                    <LinearGradient colors={[COLORS.blue, COLORS.blue, COLORS.purple, COLORS.purple]} style={styles.dreambookBreakHR}>
+                    </LinearGradient>
+                  </View>
+                  <View style={styles.dreambookContentTexts}> 
+                    <Text style={styles.dreambookContentTextHeaderRight}>LUCID DREAMS</Text>
+                    <Text style={styles.dreambookContentTextContentRight}>0</Text>
+                  </View>
+                </View>
+              </View>
+
+            </View>
+
           </LinearGradient>
           
         </View>
