@@ -29,8 +29,8 @@ export default function index() {
                             source={focused ? icons.learning_open : icons.learning}
                             resizeMode = 'contain'
                             style = {{
-                                width: focused ? 40 : 33,
-                                height: focused ? 40 : 33,
+                                width: focused ? 42 : 33,
+                                height: focused ? 42 : 33,
                                 tintColor : focused ? COLORS.blue : COLORS.text
                             }}
                         />
