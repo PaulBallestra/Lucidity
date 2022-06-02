@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         maxHeight: height*0.1784,
         marginRight: height*0.02,
         marginLeft:  height*0.02,
+        marginBottom: height*0.025
     },
     dreambookHeader: {
         flexDirection: 'row',

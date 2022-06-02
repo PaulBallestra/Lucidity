@@ -18,20 +18,19 @@ export default function index() {
         <Nav.Navigator tabBarOptions={{
             showLabel : false,
             activeBackgroundColor: COLORS.customLightDark,
-            inactiveBackgroundColor: COLORS.backgroundBottom
+            inactiveBackgroundColor: COLORS.backgroundBottom,
         }}>
         <Nav.Screen 
                 name='Learning'
-                
                 component={Learning}
                 options = {{
                     tabBarIcon:({focused})=>(
                         <Image 
-                            source={icons.learning}
+                            source={focused ? icons.learning_open : icons.learning}
                             resizeMode = 'contain'
                             style = {{
-                                width: 33,
-                                height: 33,
+                                width: focused ? 40 : 33,
+                                height: focused ? 40 : 33,
                                 tintColor : focused ? COLORS.blue : COLORS.text
                             }}
                         />

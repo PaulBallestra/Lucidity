@@ -9,7 +9,7 @@ import { COLORS } from '../../constants/themes'
 const styles = StyleSheet.create({
 
     body: {
-        flex: 1, 
+        flex: 1,
         width: width,
     },
     linearGradient: {

@@ -19,6 +19,8 @@ target 'Lucidity' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'ReactNativeART', :path => '../node_modules/@react-native-community/art'
+
   target 'LucidityTests' do
     inherit! :complete
     # Pods for testing
