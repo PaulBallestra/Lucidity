@@ -23,63 +23,59 @@ const CalendarComponent = () => {
 
         <View style={styles.calendar}>
 
-                        <View style={styles.calendarHeader}>
-                            <Text style={styles.calendarHeaderTitle}> CALENDRIER </Text>
-                            <Image source={require('../../../assets/icons/calendar_picto.png')} style={styles.calendarHeaderImage}/>
-                        </View>
+            <View style={styles.calendarHeader}>
+                <Text style={styles.calendarHeaderTitle}> CALENDRIER </Text>
+                <Image source={require('../../../assets/icons/calendar_picto.png')} style={styles.calendarHeaderImage}/>
+            </View>
 
-                        <View style={styles.calendarContent}>
-                            <Calendar theme={{
-                                            arrowColor: COLORS.blue, //ARROWS COLOR
-                                            calendarBackground: 'rgba(0, 0, 0, 0)', //BACKGROUND COLOR NONE
-                                            monthTextColor: COLORS.text, //MONTH NAMES COLOR
-                                            textSectionTitleColor: COLORS.text, //WEEK NAMES COLOR
-                                            dayTextColor: COLORS.text, //DAYS MONTH COLOR
-                                            todayTextColor: COLORS.text, //TODAY COLOR
-                                            textDisabledColor: COLORS.textDisabled, //NO MONTH TEXT COLOR
-                                            textDayFontFamily: 'Montserrat-Medium', //FONT DAYS NUMBER
-                                            textMonthFontFamily: 'Montserrat-Medium', //FONT MONTH & YEAR
-                                            textDayHeaderFontFamily: 'Montserrat-Medium', //FONT DAYS NAME
-                                            'stylesheet.calendar.header': {
-                                                header: {
-                                                    flexDirection: 'row',
-                                                    justifyContent: 'space-between',
-                                                    marginVertical: 10,
-                                                    paddingHorizontal: -15,
-                                                    backgroundColor: COLORS.customDark,
-                                                },
-                                                week: {
-                                                    flexDirection: 'row',
-                                                    justifyContent: 'space-around',
-                                                    alignItems: 'center',
-                                                    backgroundColor: COLORS.customDark,
-                                                    paddingTop: 5,
-                                                },
-                                            },
+            <View style={styles.calendarContent}>
+                <Calendar 
+                    theme={{
+                        arrowColor: COLORS.text, //ARROWS COLOR
+                        calendarBackground: 'rgba(0, 0, 0, 0)', //BACKGROUND COLOR NONE
+                        monthTextColor: COLORS.text, //MONTH NAMES COLOR
+                        textSectionTitleColor: COLORS.text, //WEEK NAMES COLOR
+                        dayTextColor: COLORS.text, //DAYS MONTH COLOR
+                        todayTextColor: COLORS.text, //TODAY COLOR
+                        textDisabledColor: COLORS.textDisabled, //NO MONTH TEXT COLOR
+                        textDayFontFamily: 'Montserrat-Medium', //FONT DAYS NUMBER
+                        textMonthFontFamily: 'Montserrat-Medium', //FONT MONTH & YEAR
+                        textDayHeaderFontFamily: 'Montserrat-Medium', //FONT DAYS NAME
+                        'stylesheet.calendar.header': {
+                            header: {
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                marginVertical: 10,
+                                backgroundColor: COLORS.customDark,
+                            },
+                            week: {
+                                flexDirection: 'row',
+                                justifyContent: 'space-around',
+                                alignItems: 'center',
+                                backgroundColor: COLORS.customDark,
+                                paddingTop: 5,
+                            },
+                        },
+                    }}
+                    enableSwipeMonths={true}
+                    dayComponent={({date, state, onPress}) => {
+                        return (
+                            <TouchableOpacity onPress={() => onPress(date)}>
+                                <View style={[styles.dayDotCustom, {backgroundColor: state === 'disabled' ? 'rgba(0, 0, 0, 0)' : COLORS.customDark}]}>
+                                    <Text style={[{color: state === 'disabled' ? COLORS.customDisabledDark : COLORS.text}, styles.dayTextCustom]}>
+                                        {date.day}
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+                        );
+                    }}
+                    onDayPress={(day) => {
+                        console.log(day)
+                    }}
+                />
+            </View>
 
-                                        }}
-                                        enableSwipeMonths={true}
-                                        dayComponent={({date, state, onPress}) => {
-                                            return (
-                                                <TouchableOpacity onPress={() => onPress(date)}>
-
-                                                    <View style={[styles.dayDotCustom, {backgroundColor: state === 'disabled' ? 'rgba(0, 0, 0, 0)' : COLORS.customDark}]}>
-                                                        <Text
-                                                            style={[{color: state === 'disabled' ? COLORS.customDisabledDark : COLORS.text}, styles.dayTextCustom]}>
-                                                            {date.day}
-                                                        </Text>
-                                                    </View>
-
-                                                </TouchableOpacity>
-                                            );
-                                        }}
-                                        onDayPress={(day) => {
-                                            console.log(day)
-                                        }}
-                            />
-                        </View>
-
-                    </View>
+        </View>
 
     )
 };
@@ -87,6 +83,7 @@ const CalendarComponent = () => {
 const styles = StyleSheet.create({
 
     calendar: {
+        marginTop: 5,
         marginRight: height*0.02,
         marginLeft:  height*0.02,
         maxHeight: height*0.50,
@@ -130,7 +127,7 @@ const styles = StyleSheet.create({
         borderRadius: 36/2
     },
     dayTextCustom: {
-        //fontFamily: 'Montserrat_Medium',
+        fontFamily: 'Montserrat-Medium',
         fontSize: 17,
         textAlign: 'center',
         margin: 6,

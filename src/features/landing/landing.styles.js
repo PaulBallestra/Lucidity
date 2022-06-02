@@ -37,6 +37,41 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: COLORS.text
     },
+    subHeaderView: {
+        marginTop: 5,
+        marginBottom: -5,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignContent: 'center',
+        flexWrap: 'wrap',
+        maxWidth: width*1,
+        maxHeight: height*0.05,
+    },
+    subHeaderText: {
+        color: COLORS.text,
+        fontFamily: 'Montserrat-ExtraBold',
+        fontSize: 12.5,
+        letterSpacing: 1.5,
+        textAlign: 'left'
+    },
+    subHeaderTextOnPage: {
+        color: COLORS.blue,
+        fontFamily: 'Montserrat-ExtraBold',
+        fontSize: 12.5,
+        letterSpacing: 1.5,
+        textAlign: 'center'
+    },
+    horizontalBreak: {
+        width: 5, 
+        height: 35, 
+        borderRadius: 0,
+    },
+    verticalBreak: {
+        width: 5, 
+        height: 50, 
+        borderRadius: 0,
+    },
 
 });
 

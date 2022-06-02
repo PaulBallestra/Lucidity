@@ -44,7 +44,7 @@ export default function index() {
                 options = {{
                     tabBarIcon:({focused})=>(
                         <Image 
-                            source={icons.calendar}
+                            source={focused ? icons.calendar_open : icons.calendar}
                             resizeMode = 'contain'
                             style = {{
                                 width: 33,
@@ -75,5 +75,4 @@ export default function index() {
         /> 
         
     </Nav.Navigator>
-  )
-}
+)}
