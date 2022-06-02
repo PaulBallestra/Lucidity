@@ -18,10 +18,10 @@ class Tools extends React.Component {
               
           <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundBottom]} style={styles.linearGradient}>
 
-            <View style={styles.headerView}>
-              <Text style={styles.headerTitle}> LUCIDITY </Text>
-              <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
-            </View>
+              <View style={styles.headerView}>
+                <Text style={styles.headerTitle}> LUCIDITY </Text>
+                <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
+              </View>
 
             <ScrollView style={{marginTop: 50}}>
 
@@ -36,14 +36,10 @@ class Tools extends React.Component {
 
             </ScrollView>
 
-            
-
           </LinearGradient>
-          
         </View>
-          );
+      );
     }
-
 }
 
 export default Tools;

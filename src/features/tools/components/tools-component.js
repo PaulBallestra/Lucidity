@@ -34,29 +34,29 @@ const ToolsComponent = (props) => {
         <View style={styles.body} {...props}>
 
                 <View style={styles.componentHeader}>
-                  <Text style={styles.componentHeaderTitle}> {titleComponent} </Text>
-                  <Image source={pictoComponent} style={styles.componentHeaderImage}/>
+                    <Text style={styles.componentHeaderTitle}> {titleComponent} </Text>
+                    <Image source={pictoComponent} style={styles.componentHeaderImage}/>
                 </View>
 
                 
                 <TouchableOpacity style={styles.componentContent}>
-                  <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                    <View style={styles.componentContentTexts}>
-                      <Text style={styles.componentContentTextHeaderLeft}>{titleLeftSide}</Text>
-                      <Text style={styles.componentContentTextContentLeft}>{valueLeftSide}</Text>
+                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                        <View style={styles.componentContentTexts}>
+                            <Text style={styles.componentContentTextHeaderLeft}>{titleLeftSide}</Text>
+                            <Text style={styles.componentContentTextContentLeft}>{valueLeftSide}</Text>
+                        </View>
+                        <View>
+                            <LinearGradient colors={[COLORS.blue, COLORS.blue, COLORS.purple, COLORS.purple]} style={styles.componentBreakHR}>
+                            </LinearGradient>
+                        </View>
+                        <View style={styles.componentContentTexts}> 
+                            <Text style={styles.componentContentTextHeaderRight}>{titleRightSide}</Text>
+                            <Text style={styles.componentContentTextContentRight}>{valueRightSide}</Text>
+                        </View>
                     </View>
-                    <View>
-                      <LinearGradient colors={[COLORS.blue, COLORS.blue, COLORS.purple, COLORS.purple]} style={styles.componentBreakHR}>
-                      </LinearGradient>
-                    </View>
-                    <View style={styles.componentContentTexts}> 
-                      <Text style={styles.componentContentTextHeaderRight}>{titleRightSide}</Text>
-                      <Text style={styles.componentContentTextContentRight}>{valueRightSide}</Text>
-                    </View>
-                  </View>
                 </TouchableOpacity>
 
-              </View>
+    </View>
 
     )
 };
