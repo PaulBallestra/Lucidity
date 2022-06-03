@@ -69,7 +69,7 @@ class TechniqueComponent extends React.Component {
             }
 
             return (
-                <View style={{marginVertical: 2}}>
+                <View>
                     <TouchableOpacity onPress={this.handlerButtonOnClick} style={[miniatureStyleTechnique, styles.techniqueContent]}>
                         <View style={styles.techniqueContentTitlesContent}>
                             <Text style={styles.techniqueContentTitle}>{titleTechnique}</Text>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         backgroundColor: COLORS.customLightDark,
-        marginTop: 7,
+        marginBottom: 7,
         borderRadius: 8,
         shadowColor: "#000",
         shadowOffset: {
@@ -104,9 +104,9 @@ const styles = StyleSheet.create({
     },
     techniqueContentTitlesContent: {
         marginHorizontal: 7,
-        marginTop: 7,
         flex: 1,
         flexDirection: 'column',
+        justifyContent: 'center'
     },
     techniqueContentTitle: {
         fontFamily: 'Montserrat-ExtraBold',
