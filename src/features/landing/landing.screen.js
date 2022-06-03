@@ -23,7 +23,7 @@ class Landing extends React.Component {
         return (
             <View style={styles.body}>
 
-                <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundBottom]} style={styles.linearGradient}>
+                <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
 
                 {/* HEADER */}
                 <View style={styles.headerView}>

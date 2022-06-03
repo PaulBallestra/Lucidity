@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
         letterSpacing: 1.5
     },
     calendarHeaderImage: {
-        width: 16.5,
-        height: 16.5
+        width: 17,
+        height: 17
     },
     calendarContent: {
         marginTop: 3,

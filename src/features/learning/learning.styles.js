@@ -1,10 +1,8 @@
-import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-
-const {width, height} = Dimensions.get('window');
-
 import { COLORS } from '../../constants/themes'
 
+
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
 
@@ -36,7 +34,30 @@ const styles = StyleSheet.create({
         letterSpacing: 3.6,
         textAlign: 'center',
         color: COLORS.text
-    }
+    },
+    techniqueBody: {
+        marginTop: 5,
+        marginRight: height*0.02,
+        marginLeft:  height*0.02,
+        marginBottom: height*0.025
+    },
+    techniqueHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginRight: 7.5,
+        marginLeft: 4,
+    },
+    techniqueHeaderTitle: {
+        color: COLORS.text,
+        fontFamily: 'Montserrat-ExtraBold',
+        fontSize: 12.5,
+        letterSpacing: 1.5
+    },
+    techniqueHeaderImage: {
+        width: 17,
+        height: 17
+    },
 
 });
 

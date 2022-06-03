@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView, Image, TouchableOpacity, Dimensions } from 'react-native'
 import React from 'react'
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -6,26 +6,48 @@ import LinearGradient from 'react-native-linear-gradient';
 import styles from './learning.styles'
 import { COLORS } from '../../constants/themes'
 
+import TechniqueComponent from './components/technique-component';
+
+const {width, height} = Dimensions.get('window');
+
 class Learning extends React.Component {
 
-    render(){
-        return (
-          <View style={styles.body}>
-              
-          <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundBottom]} style={styles.linearGradient}>
+  render(){
 
-            <View style={styles.headerView}>
-              <Text style={styles.headerTitle}> LUCIDITY </Text>
-              <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
-            </View>
+    return (
+      <View style={styles.body}>
 
-        
-          </LinearGradient>
-          
-        </View>
-          );
-    }
+        <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
 
+          <View style={styles.headerView}>
+            <Text style={styles.headerTitle}> LUCIDITY </Text>
+            <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
+          </View>
+
+          {/* Techniques */}
+          <View style={styles.techniqueBody}>
+
+                <View style={styles.techniqueHeader}>
+                  <Text style={styles.techniqueHeaderTitle}> TECHNIQUES </Text>
+                  <Image source={require('../../assets/icons/technique_picto.png')} style={styles.techniqueHeaderImage}/>
+                </View>
+
+                <ScrollView>
+
+                  <TechniqueComponent type='WILD'/>
+
+                  <TechniqueComponent type='MILD'/>
+                  
+                  <TechniqueComponent type='WBTB'/>
+
+                  <TechniqueComponent type='AUTO'/>
+
+                </ScrollView>
+          </View>
+        </LinearGradient>
+      </View>
+    );
+  }
 }
 
 export default Learning;

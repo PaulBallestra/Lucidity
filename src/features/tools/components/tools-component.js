@@ -56,7 +56,7 @@ const ToolsComponent = (props) => {
                     </View>
                 </TouchableOpacity>
 
-    </View>
+        </View>
 
     )
 };
@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
         letterSpacing: 1.5
     },
     componentHeaderImage: {
-        width: 16.5,
-        height: 16.5
+        width: 17,
+        height: 17
     },
     componentContent: {
         height: height*0.15,
