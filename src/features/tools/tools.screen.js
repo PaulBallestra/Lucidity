@@ -22,7 +22,7 @@ class Tools extends React.Component {
                 <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
               </View>
 
-            <ScrollView style={{marginTop: 50}}>
+            <ScrollView style={{marginTop: 4}}>
 
               {/*REVEILS*/}
               <ToolsComponent type="reveil" />

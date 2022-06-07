@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginRight: 7.5,
         marginLeft: 4,
+        marginBottom: 3,
     },
     techniqueHeaderTitle: {
         color: COLORS.text,

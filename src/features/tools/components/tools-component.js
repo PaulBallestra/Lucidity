@@ -8,24 +8,34 @@ const {width, height} = Dimensions.get('window');
 
 const ToolsComponent = (props) => {
 
-    var titleComponent = null, pictoComponent = null, titleLeftSide = null, titleRightSide = null, valueLeftSide = null, valueRightSide = null;
+    var titleComponent = null, pictoComponent = null, titleLeftSide = null, titleRightSide = null, valueLeftSide = null, valueRightSide = null, colorUpHR = null, colorDownHR = null;
 
     switch(props.type){
         case 'reveil':
             titleComponent = 'RÉVEIL';
             pictoComponent = require('../../../assets/icons/bell_picto.png');
-            titleLeftSide = 'DREAMS';
-            titleRightSide = 'LUCID DREAMS';
-            valueLeftSide = '0';
-            valueRightSide = '0';
+            colorUpHR = COLORS.blue,
+            colorDownHR = COLORS.purple
             break;
         case 'dreambook':
             titleComponent = 'DREAMBOOK'
             pictoComponent = require('../../../assets/icons/dreambook_picto.png');
+            titleLeftSide = 'DREAMS';
+            titleRightSide = 'LUCID DREAMS';
+            valueLeftSide = '0';
+            valueRightSide = '0';
+            colorUpHR = COLORS.purple,
+            colorDownHR = COLORS.blue
             break;   
         case 'tests':
             titleComponent = 'TESTS DE RÉALITÉ';
             pictoComponent = require('../../../assets/icons/realitytests_picto.png')
+            titleLeftSide = 'TESTS';
+            titleRightSide = 'ACTIVÉS';
+            valueLeftSide = '7';
+            valueRightSide = '0';
+            colorUpHR = COLORS.blue,
+            colorDownHR = COLORS.purple
             break;  
     }
 
@@ -38,20 +48,19 @@ const ToolsComponent = (props) => {
                     <Image source={pictoComponent} style={styles.componentHeaderImage}/>
                 </View>
 
-                
                 <TouchableOpacity style={styles.componentContent}>
                     <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                         <View style={styles.componentContentTexts}>
-                            <Text style={styles.componentContentTextHeaderLeft}>{titleLeftSide}</Text>
-                            <Text style={styles.componentContentTextContentLeft}>{valueLeftSide}</Text>
+                            <Text style={[styles.componentContentTextHeaderLeft, {color: colorUpHR}]}>{titleLeftSide}</Text>
+                            <Text style={[styles.componentContentTextContentLeft, {color: colorUpHR}]}>{valueLeftSide}</Text>
                         </View>
                         <View>
-                            <LinearGradient colors={[COLORS.blue, COLORS.blue, COLORS.purple, COLORS.purple]} style={styles.componentBreakHR}>
+                            <LinearGradient colors={[colorUpHR, colorUpHR, colorDownHR, colorDownHR]} style={styles.componentBreakHR}>
                             </LinearGradient>
                         </View>
                         <View style={styles.componentContentTexts}> 
-                            <Text style={styles.componentContentTextHeaderRight}>{titleRightSide}</Text>
-                            <Text style={styles.componentContentTextContentRight}>{valueRightSide}</Text>
+                            <Text style={[styles.componentContentTextHeaderRight, {color: colorDownHR}]}>{titleRightSide}</Text>
+                            <Text style={[styles.componentContentTextContentRight, {color: colorDownHR}]}>{valueRightSide}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -109,25 +118,21 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Medium',
         fontSize: 17,
         letterSpacing: 0.15,
-        color: COLORS.blue
     },
     componentContentTextHeaderRight: {
         fontFamily: 'Montserrat-Medium',
         fontSize: 17,
         letterSpacing: 0.15,
-        color: COLORS.purple
     },
     componentContentTextContentLeft: {
         fontFamily: 'Montserrat-Medium',
         fontSize: 45,
         letterSpacing: 1.93,
-        color: COLORS.blue
     },
     componentContentTextContentRight: {
         fontFamily: 'Montserrat-Medium',
         fontSize: 45,
         letterSpacing: 1.93,
-        color: COLORS.purple,
     },
     componentBreakHR: {
         width: 3, 
