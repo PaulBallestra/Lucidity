@@ -8,8 +8,6 @@ import { Calendar, LocaleConfig } from 'react-native-calendars'
 import styles from './landing.styles'
 import { COLORS } from '../../constants/themes'
 
-//Components
-//import CalendarComponent from './components/calendar-component';
 
 //French language
 LocaleConfig.locales['fr'] = {
@@ -54,8 +52,6 @@ class Landing extends React.Component {
                 
                 {/* CONTENT */}
                 <ScrollView style={{flex: 1, flexDirection: 'column'}}>
-
-                    {/* <CalendarComponent onPress={this.openCreateDreamPage}/> */}
 
                     <View style={styles.calendar}>
 
