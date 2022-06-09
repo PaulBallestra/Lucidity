@@ -14,6 +14,10 @@ const ToolsComponent = (props) => {
         case 'reveil':
             titleComponent = 'RÉVEIL';
             pictoComponent = require('../../../assets/icons/bell_picto.png');
+            titleLeftSide = 'ACTIVÉS';
+            titleRightSide = 'AUTO-STOP';
+            valueLeftSide = '0';
+            valueRightSide = '0';
             colorUpHR = COLORS.blue,
             colorDownHR = COLORS.purple
             break;

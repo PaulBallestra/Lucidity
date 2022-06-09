@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, TouchableOpacity, Dimensions } from 'react-native'
+import { View, Text, ScrollView, Image, Dimensions } from 'react-native'
 import React from 'react'
 
 import LinearGradient from 'react-native-linear-gradient';

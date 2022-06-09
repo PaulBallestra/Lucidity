@@ -9,5 +9,4 @@ export const COLORS = {
     customLightDark: '#202740',
     customDark: '#101225',
     customDisabledDark: '#4A4B61',
-
 }

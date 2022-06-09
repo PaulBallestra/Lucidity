@@ -1,24 +1,38 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
 import LinearGradient from 'react-native-linear-gradient';
 
+import { Calendar, LocaleConfig } from 'react-native-calendars'
+
 import styles from './landing.styles'
 import { COLORS } from '../../constants/themes'
 
-import PieChart from 'react-native-pie-chart';
-
 //Components
-import CalendarComponent from './components/calendar-component';
+//import CalendarComponent from './components/calendar-component';
+
+//French language
+LocaleConfig.locales['fr'] = {
+    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+    monthNamesShort: ['Janv', 'Févr', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil', 'Août', 'Sept', 'Oct', 'Nov', 'Déc'],
+    dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+    dayNamesShort: ['Di.', 'Lu.', 'Ma.', 'Me.', 'Je.', 'Ve.', 'Sa.']
+};
+
+LocaleConfig.defaultLocale = 'fr';
 
 class Landing extends React.Component {
 
+    //Function qui ouvre la page dreambook pour la date selectionnée
+    openCreateDreamPage = (dateString, timestamp) => () => {
+        this.props.navigation.navigate('CreateDream', {
+            dateString: dateString,
+            timestamp: timestamp
+        });
+    };
+
     //LANDING CALENDAR PAGE
     render(){
-
-        const widthAndHeight = 250
-        const series = [123, 321, 123, 789, 537]
-        const sliceColor = [COLORS.blue, COLORS.purple]
 
         return (
             <View style={styles.body}>
@@ -39,42 +53,65 @@ class Landing extends React.Component {
                 </View>*/}
                 
                 {/* CONTENT */}
-                <ScrollView style={{flex: 5, flexDirection: 'column',}}>
+                <ScrollView style={{flex: 1, flexDirection: 'column'}}>
 
-                    <CalendarComponent />
+                    {/* <CalendarComponent onPress={this.openCreateDreamPage}/> */}
 
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignContent: 'center', marginTop: 75, marginHorizontal: 'auto'}}>
+                    <View style={styles.calendar}>
 
-                        {/*STATS LUCID DREAMS
-                        <View style={{transform: [{ rotate: '90deg'}]}}>
-                            <LinearGradient colors={[COLORS.purple, COLORS.purple]} style={styles.horizontalBreak}>
-                            </LinearGradient>
-                        </View>*/}
-                    
-                        <PieChart
-                            widthAndHeight={96}
-                            series={[50,50]}
-                            sliceColor={['#2BB7F7', '#B56CFF']}
-                            doughnut={true}
-                            coverRadius={0.70}
-                            coverFill={COLORS.backgroundBottom}
-                        />                                   
+                        <View style={styles.calendarHeader}>
+                            <Text style={styles.calendarHeaderTitle}> CALENDRIER </Text>
+                            <Image source={require('../../assets/icons/calendar_picto.png')} style={styles.calendarHeaderImage}/>
+                        </View>
+                        <View style={styles.calendarContent}>
+                            <Calendar 
+                                theme={{
+                                    arrowColor: COLORS.text, //ARROWS COLOR
+                                    calendarBackground: 'rgba(0, 0, 0, 0)', //BACKGROUND COLOR NONE
+                                    monthTextColor: COLORS.text, //MONTH NAMES COLOR
+                                    textSectionTitleColor: COLORS.text, //WEEK NAMES COLOR
+                                    dayTextColor: COLORS.text, //DAYS MONTH COLOR
+                                    todayTextColor: COLORS.text, //TODAY COLOR
+                                    textDisabledColor: COLORS.textDisabled, //NO MONTH TEXT COLOR
+                                    textDayFontFamily: 'Montserrat-Medium', //FONT DAYS NUMBER
+                                    textMonthFontFamily: 'Montserrat-Medium', //FONT MONTH & YEAR
+                                    textDayHeaderFontFamily: 'Montserrat-Medium', //FONT DAYS NAME
+                                    'stylesheet.calendar.header': {
+                                        header: {
+                                            flexDirection: 'row',
+                                            justifyContent: 'space-between',
+                                            marginVertical: 10,
+                                            backgroundColor: COLORS.customDark,
+                                        },
+                                        week: {
+                                            flexDirection: 'row',
+                                            justifyContent: 'space-around',
+                                            alignItems: 'center',
+                                            backgroundColor: COLORS.customDark,
+                                            paddingTop: 5,
+                                        },
+                                    },
+                                }}
+                                enableSwipeMonths={true}
+                                dayComponent={({date, state, onPress}) => {
+                                    return (
+                                        <TouchableOpacity onPress={this.openCreateDreamPage(date.dateString, date.timestamp)}>
+                                            <View style={[styles.dayDotCustom, {backgroundColor: state === 'disabled' ? 'rgba(0, 0, 0, 0)' : COLORS.customDark}]}>
+                                                <Text style={[{color: state === 'disabled' ? COLORS.customDisabledDark : COLORS.text}, styles.dayTextCustom]}>
+                                                    {date.day}
+                                                </Text>
+                                            </View> 
+                                        </TouchableOpacity>
+                                    );
+                                }}
+                                onDayPress={(date) => {
+                                    console.log(date)
+                                }}
+                            />
+                        </View>
+                    </View>
 
-                        {/*STATS DREAMS*/}
-                        {/* <View style={{flex: 1, flexDirection: 'row', alignContent: 'center', marginLeft: 27}}>
-                            <View style={{transform: [{ rotate: '90deg'}]}}>
-                                <LinearGradient colors={[COLORS.blue, COLORS.blue]} style={styles.horizontalBreak}>
-                                </LinearGradient>
-                            </View>
-                            <View style={{transform: [{ rotate: '35deg'}, {translateY: -24}, {translateX: 34}]}}>
-                                <LinearGradient colors={[COLORS.blue, COLORS.blue]} style={styles.verticalBreak}>
-                                </LinearGradient>
-                            </View>
-                        </View>*/}
-
-                    </View> 
-
-                </ScrollView>           
+                </ScrollView>
 
                 </LinearGradient>
             </View>
