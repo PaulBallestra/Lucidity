@@ -19,8 +19,9 @@ export default function index() {
                 showLabel: false,
                 activeBackgroundColor: COLORS.customLightDark,
                 inactiveBackgroundColor: COLORS.backgroundBottom,
-                
-            }}>
+            }}
+            initialRouteName='Landing'
+        >
                 <Nav.Screen 
                         name='Learning'
                         component={Learning}
