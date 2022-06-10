@@ -37,6 +37,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: COLORS.text
     },
+    dateView: {
+        flex: 1,
+        alignItems: 'center',
+    },
+
 
 });
 
