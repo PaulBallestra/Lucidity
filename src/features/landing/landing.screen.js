@@ -174,7 +174,6 @@ class Landing extends React.Component {
                         </View>
 
                     </ScrollView>
-
                 </LinearGradient>
             </View>
         );
