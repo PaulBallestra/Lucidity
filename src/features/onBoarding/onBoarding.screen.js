@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, Dimensions, FlatList, Image, StatusBar, View, Text, TouchableOpacity } from 'react-native'
+import { SafeAreaView, Dimensions, FlatList, Image, StatusBar, View, Text, TouchableOpacity } from 'react-native'
 
 const { width, height } = Dimensions.get('window')
 
@@ -10,20 +10,37 @@ const slides = [
     {
         id: '1',
         image: require('../../assets/images/image1.png'),
-        title: 'TITRE',
-        subtitle: 'Lorem Ipsum'
+        title: 'LUCIDITY',
+        subtitle: 'PRENEZ LE CONTRÔLE',
+        content: 'Utilisez vos rêves pour mieux vous comprendre.'
     },
     {
         id: '2',
-        image: require('../../assets/images/image1.png'),
-        title: 'TITRE 2',
-        subtitle: 'Lorem Ipsum'
+        image: require('../../assets/images/calendrier_onBoarding_image2.png'),
+        title: 'CALENDRIER',
+        subtitle: 'Un suivi hebdomadaire,',
+        content: 'De vos rêves et leurs statitiques.'
     },
     {
         id: '3',
-        image: require('../../assets/images/image1.png'),
-        title: 'TITRE 3',
-        subtitle: 'Lorem Ipsum'
+        image: require('../../assets/images/learning_onBoarding_image3.png'),
+        title: 'LES TECHNIQUES',
+        subtitle: 'Au nombre de 4,',
+        content: 'Sont là pour vous apprendre les bases.'
+    },
+    {
+        id: '4',
+        image: require('../../assets/images/tools_onBoarding_image4.png'),
+        title: 'LES OUTILS',
+        subtitle: 'DreamBook, Réveils et Tests,',
+        content: 'Tous les outils dont vous aurez besoin.'
+    },
+    {
+        id: '5',
+        image: require('../../assets/images/letsgo_onBoarding_image5.png'),
+        title: 'LET\'S GO',
+        subtitle: 'RÊVEZ LUCIDE',
+        content: 'Vainquez une phobie, questionnez votre subconscient, vous avez les outils !'
     }
 ];
 
@@ -38,6 +55,9 @@ const Slide = ({item}) => {
             <Text style={styles.subtitle}>
                 {item.subtitle}
             </Text>
+            <Text style={styles.content}>
+                {item.content}
+            </Text>
         </View>
     );
 };
@@ -50,8 +70,8 @@ const OnBoardingScreen = ({navigation}) => {
     //Footer
     const Footer = () => {
         return (
-            <View style={{height: height * 0.25, justifyContent: 'space-between', paddingHorizontal: 20}}>
-                <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
+            <View style={{height: height * 0.175, justifyContent: 'space-between', paddingHorizontal: 20}}>
+                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                     {slides.map((_, index) => (
                         <View key={index} style={[styles.indicator, currentSlideIndex == index && {backgroundColor: COLORS.text, width: 25}]}/>
                     ))}
