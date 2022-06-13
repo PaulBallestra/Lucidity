@@ -59,7 +59,9 @@ const ToolsComponent = (props) => {
                             <Text style={[styles.componentContentTextContentLeft, {color: colorUpHR}]}>{valueLeftSide}</Text>
                         </View>
                         <View>
-                            <LinearGradient colors={[colorUpHR, colorUpHR, colorDownHR, colorDownHR]} style={styles.componentBreakHR}>
+                            <LinearGradient 
+                                colors={[colorUpHR, '#8586fc', colorDownHR]} 
+                                style={styles.componentBreakHR}>
                             </LinearGradient>
                         </View>
                         <View style={styles.componentContentTexts}> 

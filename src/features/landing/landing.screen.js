@@ -4,11 +4,11 @@ import React from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 
 import { Calendar, LocaleConfig } from 'react-native-calendars'
-import Svg, { G, Circle } from "react-native-svg";
 
 import styles from './landing.styles'
 import { COLORS } from '../../constants/themes'
 
+import LandingStats from './components/landing-stats'
 
 //French language
 LocaleConfig.locales['fr'] = {
@@ -32,16 +32,6 @@ class Landing extends React.Component {
 
     //LANDING CALENDAR PAGE
     render(){
-
-        const radius = 70;
-        const circleCircumference = 2 * Math.PI * radius;
-
-        const leftToSpendAmount = 60;
-        const targetAmount = 100;
-
-        const spentAmount = targetAmount - leftToSpendAmount;
-        const percentage = (spentAmount / targetAmount) * 100;
-        const strokeDashoffset = circleCircumference - (circleCircumference * percentage) / 100;
 
         return (
             <View style={styles.body}>
@@ -118,60 +108,7 @@ class Landing extends React.Component {
                             </View>
                         </View>
 
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', marginVertical: 35}}>
-                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                <Svg height="120" width="120" viewBox="0 0 180 180">
-                                    <G rotation={-90} originX="90" originY="90">
-                                        <Circle
-                                            cx="50%"
-                                            cy="50%"
-                                            r={radius}
-                                            stroke={COLORS.customDark}
-                                            fill="transparent"
-                                            strokeWidth="25"
-                                        />
-                                        <Circle
-                                            cx="50%"
-                                            cy="50%"
-                                            r={radius}
-                                            stroke={COLORS.blue}
-                                            fill="transparent"
-                                            strokeWidth="25"
-                                            strokeDasharray={circleCircumference}
-                                            strokeDashoffset={100-strokeDashoffset}
-                                            strokeLinecap="round"
-                                        />
-                                    </G>
-                                </Svg>
-                                <Text style={{color: COLORS.text, fontFamily: 'Montserrat-Medium', marginTop: 5, fontSize: 17}}>DREAMS</Text>
-                            </View>
-                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                <Svg height="120" width="120" viewBox="0 0 180 180">
-                                    <G rotation={-90} originX="90" originY="90">
-                                        <Circle
-                                            cx="50%"
-                                            cy="50%"
-                                            r={radius}
-                                            stroke={COLORS.customDark}
-                                            fill="transparent"
-                                            strokeWidth="25"
-                                        />
-                                        <Circle
-                                            cx="50%"
-                                            cy="50%"
-                                            r={radius}
-                                            stroke={COLORS.purple}
-                                            fill="transparent"
-                                            strokeWidth="25"
-                                            strokeDasharray={circleCircumference}
-                                            strokeDashoffset={strokeDashoffset}
-                                            strokeLinecap="round"
-                                        />
-                                    </G>
-                                </Svg>
-                                <Text style={{color: COLORS.text, fontFamily: 'Montserrat-Medium', marginTop: 5, fontSize: 17}}>LUCID DREAMS</Text>
-                            </View>
-                        </View>
+                        <LandingStats />
 
                     </ScrollView>
                 </LinearGradient>

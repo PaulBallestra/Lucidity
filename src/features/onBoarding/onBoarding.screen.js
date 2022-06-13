@@ -6,6 +6,7 @@ const { width, height } = Dimensions.get('window')
 import styles from './onBoarding.styles'
 import { COLORS } from '../../constants/themes'
 
+
 const slides = [
     {
         id: '1',
