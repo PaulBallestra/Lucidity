@@ -32,8 +32,8 @@ class CreateDream extends React.Component {
 
                 {/* HEADER */}
                 <View style={styles.headerView}>
-                    <Text style={styles.headerTitle}> LUCIDITY </Text>
-                    <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
+                    <Text style={styles.headerTitle}> BIEN DORMI ? </Text>
+                    <Text style={styles.headerSubTitle}> Notez votre rêve </Text>
                 </View>
 
                 <View style={styles.dreamWriting}>
@@ -46,18 +46,20 @@ class CreateDream extends React.Component {
                         <View>
                             <TextInput 
                                 style={[styles.textInputs, {maxHeight: 'auto'}]}
-                                placeholder='Titre'
-                                placeholderTextColor={COLORS.text}
+                                placeholder='Nommez'
+                                placeholderTextColor={COLORS.customDisabledDark}
                                 maxLength={40}
                             ></TextInput>
                             <TextInput
                                 style={styles.textInputs}
-                                placeholder='Contenu'
-                                placeholderTextColor={COLORS.text}
+                                placeholder='Racontez !'
+                                placeholderTextColor={COLORS.customDisabledDark}
                                 multiline={true}
+                                height={200}
                             ></TextInput>
+                        </View>
 
-                            <View style={{marginVertical: 7, flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <View style={{marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
                                 <TouchableOpacity onPress={() => this.setState({checkBoxValue: !this.state.checkBoxValue})} style={[styles.btnSave, this.state.checkBoxValue ? {backgroundColor: COLORS.purple, borderWidth: 1, borderColor: COLORS.purple} : {backgroundColor: COLORS.customLightDark, borderWidth: 1, borderColor: COLORS.blue} ]}>
                                     <Text style={[styles.btnText, this.state.checkBoxValue ? {color: COLORS.customDark} : {color: COLORS.blue}]}> {this.state.checkBoxValue ? 'RÊVE LUCIDE' : 'RÊVE NORMAL'} </Text>
                                 </TouchableOpacity>
@@ -65,9 +67,8 @@ class CreateDream extends React.Component {
                                 <TouchableOpacity style={styles.btnSave}>
                                     <Text style={styles.btnText}> SAUVEGARDER </Text>
                                 </TouchableOpacity>
-                            </View>
-
                         </View>
+                        
                     </View>
                 </View>
 

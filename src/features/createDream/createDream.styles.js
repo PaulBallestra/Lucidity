@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 
 const {width, height} = Dimensions.get('window');
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
         fontSize: 17, 
         borderRadius: 4,
         padding: 7, 
-        marginVertical: 5,
+        marginTop: 5,
         maxHeight: height * 0.25
     },
     btnSave: {
