@@ -37,10 +37,64 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: COLORS.text
     },
-    dateView: {
-        flex: 1,
-        alignItems: 'center',
+    dreamWriting: {
+        marginTop: 5,
+        marginRight: height*0.02,
+        marginLeft:  height*0.02,
     },
+    dreamWritingHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginRight: 7.5,
+        marginLeft: 4,
+    },
+    dreamWritingHeaderTitle: {
+        color: COLORS.text,
+        fontFamily: 'Montserrat-ExtraBold',
+        fontSize: 12.5,
+        letterSpacing: 1.5
+    },
+    dreamWritingHeaderImage: {
+        width: 17,
+        height: 17
+    },
+    dreamWritingContent: {
+        marginTop: 3,
+        backgroundColor: COLORS.customLightDark,
+        borderRadius: 8,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.39,
+        shadowRadius: 8.30,
+        elevation: 13,
+        padding: 5
+    },
+    textInputs: {
+        backgroundColor: COLORS.customDark, 
+        fontFamily: 'Montserrat-Medium', 
+        color: COLORS.text, 
+        fontSize: 17, 
+        borderRadius: 4,
+        padding: 7, 
+        marginVertical: 5,
+        maxHeight: height * 0.25
+    },
+    btnSave: {
+        borderRadius: 5,
+        backgroundColor: COLORS.blue,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+    },
+    btnText: {
+        fontWeight: 'bold', 
+        fontSize: 15,
+        color: COLORS.customDark
+    }
 
 
 });
