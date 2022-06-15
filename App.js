@@ -15,6 +15,7 @@ import Learning from './src/features/learning/learning.screen'
 import CreateDream from './src/features/createDream/createDream.screen'
 import DreamBook from './src/features/dreamBook/dreambook.screen'
 import SignUp from './src/features/signup/signup.screen'
+import Login from './src/features/login/login.screen'
 
 export default function App() {
 
@@ -27,6 +28,7 @@ export default function App() {
       if(appData === null){
         setIsAppFirstLaunched(true)
         AsyncStorage.setItem('isAppFirstLaunched', 'false')
+
       }else{
         setIsAppFirstLaunched(false)
       }
@@ -47,6 +49,7 @@ export default function App() {
           <Stack.Screen name='OnBoardingScreen' component={OnBoardingScreen}/>
 
           <Stack.Screen name='SignUp' component={SignUp} />
+          <Stack.Screen name='Login' component={Login} />
 
           <Stack.Screen name='Learning' component={Learning}/>
           <Stack.Screen name='Landing' component={Nav}/>

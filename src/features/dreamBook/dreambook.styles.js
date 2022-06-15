@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     headerView: {
         height: height*0.12,
         width: width,
-        backgroundColor: '#FFF',
         textAlign: 'center',
         justifyContent: 'center',
         backgroundColor: COLORS.backgroundTop,
