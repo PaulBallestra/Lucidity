@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 7.5
+        marginVertical: 7.5,
+        backgroundColor: COLORS.backgroundTop
     },
     textinputUsername: {
         color: COLORS.text,

@@ -52,12 +52,12 @@ class DreamComponent extends React.Component {
 
         if(this.props.type === 'LUCID'){
             dreamColors = {
-                backgroundColor: 'rgba(181, 108, 255, 0.075)',
+                backgroundColor: 'rgba(181, 108, 255, 0.01)',
                 borderColor: COLORS.purple,
             }
         }else{
             dreamColors = {
-                backgroundColor: 'rgba(43, 183, 247, 0.075)',
+                backgroundColor: 'rgba(43, 183, 247, 0.01)',
                 borderColor: COLORS.blue,
             }
         }
