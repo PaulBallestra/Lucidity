@@ -81,7 +81,7 @@ const OnBoardingScreen = ({navigation}) => {
                     {
                         currentSlideIndex == slides.length - 1 ?
                         <View style={{height: 50 }}>
-                            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Landing')}>
+                            <TouchableOpacity style={[styles.btn, {backgroundColor: COLORS.purple}]} onPress={() => navigation.navigate('Landing')}>
                                 <Text style={{fontWeight: 'bold', fontSize: 15, color: COLORS.customDark}}> COMMENCER </Text>
                             </TouchableOpacity>
                         </View> :

@@ -45,14 +45,14 @@ const ToolsComponent = (props) => {
 
     return (
 
-        <View style={styles.body} {...props}>
+        <View style={styles.body}>
 
                 <View style={styles.componentHeader}>
                     <Text style={styles.componentHeaderTitle}> {titleComponent} </Text>
                     <Image source={pictoComponent} style={styles.componentHeaderImage}/>
                 </View>
 
-                <TouchableOpacity style={styles.componentContent}>
+                <TouchableOpacity style={styles.componentContent}  {...props}>
                     <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                         <View style={styles.componentContentTexts}>
                             <Text style={[styles.componentContentTextHeaderLeft, {color: colorUpHR}]}>{titleLeftSide}</Text>
@@ -60,7 +60,7 @@ const ToolsComponent = (props) => {
                         </View>
                         <View>
                             <LinearGradient 
-                                colors={[colorUpHR, '#8586fc', colorDownHR]} 
+                                colors={[colorUpHR, COLORS.backgroundMiddle, colorDownHR]} 
                                 style={styles.componentBreakHR}>
                             </LinearGradient>
                         </View>

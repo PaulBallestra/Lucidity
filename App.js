@@ -13,12 +13,11 @@ import Landing from './src/features/landing/landing.screen'
 import Tools from './src/features/tools/tools.screen'
 import Learning from './src/features/learning/learning.screen'
 import CreateDream from './src/features/createDream/createDream.screen'
-
+import DreamBook from './src/features/dreamBook/dreambook.screen'
 
 export default function App() {
 
   const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null)
-  const launchingScreen = 'OnBoardingScreen'
 
   React.useEffect(() => {
     async function getStorageData(){
@@ -51,6 +50,8 @@ export default function App() {
           <Stack.Screen name='Tools' component={Tools}/>
 
           <Stack.Screen name='CreateDream' component={CreateDream}/>
+
+          <Stack.Screen name='DreamBook' component={DreamBook}/>
 
         </Stack.Navigator>
       </NavigationContainer>

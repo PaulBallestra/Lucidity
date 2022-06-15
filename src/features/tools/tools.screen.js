@@ -10,6 +10,12 @@ import { COLORS } from '../../constants/themes'
 import ToolsComponent from './components/tools-component';
 
 class Tools extends React.Component {
+
+    //Function qui ouvre la page dreambook avec tous les rêves
+    openCreateDreamBookPage = () => {
+      this.props.navigation.navigate('DreamBook');
+      console.log('PUTE')
+    };
   
     render(){
         return (
@@ -28,7 +34,7 @@ class Tools extends React.Component {
               <ToolsComponent type="reveil" />
 
               {/*DREAMBOOK*/}
-              <ToolsComponent type="dreambook"/>
+              <ToolsComponent type="dreambook" onPress={this.openCreateDreamBookPage}/>
 
               {/*TESTS*/}
               <ToolsComponent type="tests"/>
