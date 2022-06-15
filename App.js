@@ -14,6 +14,7 @@ import Tools from './src/features/tools/tools.screen'
 import Learning from './src/features/learning/learning.screen'
 import CreateDream from './src/features/createDream/createDream.screen'
 import DreamBook from './src/features/dreamBook/dreambook.screen'
+import SignUp from './src/features/signup/signup.screen'
 
 export default function App() {
 
@@ -40,10 +41,12 @@ export default function App() {
           screenOptions={{
             headerShown: false
           }}
-          initialRouteName={!isAppFirstLaunched ? 'Landing' : 'OnBoardingScreen'}
+          initialRouteName={!isAppFirstLaunched ? 'SignUp' : 'OnBoardingScreen'}
         >
 
           <Stack.Screen name='OnBoardingScreen' component={OnBoardingScreen}/>
+
+          <Stack.Screen name='SignUp' component={SignUp} />
 
           <Stack.Screen name='Learning' component={Learning}/>
           <Stack.Screen name='Landing' component={Nav}/>

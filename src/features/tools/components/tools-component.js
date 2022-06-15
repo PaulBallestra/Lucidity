@@ -18,18 +18,18 @@ const ToolsComponent = (props) => {
             titleRightSide = 'AUTO-STOP';
             valueLeftSide = '0';
             valueRightSide = '0';
-            colorUpHR = COLORS.blue,
-            colorDownHR = COLORS.purple
+            colorUpHR = COLORS.purple,
+            colorDownHR = COLORS.blue
             break;
         case 'dreambook':
             titleComponent = 'DREAMBOOK'
             pictoComponent = require('../../../assets/icons/dreambook_picto.png');
             titleLeftSide = 'DREAMS';
             titleRightSide = 'LUCID DREAMS';
-            valueLeftSide = '0';
-            valueRightSide = '0';
-            colorUpHR = COLORS.purple,
-            colorDownHR = COLORS.blue
+            valueLeftSide = '2';
+            valueRightSide = '1';
+            colorUpHR = COLORS.blue,
+            colorDownHR = COLORS.purple
             break;   
         case 'tests':
             titleComponent = 'TESTS DE RÉALITÉ';
@@ -38,8 +38,8 @@ const ToolsComponent = (props) => {
             titleRightSide = 'ACTIVÉS';
             valueLeftSide = '7';
             valueRightSide = '0';
-            colorUpHR = COLORS.blue,
-            colorDownHR = COLORS.purple
+            colorUpHR = COLORS.purple,
+            colorDownHR = COLORS.blue
             break;  
     }
 
