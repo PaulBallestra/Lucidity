@@ -1,4 +1,4 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, Image, ScrollView, TouchableOpacity, Button } from 'react-native'
 import React, {useState} from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -8,7 +8,7 @@ import { COLORS } from '../../constants/themes'
 import RealityTestComponent from './components/realityTest-component';
 import HoraireDayComponent from './components/horaireDay-component';
 
-const RealityTests = (props) => {
+const RealityTests = ({props, navigation}) => {
 
     const [lundiState, setLundiState] = useState(false);
     const [mardiState, setMardiState] = useState(false);
@@ -18,6 +18,19 @@ const RealityTests = (props) => {
     const [samediState, setSamediState] = useState(false);
     const [dimancheState, setDimancheState] = useState(false);
 
+    const savePage = () => {
+        console.log(lundiState)
+        console.log(mardiState)
+        console.log(mercrediState)
+        console.log(jeudiState)
+        console.log(vendrediState)
+        console.log(samediState)
+        console.log(dimancheState)
+
+        console.log(customState)
+
+        navigation.navigate('Tools')
+    }
 
     //Reality Tests
     return (
@@ -62,8 +75,8 @@ const RealityTests = (props) => {
             <View style={[styles.allTests, {marginTop: 15}]}>
 
                 <View style={styles.allTestsHeader}>
-                    <Text style={styles.allTestsHeaderTitle}> TESTS DE RÉALITÉ </Text>
-                    <Image source={require('../../assets/icons/realitytests_picto.png')} style={styles.allTestsHeaderImage}/>
+                    <Text style={styles.allTestsHeaderTitle}> HORAIRES </Text>
+                    <Image source={require('../../assets/icons/clock_picto.png')} style={styles.allTestsHeaderImage}/>
                 </View>
                 <View style={styles.allTestsContent}>
 
@@ -77,10 +90,16 @@ const RealityTests = (props) => {
                         <HoraireDayComponent onPress={() => setSamediState(!samediState)} dayLetter='S' isChecked={samediState}/>
                         <HoraireDayComponent onPress={() => setDimancheState(!dimancheState)} dayLetter='D' isChecked={dimancheState}/>
 
-
                     </View>
-
                 </View>
+            </View>
+
+            <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
+
+                <TouchableOpacity onPress={savePage} style={{backgroundColor: COLORS.purple, width: '90%', borderRadius: 5}}> 
+                    <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 20, fontWeight: 'bold', textAlign: 'center', padding: 7.5, color: COLORS.customDark}}> SAUVEGARDER </Text>
+                </TouchableOpacity>
+
             </View>
 
             </LinearGradient>
