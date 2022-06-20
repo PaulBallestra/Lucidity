@@ -34,7 +34,6 @@ const RealityTests = ({props, navigation}) => {
 
     //Reality Tests
     return (
-
         <View style={styles.body}>
 
             <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
