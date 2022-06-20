@@ -36,7 +36,7 @@ const ToolsComponent = (props) => {
             pictoComponent = require('../../../assets/icons/realitytests_picto.png')
             titleLeftSide = 'TESTS';
             titleRightSide = 'ACTIVÉS';
-            valueLeftSide = '7';
+            valueLeftSide = '5';
             valueRightSide = '0';
             colorUpHR = COLORS.purple,
             colorDownHR = COLORS.blue

@@ -1,5 +1,4 @@
 import React from 'react'
-import { View, Text } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
@@ -16,6 +15,7 @@ import CreateDream from './src/features/createDream/createDream.screen'
 import DreamBook from './src/features/dreamBook/dreambook.screen'
 import SignUp from './src/features/signup/signup.screen'
 import Login from './src/features/login/login.screen'
+import RealityTests from './src/features/realityTests/realityTests.screen'
 
 export default function App() {
 
@@ -36,6 +36,8 @@ export default function App() {
     getStorageData()
   }, [])
 
+  //const login = localStorage.getItem("isLoggedIn");
+
   return (
     isAppFirstLaunched !== null && (
       <NavigationContainer>
@@ -43,7 +45,7 @@ export default function App() {
           screenOptions={{
             headerShown: false
           }}
-          initialRouteName={!isAppFirstLaunched ? 'SignUp' : 'OnBoardingScreen'}
+          initialRouteName={!isAppFirstLaunched ? 'Landing' : 'OnBoardingScreen'}
         >
 
           <Stack.Screen name='OnBoardingScreen' component={OnBoardingScreen}/>
@@ -58,6 +60,7 @@ export default function App() {
           <Stack.Screen name='CreateDream' component={CreateDream}/>
 
           <Stack.Screen name='DreamBook' component={DreamBook}/>
+          <Stack.Screen name='RealityTests' component={RealityTests}/>
 
         </Stack.Navigator>
       </NavigationContainer>

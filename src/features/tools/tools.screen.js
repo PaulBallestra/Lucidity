@@ -14,7 +14,11 @@ class Tools extends React.Component {
     //Function qui ouvre la page dreambook avec tous les rêves
     openCreateDreamBookPage = () => {
       this.props.navigation.navigate('DreamBook');
-      console.log('PUTE')
+    };
+
+    //Function qui ouvre la page reality tests avec tous les tests de realités
+    openRealityTestsPage = () => {
+      this.props.navigation.navigate('RealityTests');
     };
   
     render(){
@@ -37,7 +41,7 @@ class Tools extends React.Component {
               <ToolsComponent type="dreambook" onPress={this.openCreateDreamBookPage}/>
 
               {/*TESTS*/}
-              <ToolsComponent type="tests"/>
+              <ToolsComponent type="tests" onPress={this.openRealityTestsPage}/>
 
             </ScrollView>
 

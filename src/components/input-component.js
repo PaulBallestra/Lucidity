@@ -4,17 +4,11 @@ import { COLORS } from '../constants/themes'
 
 const {width, height} = Dimensions.get('window');
 
-class InputComponent extends React.Component {
-
-    constructor(props){
-        super(props);
-    }
-
-    render(){
+const InputComponent= ({value, setValue, type, placeholder}) => {
 
         var imageSource;
 
-        if(this.props.type === 'USERNAME'){
+        if(type === 'USERNAME'){
             imageSource = require('../assets/icons/profile_picto.png')
         }else{
             imageSource = require('../assets/icons/password_picto.png')
@@ -26,14 +20,14 @@ class InputComponent extends React.Component {
                 <Image source={imageSource} style={styles.textinputImage}></Image>
                 <TextInput
                     style={styles.textinputUsername}
-                    placeholder={this.props.placeholder}
+                    placeholder={placeholder}
                     placeholderTextColor={COLORS.customDisabledDark}
-                    secureTextEntry={this.props.type !== 'USERNAME' ? true : false }
+                    secureTextEntry={type !== 'USERNAME' ? true : false }
+                    value={value}
                 />
 
             </View>
         )
-    }
 };
 
 const styles = StyleSheet.create({
@@ -57,8 +51,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     textinputImage: {
-        width: 22,
-        height: 22,
+        width: 20,
+        height: 20,
     },
 
 });

@@ -30,7 +30,7 @@ class DreamComponent extends React.Component {
 
     render(){
 
-        var miniatureStyleDream, contentStyleDream, dreamColors, titleDream = "TITLE", contentDream = "CONTENT";
+        var miniatureStyleDream, contentStyleDream, dreamColors;
         
         //Etat en clic
         if (this.state.onClicked){

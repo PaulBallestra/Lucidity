@@ -1,11 +1,10 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native'
 import React, {useState} from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 import { format } from 'date-fns'
 
 import styles from './createDream.styles'
 import { COLORS } from '../../constants/themes'
-
 
 class CreateDream extends React.Component {
 
@@ -26,54 +25,68 @@ class CreateDream extends React.Component {
 
         return (
 
-            <View style={styles.body}>
+            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.body}>
 
                 <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
 
                 {/* HEADER */}
                 <View style={styles.headerView}>
-                    <Text style={styles.headerTitle}> BIEN DORMI ? </Text>
-                    <Text style={styles.headerSubTitle}> Notez votre rêve </Text>
+                    <Text style={styles.headerTitle}> LUCIDITY </Text>
+                    <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
                 </View>
 
-                <View style={styles.dreamWriting}>
+                <ScrollView>
 
-                    <View style={styles.dreamWritingHeader}>
-                        <Text style={styles.dreamWritingHeaderTitle}> {dateToString} </Text>
-                        <Image source={require('../../assets/icons/dreambook_picto.png')} style={styles.dreamWritingHeaderImage}/>
+                    <View style={{marginTop: 10, backgroundColor: COLORS.text}}>
+                        <Text style={{textAlign: 'center', color: COLORS.customDark, fontSize: 18, fontFamily: 'Montserrat-Light',}}> Notez votre rêve </Text>
                     </View>
-                    <View style={styles.dreamWritingContent}>
-                        <View>
-                            <TextInput 
-                                style={[styles.textInputs, {maxHeight: 'auto'}]}
-                                placeholder='Nommez'
-                                placeholderTextColor={COLORS.customDisabledDark}
-                                maxLength={40}
-                            ></TextInput>
-                            <TextInput
-                                style={styles.textInputs}
-                                placeholder='Racontez !'
-                                placeholderTextColor={COLORS.customDisabledDark}
-                                multiline={true}
-                                height={200}
-                            ></TextInput>
-                        </View>
 
-                        <View style={{marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                                <TouchableOpacity onPress={() => this.setState({checkBoxValue: !this.state.checkBoxValue})} style={[styles.btnSave, this.state.checkBoxValue ? {backgroundColor: COLORS.purple, borderWidth: 1, borderColor: COLORS.purple} : {backgroundColor: COLORS.customLightDark, borderWidth: 1, borderColor: COLORS.blue} ]}>
-                                    <Text style={[styles.btnText, this.state.checkBoxValue ? {color: COLORS.customDark} : {color: COLORS.blue}]}> {this.state.checkBoxValue ? 'RÊVE LUCIDE' : 'RÊVE NORMAL'} </Text>
-                                </TouchableOpacity>
+                    <View style={styles.dreamWriting}>
 
-                                <TouchableOpacity style={styles.btnSave}>
-                                    <Text style={styles.btnText}> SAUVEGARDER </Text>
-                                </TouchableOpacity>
+                        <View style={styles.dreamWritingHeader}>
+                            <Text style={styles.dreamWritingHeaderTitle}> {dateToString} </Text>
+                            <Image source={require('../../assets/icons/dreambook_picto.png')} style={styles.dreamWritingHeaderImage}/>
                         </View>
+                        <View style={styles.dreamWritingContent}>
+                            <View>
+                                <TextInput 
+                                    style={[styles.textInputs, {maxHeight: 'auto'}]}
+                                    placeholder='Nommez'
+                                    placeholderTextColor={COLORS.customDisabledDark}
+                                    maxLength={40}
+                                ></TextInput>
+                                <TextInput
+                                    style={styles.textInputs}
+                                    placeholder='Racontez !'
+                                    placeholderTextColor={COLORS.customDisabledDark}
+                                    multiline={true}
+                                    height={200}
+                                ></TextInput>
+                            </View>
+
+                            <View style={{marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                                    <TouchableOpacity onPress={() => this.setState({checkBoxValue: !this.state.checkBoxValue})} style={[styles.btnSave, this.state.checkBoxValue ? {backgroundColor: COLORS.purple, borderWidth: 1, borderColor: COLORS.purple} : {backgroundColor: COLORS.customLightDark, borderWidth: 1, borderColor: COLORS.blue} ]}>
+                                        <Text style={[styles.btnText, this.state.checkBoxValue ? {color: COLORS.customDark} : {color: COLORS.blue}]}> {this.state.checkBoxValue ? 'RÊVE LUCIDE' : 'RÊVE NORMAL'} </Text>
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity style={styles.btnSave}>
+                                        <Text style={styles.btnText}> SAUVEGARDER </Text>
+                                    </TouchableOpacity>
+                            </View>
+                            
+                        </View>
+                    </View>
+
+                    {/* LISTE DES REVES DU JOURS SI IL Y EN A */}
+                    <View>
                         
                     </View>
-                </View>
+
+                </ScrollView>
+
 
                 </LinearGradient>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
