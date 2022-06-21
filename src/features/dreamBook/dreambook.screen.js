@@ -9,7 +9,7 @@ import styles from './dreambook.styles'
 import { COLORS } from '../../constants/themes'
 
 import DreamComponent from './components/dream-component';
-import SubTitlePageComponent from '../../components/subtitlepage-component';
+import SubHeaderComponent from '../../components/subheader-component';
 import HeaderComponent from '../../components/header-component'
 import ErrorComponent from '../../components/error-component';
 
@@ -66,7 +66,7 @@ const DreamBook = () => {
                 {/* HEADER */}
                 <HeaderComponent/>
 
-                <SubTitlePageComponent subtitle='DREAMBOOK' />
+                <SubHeaderComponent subtitle='DREAMBOOK' />
 
                 {/* View des errors Si il a des errors*/}
                 {

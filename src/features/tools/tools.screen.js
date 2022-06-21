@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { View, ScrollView } from 'react-native'
+
 import * as Keychain from 'react-native-keychain';
 import {AxiosContext} from '../../context/AxiosContext';
 
@@ -11,7 +12,7 @@ import { COLORS } from '../../constants/themes'
 //Components
 import ToolsComponent from './components/tools-component';
 import HeaderComponent from '../../components/header-component';
-import SubTitlePageComponent from '../../components/subtitlepage-component';
+import SubTitlePageComponent from '../../components/subheader-component';
 
 const Tools = ({navigation}) => {
 
@@ -55,12 +56,12 @@ const Tools = ({navigation}) => {
 
         <HeaderComponent />
 
-        <SubTitlePageComponent subtitle='OUTILS' />
+        <ScrollView>
 
-        <ScrollView style={{marginTop: 4}}>
+          <SubTitlePageComponent subtitle='OUTILS' />
 
           {/*REVEILS*/}
-          <ToolsComponent type="reveil" />
+          <ToolsComponent type="reveil"/>
 
           {/*DREAMBOOK*/}
           <ToolsComponent type="dreambook" numberClassic={numberOfClassicDreams} numberLucid={numberOfLucidDreams} onPress={() => navigation.navigate('DreamBook')}/>

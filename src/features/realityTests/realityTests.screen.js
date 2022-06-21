@@ -8,7 +8,7 @@ import { COLORS } from '../../constants/themes'
 import RealityTestComponent from './components/realityTest-component';
 import HoraireDayComponent from './components/horaireDay-component';
 import HeaderComponent from '../../components/header-component';
-import SubTitlePageComponent from '../../components/subtitlepage-component';
+import SubHeaderComponent from '../../components/subheader-component';
 
 const RealityTests = ({props, navigation}) => {
 
@@ -54,7 +54,7 @@ const RealityTests = ({props, navigation}) => {
             <HeaderComponent />
 
             {/* SUBTITLE PAGE */}
-            <SubTitlePageComponent subtitle='TESTS DE RÉALITÉ' />
+            <SubHeaderComponent subtitle='TESTS DE RÉALITÉ' />
 
 
             <ScrollView>

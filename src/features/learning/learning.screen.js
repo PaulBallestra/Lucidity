@@ -1,5 +1,5 @@
-import { View, Text, ScrollView, Image, Dimensions } from 'react-native'
 import React from 'react'
+import { View, Text, ScrollView, Image } from 'react-native'
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -7,22 +7,19 @@ import styles from './learning.styles'
 import { COLORS } from '../../constants/themes'
 
 import TechniqueComponent from './components/technique-component';
+import HeaderComponent from '../../components/header-component';
+import SubHeaderComponent from '../../components/subheader-component';
 
-const {width, height} = Dimensions.get('window');
-
-class Learning extends React.Component {
-
-  render(){
+const Learning = () => {
 
     return (
       <View style={styles.body}>
 
         <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
 
-          <View style={styles.headerView}>
-            <Text style={styles.headerTitle}> LUCIDITY </Text>
-            <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
-          </View>
+          <HeaderComponent />
+
+          <SubHeaderComponent subtitle='TECHNIQUES' />
 
           {/* Techniques */}
           <View style={styles.techniqueBody}>
@@ -47,7 +44,6 @@ class Learning extends React.Component {
         </LinearGradient>
       </View>
     );
-  }
 }
 
 export default Learning;

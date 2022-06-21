@@ -4,7 +4,7 @@ import React from "react";
 import { COLORS } from '../constants/themes'
 
 
-const SubTitlePageComponent = ({subtitle}) => {
+const SubHeaderComponent = ({subtitle}) => {
 
     return (
         <View style={styles.container}>
@@ -13,7 +13,7 @@ const SubTitlePageComponent = ({subtitle}) => {
     );
 };
 
-export default SubTitlePageComponent;
+export default SubHeaderComponent;
 
 const styles = StyleSheet.create({
     container: {

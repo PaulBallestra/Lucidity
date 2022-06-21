@@ -79,10 +79,11 @@ const ToolsComponent = (props) => {
 const styles = StyleSheet.create({
 
     body: {
+        marginTop: 5,
         maxHeight: height*0.1784,
         marginRight: height*0.02,
         marginLeft:  height*0.02,
-        marginBottom: height*0.025
+        marginBottom: 5
     },
     componentHeader: {
         flexDirection: 'row',

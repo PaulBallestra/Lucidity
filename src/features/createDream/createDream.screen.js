@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 
 import styles from './createDream.styles'
 import { COLORS } from '../../constants/themes'
-import SubTitlePageComponent from '../../components/subtitlepage-component';
+import SubHeaderComponent from '../../components/subheader-component';
 
 class CreateDream extends React.Component {
 
@@ -36,9 +36,9 @@ render(){
                 <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
             </View>
 
-            <ScrollView>
+            <SubHeaderComponent subtitle='Notez votre rêve' />
 
-                <SubTitlePageComponent subtitle='Notez votre rêve' />
+            <ScrollView>
 
                 <View style={styles.dreamWriting}>
 
