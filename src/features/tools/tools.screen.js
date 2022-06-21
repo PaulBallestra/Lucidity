@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, ScrollView } from 'react-native'
 import React from 'react'
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -8,47 +8,36 @@ import { COLORS } from '../../constants/themes'
 
 //Components
 import ToolsComponent from './components/tools-component';
+import HeaderComponent from '../../components/header-component';
+import SubTitlePageComponent from '../../components/subtitlepage-component';
 
-class Tools extends React.Component {
+const Tools = ({navigation}) => {
 
-    //Function qui ouvre la page dreambook avec tous les rêves
-    openCreateDreamBookPage = () => {
-      this.props.navigation.navigate('DreamBook');
-    };
+      return (
+        <View style={styles.body}>
+            
+        <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
 
-    //Function qui ouvre la page reality tests avec tous les tests de realités
-    openRealityTestsPage = () => {
-      this.props.navigation.navigate('RealityTests');
-    };
-  
-    render(){
-        return (
-          <View style={styles.body}>
-              
-          <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
+            <HeaderComponent />
 
-              <View style={styles.headerView}>
-                <Text style={styles.headerTitle}> LUCIDITY </Text>
-                <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
-              </View>
+            <SubTitlePageComponent subtitle='OUTILS' />
 
-            <ScrollView style={{marginTop: 4}}>
+          <ScrollView style={{marginTop: 4}}>
 
-              {/*REVEILS*/}
-              <ToolsComponent type="reveil" />
+            {/*REVEILS*/}
+            <ToolsComponent type="reveil" />
 
-              {/*DREAMBOOK*/}
-              <ToolsComponent type="dreambook" onPress={this.openCreateDreamBookPage}/>
+            {/*DREAMBOOK*/}
+            <ToolsComponent type="dreambook" onPress={() => navigation.navigate('DreamBook')}/>
 
-              {/*TESTS*/}
-              <ToolsComponent type="tests" onPress={this.openRealityTestsPage}/>
+            {/*TESTS*/}
+            <ToolsComponent type="tests" onPress={() => navigation.navigate('RealityTests')}/>
 
-            </ScrollView>
+          </ScrollView>
 
-          </LinearGradient>
-        </View>
-      );
-    }
+        </LinearGradient>
+      </View>
+    );
 }
 
 export default Tools;

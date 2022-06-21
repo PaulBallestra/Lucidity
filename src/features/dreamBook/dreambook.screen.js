@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react'
-import { View, ScrollView, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import * as Keychain from 'react-native-keychain';
 import {AxiosContext} from '../../context/AxiosContext';
 
