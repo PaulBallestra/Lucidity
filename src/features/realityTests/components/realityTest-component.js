@@ -28,12 +28,12 @@ const RealityTestComponent = ({type, title, subtitle, onPress, isChecked}) => {
         case 'mirror':
             imageSource = require('../../../assets/icons/mirror_picto.png')
             titleInfoTest = 'Oeil'
-            infoTest = "Lorsque vous vous regardez dans un mirroir dans un rêve, vous vous verrez de manière différente. Quelque chose qui ne va pas."
+            infoTest = "Lorsque vous vous regardez dans un mirroir lors d'un rêve, vous vous verrez de manière différente. Quelque chose qui ne va pas."
             break;
         case 'pinch':
             imageSource = require('../../../assets/icons/pinch_picto.png')
             titleInfoTest = 'Oeil'
-            infoTest = "Lorsque vous vous regardez dans un mirroir dans un rêve, vous vous verrez de manière différente. Quelque chose qui ne va pas."
+            infoTest = "Et oui, si je ne ressens rien au pincement, c'est que je suis dans un rêve."
             break;
     }
 

@@ -27,19 +27,6 @@ const SignUp = ({navigation}) => {
     const [errorConfirmPassword, setErrorConfirmPassword] = useState(false)
     const [errorAllChamps, setErrorAllChamps] = useState(false)
 
-    {/* useEffect(() => {
-        async function getAllDreams(){
-            try{
-                const dreams = await axios.get('http://10.0.2.2:8000/api/dreams')
-                setDreams(dreams.data)
-                console.log(dreams.data)
-            }catch(error){
-                console.log(error)
-            }
-        }
-        getAllDreams()
-    }, []) */}
-
     //SignUp function
     const signUp = async () => {
 

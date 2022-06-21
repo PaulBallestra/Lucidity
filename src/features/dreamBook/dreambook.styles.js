@@ -35,6 +35,20 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: COLORS.text
     },
+    contentErrors: {
+        width: width, 
+        flexDirection: 'column', 
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center', 
+        height: height*0.75
+    },
+    textErrors: {
+        color: COLORS.text, 
+        fontFamily: 'Montserrat-Medium', 
+        fontSize: 22, 
+        marginTop: 20
+    }
 
 });
 
