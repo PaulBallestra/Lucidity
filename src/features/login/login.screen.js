@@ -1,6 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { KeyboardAvoidingView, View, Text} from 'react-native'
+import { KeyboardAvoidingView, View, Text, Alert} from 'react-native'
+
+import { AuthContext } from '../../context/AuthContext';
+import * as Keychain from 'react-native-keychain';
+import {AxiosContext} from '../../context/AxiosContext';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -26,30 +30,55 @@ const Login = ({navigation}) => {
     const [errorAllChamps, setErrorAllChamps] = useState(false)
 
 
-    //Login function
-    const login = async () => {
+    const authContext = useContext(AuthContext);
+    const {publicAxios} = useContext(AxiosContext);
+
+    //FUNCTION LOGIN
+    const onLogin = async () => {
         try {
-            const response = await axios.post('http://10.0.2.2:8000/api/auth/login', {
+
+            console.log(username)
+            console.log(password)
+
+            const response = await publicAxios.post('/auth/login', {
                 username,
-                password
+                password,
             });
             if (response.status === 200) {
+
+                setUsername('');
+                setPassword('');
 
                 setErrorPassword(false)
                 setErrorUsername(false)
                 setErrorAllChamps(false)
 
                 //Save des valeurs perennes
+                const {accessToken} = response.data.token
+                const {refreshToken} = response.data;
+                authContext.setAuthState({
+                    accessToken,
+                    refreshToken,
+                    authenticated: true,
+                });
+    
+                await Keychain.setGenericPassword(
+                'token',
+                JSON.stringify({
+                    accessToken,
+                    refreshToken,
+                }),
+                );
 
                 console.log(JSON.stringify(response.data))
-                navigation.navigate('Landing')
 
-                setUsername('');
-                setPassword('');
+                //REDIRECTION
+                navigation.navigate('Landing')
             } else {
                 throw new Error();
             }
-        }catch(error){
+        } catch (error) {
+
             //Errors
             switch(error.response.status){
                 case 401:
@@ -71,6 +100,7 @@ const Login = ({navigation}) => {
             }
         }
     };
+
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.body}>
@@ -110,7 +140,7 @@ const Login = ({navigation}) => {
                 </View>
 
                 <View>
-                    <ConnectButton text='CONNEXION' onPress={login}/>
+                    <ConnectButton text='CONNEXION' onPress={onLogin}/>
                     <LittleTextComponent littleText='Nouveau chez Lucidity ?' clicText='Inscrivez-vous !' onPress={() => navigation.navigate('SignUp')}/>
                 </View>
 

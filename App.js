@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useCallback, useContext, useEffect, useState} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
+
+import { AuthContext } from './src/context/AuthContext'
+import * as Keychain from 'react-native-keychain';
 
 import Nav from './src/navigation'
 
@@ -19,50 +22,79 @@ import RealityTests from './src/features/realityTests/realityTests.screen'
 
 export default function App() {
 
-  const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null)
+const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null)
+const authContext = useContext(AuthContext);
+const [status, setStatus] = useState('loading');
 
-  React.useEffect(() => {
-    async function getStorageData(){
+const loadJWT = useCallback(async () => {
+  try {
+    const value = await Keychain.getGenericPassword();
+    const jwt = JSON.parse(value.password);
 
-      const appData = await AsyncStorage.getItem('isAppFirstLaunched')
+    //console.log(value)
+    //console.log(jwt)
 
-      if(appData === null){
-        setIsAppFirstLaunched(true)
-        AsyncStorage.setItem('isAppFirstLaunched', 'false')
+    authContext.setAuthState({
+      accessToken: jwt.accessToken || null,
+      refreshToken: jwt.refreshToken || null,
+      authenticated: jwt.accessToken !== null,
+    });
+    setStatus('success');
+  } catch (error) {
+    setStatus('error');
+    console.log(`Keychain Error: ${error.message}`);
+    authContext.setAuthState({
+      accessToken: null,
+      refreshToken: null,
+      authenticated: false,
+    });
+  }
+}, []);
 
-      }else{
-        setIsAppFirstLaunched(false)
-      }
+
+useEffect(() => {
+  async function getStorageData(){
+
+    const appData = await AsyncStorage.getItem('isAppFirstLaunched')
+
+    if(appData === null){
+      setIsAppFirstLaunched(true)
+      AsyncStorage.setItem('isAppFirstLaunched', 'false')
+
+    }else{
+      setIsAppFirstLaunched(false)
     }
-    getStorageData()
-  }, [])
+  }
+  getStorageData()
+  loadJWT()
+}, [loadJWT])
 
-  return (
-    isAppFirstLaunched !== null && (
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false
-          }}
-          initialRouteName={!isAppFirstLaunched ? 'Tools' : 'OnBoardingScreen'}
-        >
+return (
+  isAppFirstLaunched !== null && (
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false
+        }}
+        initialRouteName={!isAppFirstLaunched ? 'Login' : 'OnBoardingScreen'}
+      >
 
-          <Stack.Screen name='OnBoardingScreen' component={OnBoardingScreen}/>
+        <Stack.Screen name='OnBoardingScreen' component={OnBoardingScreen}/>
 
-          <Stack.Screen name='SignUp' component={SignUp} />
-          <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='SignUp' component={SignUp} />
+        <Stack.Screen name='Login' component={Login} />
 
-          <Stack.Screen name='Learning' component={Learning}/>
-          <Stack.Screen name='Landing' component={Nav}/>
-          <Stack.Screen name='Tools' component={Tools}/>
+        <Stack.Screen name='Learning' component={Learning}/>
+        <Stack.Screen name='Landing' component={Nav}/>
+        <Stack.Screen name='Tools' component={Tools}/>
 
-          <Stack.Screen name='CreateDream' component={CreateDream}/>
+        <Stack.Screen name='CreateDream' component={CreateDream}/>
 
-          <Stack.Screen name='DreamBook' component={DreamBook}/>
-          <Stack.Screen name='RealityTests' component={RealityTests}/>
+        <Stack.Screen name='DreamBook' component={DreamBook}/>
+        <Stack.Screen name='RealityTests' component={RealityTests}/>
 
-        </Stack.Navigator>
-      </NavigationContainer>
-    )
+      </Stack.Navigator>
+    </NavigationContainer>
   )
+)
 }

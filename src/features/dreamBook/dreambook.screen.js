@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import { View, Text, ScrollView, Image } from 'react-native'
-
+import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios'
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -15,9 +15,15 @@ const DreamBook = () => {
     const [errorState, setErrorState] = useState(false)
     const [contentErrorState, setContentErrorState] = useState('')
 
+    const authContext = useContext(AuthContext);
+
     //DREAMBOOK ALL DREAMS PAGE
     useEffect(() => {
+
         async function getAllDreams(){
+
+            console.log(authContext.getAccessToken)
+
             try{
                 const dreams = await axios.get('http://10.0.2.2:8000/api/dreams')
                 setDreams(dreams.data)
