@@ -18,16 +18,26 @@ const RealityTests = ({props, navigation}) => {
     const [samediState, setSamediState] = useState(false);
     const [dimancheState, setDimancheState] = useState(false);
 
-    const savePage = () => {
-        console.log(lundiState)
-        console.log(mardiState)
-        console.log(mercrediState)
-        console.log(jeudiState)
-        console.log(vendrediState)
-        console.log(samediState)
-        console.log(dimancheState)
+    const [handState, setHandState] = useState(false);
+    const [noseState, setNoseState] = useState(false);
+    const [eyeState, setEyeState] = useState(false);
+    const [mirrorState, setMirrorState] = useState(false);
+    const [pinchState, setPinchState] = useState(false);
 
-        console.log(customState)
+    const savePage = () => {
+        //console.log(lundiState)
+        //console.log(mardiState)
+        //console.log(mercrediState)
+        //console.log(jeudiState)
+        //console.log(vendrediState)
+        //console.log(samediState)
+        //console.log(dimancheState)
+
+        console.log(handState)
+        console.log(noseState)
+        console.log(eyeState)
+        console.log(mirrorState)
+        console.log(pinchState)
 
         navigation.navigate('Tools')
     }
@@ -55,15 +65,15 @@ const RealityTests = ({props, navigation}) => {
 
                     <ScrollView>
 
-                        <RealityTestComponent type='hand' title='Main' subtitle='est-elle normale ?' />
+                        <RealityTestComponent type='hand' title='Main' subtitle='est-elle normale ?' onPress={() => setHandState(!handState)} isChecked={handState}/>
 
-                        <RealityTestComponent type='nose' title='Nez' subtitle="est ce que j'arrive à respirer ?" />
+                        <RealityTestComponent type='nose' title='Nez' subtitle="est ce que j'arrive à respirer ?" onPress={() => setNoseState(!noseState)} isChecked={noseState}/>
 
-                        <RealityTestComponent type='eye' title='Oeil' subtitle="lorsque je ferme un oeil, puis-je voir mon nez ?" />
+                        <RealityTestComponent type='eye' title='Oeil' subtitle="lorsque je ferme un oeil, puis-je voir mon nez ?" onPress={() => setEyeState(!eyeState)} isChecked={eyeState}/>
 
-                        <RealityTestComponent type='mirror' title='Mirroir' subtitle="mon reflet est-il normal ?" />
+                        <RealityTestComponent type='mirror' title='Mirroir' subtitle="mon reflet est-il normal ?" onPress={() => setMirrorState(!mirrorState)} isChecked={mirrorState}/>
 
-                        <RealityTestComponent type='pinch' title='Pincement' subtitle="pince moi, je rêve ?" />
+                        <RealityTestComponent type='pinch' title='Pincement' subtitle="pince moi, je rêve ?" onPress={() => setPinchState(!pinchState)} isChecked={pinchState}/>
 
                     </ScrollView>
 

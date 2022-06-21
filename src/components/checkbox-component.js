@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View, Image } from "react-native";
 import React from "react";
 
-const CustomCheckBox = (props) => {
+const CheckBoxComponent = (props) => {
 
     const iconName = props.isChecked ?
         require('../assets/icons/checkbox-checked.png') : require('../assets/icons/checkbox-idle.png');
@@ -15,7 +15,7 @@ const CustomCheckBox = (props) => {
     );
 };
 
-export default CustomCheckBox;
+export default CheckBoxComponent;
 
 const styles = StyleSheet.create({
     container: {

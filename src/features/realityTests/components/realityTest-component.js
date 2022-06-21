@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity, Dimensions, Image} from 'react-native';
-import CustomCheckBox from '../../../components/checkbox-component';
+import CheckBoxComponent from '../../../components/checkbox-component';
 import { COLORS } from '../../../constants/themes'
 
 const {width, height} = Dimensions.get('window');
 
-const RealityTestComponent = ({type, title, subtitle}) => {
+const RealityTestComponent = ({type, title, subtitle, onPress, isChecked}) => {
 
     var imageSource = null, infoTest = null, titleInfoTest = null;
-    const [customState, setCustomState] = useState(false);
 
     switch(type){
         case 'hand':
@@ -56,7 +55,7 @@ const RealityTestComponent = ({type, title, subtitle}) => {
                         <TouchableOpacity style={{marginHorizontal: 10}} onPress={showInfoTest}>
                             <Image source={require('../../../assets/icons/info_picto.png')} style={{width: 25, height: 25}}/>
                         </TouchableOpacity>
-                        <CustomCheckBox onPress={() => setCustomState(!customState)} isChecked={customState}/>
+                        <CheckBoxComponent  onPress={onPress} isChecked={isChecked}/>
                     </View>
                 </View>
             </View>

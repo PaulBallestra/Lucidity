@@ -1,5 +1,5 @@
-import { View, Text, FlatList, ScrollView } from 'react-native'
-import React, {useState} from 'react'
+import React from 'react'
+import { View, Text, ScrollView } from 'react-native'
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -9,6 +9,8 @@ import { COLORS } from '../../constants/themes'
 import DreamComponent from './components/dream-component';
 
 class DreamBook extends React.Component {
+
+
 
     //DREAMBOOK ALL DREAMS PAGE
     render(){

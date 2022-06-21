@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { KeyboardAvoidingView, View, Text} from 'react-native'
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -13,6 +14,9 @@ import styles from './login.styles'
 import { COLORS } from '../../constants/themes'
 
 const Login = ({navigation}) => {
+
+    const [isUserConnected, setIsUserConnected] = useState(false)
+    const [userToken, setUserToken] = useState(null)
 
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
@@ -35,6 +39,8 @@ const Login = ({navigation}) => {
                 setErrorUsername(false)
                 setErrorAllChamps(false)
 
+                //Save des valeurs perennes
+
                 console.log(JSON.stringify(response.data))
                 navigation.navigate('Landing')
 
@@ -50,7 +56,7 @@ const Login = ({navigation}) => {
                     setErrorUsername(true)
                     setErrorAllChamps(false)
                     setErrorPassword(false)
-                    
+
                     setUsername('');
                     setPassword('');
                     break;

@@ -23,6 +23,7 @@ export default function App() {
 
   React.useEffect(() => {
     async function getStorageData(){
+
       const appData = await AsyncStorage.getItem('isAppFirstLaunched')
 
       if(appData === null){
@@ -36,8 +37,6 @@ export default function App() {
     getStorageData()
   }, [])
 
-  //const login = localStorage.getItem("isLoggedIn");
-
   return (
     isAppFirstLaunched !== null && (
       <NavigationContainer>
@@ -45,7 +44,7 @@ export default function App() {
           screenOptions={{
             headerShown: false
           }}
-          initialRouteName={!isAppFirstLaunched ? 'Login' : 'OnBoardingScreen'}
+          initialRouteName={!isAppFirstLaunched ? 'Tools' : 'OnBoardingScreen'}
         >
 
           <Stack.Screen name='OnBoardingScreen' component={OnBoardingScreen}/>
