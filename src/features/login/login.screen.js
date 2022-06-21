@@ -1,6 +1,5 @@
 import React, {useState, useContext} from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { KeyboardAvoidingView, View, Text, Alert} from 'react-native'
+import { KeyboardAvoidingView, View, Text} from 'react-native'
 
 import { AuthContext } from '../../context/AuthContext';
 import * as Keychain from 'react-native-keychain';
@@ -74,6 +73,7 @@ const Login = ({navigation}) => {
 
                 //REDIRECTION
                 navigation.navigate('Landing')
+
             } else {
                 throw new Error();
             }

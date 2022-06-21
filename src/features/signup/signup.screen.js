@@ -1,5 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useState} from 'react'
 import { KeyboardAvoidingView, View, Text} from 'react-native'
+
+import { AuthContext } from '../../context/AuthContext';
+import * as Keychain from 'react-native-keychain';
+import {AxiosContext} from '../../context/AxiosContext';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -9,32 +13,30 @@ import ConnectButton from '../../components/connect-button';
 import InputComponent from '../../components/input-component';
 import LittleTextComponent from '../../components/littletext-component'
 
-import client from '../../api/client';
-
 import styles from './signup.styles'
 import { COLORS } from '../../constants/themes'
 
 const SignUp = ({navigation}) => {
 
-    const {dreams, setDreams} = useState([])
-
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const [confirmPassword, setConfirmPassord] = useState()
+
+    const authContext = useContext(AuthContext);
+    const {publicAxios} = useContext(AxiosContext);
 
     const [errorUsername, setErrorUsername] = useState(false)
     const [errorPassword, setErrorPassword] = useState(false)
     const [errorConfirmPassword, setErrorConfirmPassword] = useState(false)
     const [errorAllChamps, setErrorAllChamps] = useState(false)
 
-    //SignUp function
-    const signUp = async () => {
-
+    //FUNCTION SIGNUP
+    const onSignUp = async () => {
         try {
 
             if(password === confirmPassword){
 
-                const response = await axios.post('http://10.0.2.2:8000/api/auth/signup', {
+                const response = await publicAxios.post('/auth/signup', {
                     username,
                     password,
                     'confirm_password': confirmPassword
@@ -46,12 +48,32 @@ const SignUp = ({navigation}) => {
                     setErrorConfirmPassword(false)
                     setErrorUsername(false)
 
-                    console.log(JSON.stringify(response.data))
-                    navigation.navigate('Landing')
-
                     setUsername('');
                     setPassword('');
                     setConfirmPassord('');
+
+                    //Save des valeurs perennes
+                    const {accessToken} = response.data.token
+                    const {refreshToken} = response.data;
+                    authContext.setAuthState({
+                        accessToken,
+                        refreshToken,
+                        authenticated: true,
+                    });
+        
+                    await Keychain.setGenericPassword(
+                    'token',
+                    JSON.stringify({
+                        accessToken,
+                        refreshToken,
+                    }),
+                    );
+
+                    console.log(JSON.stringify(response.data))
+
+                    //REDIRECTION
+                    navigation.navigate('Landing')
+
                 } else {
                     throw new Error();
                 }
@@ -81,7 +103,7 @@ const SignUp = ({navigation}) => {
                     break;
             }
         }
-    };
+    }
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.body}>
@@ -127,7 +149,7 @@ const SignUp = ({navigation}) => {
                 </View>
 
                 <View>
-                    <ConnectButton text="S'INSCRIRE" onPress={signUp}/>
+                    <ConnectButton text="S'INSCRIRE" onPress={onSignUp}/>
                     <LittleTextComponent littleText='Déjà chez Lucidity ?' clicText='Connectez-vous !' onPress={() => navigation.navigate('Login')}/>
                 </View>
 
