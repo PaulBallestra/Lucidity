@@ -22,6 +22,9 @@ const SignUp = ({navigation}) => {
     const [confirmPassword, setConfirmPassord] = useState()
 
     const [errorUsername, setErrorUsername] = useState(false)
+    const [errorPassword, setErrorPassword] = useState(false)
+    const [errorConfirmPassword, setErrorConfirmPassword] = useState(false)
+    const [errorAllChamps, setErrorAllChamps] = useState(false)
 
     {/* useEffect(() => {
         async function getAllDreams(){
@@ -38,8 +41,6 @@ const SignUp = ({navigation}) => {
 
     //SignUp function
     const signUp = async (event) => {
-        
-        const errorMessage = null;
 
         try {
 
@@ -51,7 +52,15 @@ const SignUp = ({navigation}) => {
                     'confirm_password': confirmPassword
                 });
                 if (response.status === 201) {
-                    alert(` You have created: ${JSON.stringify(response.data)}`);
+
+                    setErrorAllChamps(false)
+                    setErrorPassword(false)
+                    setErrorConfirmPassword(false)
+                    setErrorUsername(false)
+
+                    console.log(JSON.stringify(response.data))
+                    navigation.navigate('Landing')
+
                     setUsername('');
                     setPassword('');
                     setConfirmPassord('');
@@ -60,17 +69,29 @@ const SignUp = ({navigation}) => {
                 }
 
             }else {
-                alert('Les mots de passe ne correspondent pas.')
+                //PASSWORD NOT IDENTICAL
+                setErrorAllChamps(false)
+                setErrorPassword(true)
+                setErrorConfirmPassword(true)
+                setErrorUsername(false)
             }
         } catch (error) {
 
             //Errors
             switch(error.response.status){
                 case 409:
-                    alert('Conflit, utilisateur ou mot de passe erroné.')
+                    //USER ALREADY TAKEN
+                    setErrorAllChamps(false)
+                    setErrorPassword(false)
+                    setErrorConfirmPassword(false)
+                    setErrorUsername(true)
                     break;
                 case 422:
-                    alert('Tous les champs sont obligatoires.')
+                    //CHAMPS OBLIGATOIRES
+                    setErrorAllChamps(true)
+                    setErrorPassword(false)
+                    setErrorConfirmPassword(false)
+                    setErrorUsername(false)
                     break;
             }
         }
@@ -97,14 +118,25 @@ const SignUp = ({navigation}) => {
                     </View>
 
                     {
-                        errorUsername &&
-                        <Text style={{color: '#F00'}}> Utilisateur déjà inscrit </Text>
+                        errorAllChamps &&
+                        <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Tous les champs sont obligatoires. </Text>
                     }
-
+                    {
+                        errorUsername &&
+                        <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Utilisateur déjà inscrit. </Text>
+                    }
                     <InputComponent type='USERNAME' placeholder='Username' value={username} onChangeText={(value) => setUsername(value)} />
 
+                    {
+                        errorPassword &&
+                        <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Les mots de passe ne correspondent pas. </Text>
+                    }
                     <InputComponent type='PASSWORD' placeholder='Password' value={password} onChangeText={(value) => setPassword(value)}/>
 
+                    {
+                        errorConfirmPassword &&
+                        <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Les mots de passe ne correspondent pas. </Text>
+                    }
                     <InputComponent type='PASSWORD' placeholder='Confirm Password' value={confirmPassword} onChangeText={(value) => setConfirmPassord(value)}/>
 
                 </View>
