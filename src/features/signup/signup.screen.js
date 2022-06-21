@@ -17,6 +17,7 @@ import { COLORS } from '../../constants/themes'
 const SignUp = ({navigation}) => {
 
     const {dreams, setDreams} = useState([])
+
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const [confirmPassword, setConfirmPassord] = useState()
@@ -40,7 +41,7 @@ const SignUp = ({navigation}) => {
     }, []) */}
 
     //SignUp function
-    const signUp = async (event) => {
+    const signUp = async () => {
 
         try {
 
@@ -67,7 +68,6 @@ const SignUp = ({navigation}) => {
                 } else {
                     throw new Error();
                 }
-
             }else {
                 //PASSWORD NOT IDENTICAL
                 setErrorAllChamps(false)
@@ -76,7 +76,6 @@ const SignUp = ({navigation}) => {
                 setErrorUsername(false)
             }
         } catch (error) {
-
             //Errors
             switch(error.response.status){
                 case 409:
@@ -95,7 +94,6 @@ const SignUp = ({navigation}) => {
                     break;
             }
         }
-
     };
 
     return (

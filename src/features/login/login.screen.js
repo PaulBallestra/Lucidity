@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { KeyboardAvoidingView, View, Text} from 'react-native'
 
 import LinearGradient from 'react-native-linear-gradient';
+
+import axios from 'axios'
 
 import InputComponent from '../../components/input-component';
 import ConnectButton from '../../components/connect-button';
@@ -11,6 +13,58 @@ import styles from './login.styles'
 import { COLORS } from '../../constants/themes'
 
 const Login = ({navigation}) => {
+
+    const [username, setUsername] = useState()
+    const [password, setPassword] = useState()
+
+    const [errorUsername, setErrorUsername] = useState(false)
+    const [errorPassword, setErrorPassword] = useState(false)
+    const [errorAllChamps, setErrorAllChamps] = useState(false)
+
+
+    //Login function
+    const login = async () => {
+        try {
+            const response = await axios.post('http://10.0.2.2:8000/api/auth/login', {
+                username,
+                password
+            });
+            if (response.status === 200) {
+
+                setErrorPassword(false)
+                setErrorUsername(false)
+                setErrorAllChamps(false)
+
+                console.log(JSON.stringify(response.data))
+                navigation.navigate('Landing')
+
+                setUsername('');
+                setPassword('');
+            } else {
+                throw new Error();
+            }
+        }catch(error){
+            //Errors
+            switch(error.response.status){
+                case 401:
+                    setErrorUsername(true)
+                    setErrorAllChamps(false)
+                    setErrorPassword(false)
+                    
+                    setUsername('');
+                    setPassword('');
+                    break;
+                case 422:
+                    setErrorUsername(false)
+                    setErrorAllChamps(true)
+                    setErrorPassword(false)
+
+                    setUsername('');
+                    setPassword('');
+                    break;
+            }
+        }
+    };
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.body}>
@@ -31,14 +85,26 @@ const Login = ({navigation}) => {
                         <Text style={styles.pageNameText}> Connexion </Text>
                     </View>
 
-                    <InputComponent type='USERNAME' placeholder='Username'/>
+                    {
+                        errorAllChamps &&
+                        <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Tous les champs sont obligatoires. </Text>
+                    }
+                    {
+                        errorUsername &&
+                        <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Identifiants inconnus ou erronés. </Text>
+                    }
+                    <InputComponent type='USERNAME' placeholder='Username' value={username} onChangeText={(value) => setUsername(value)}/>
 
-                    <InputComponent type='PASSWORD' placeholder='Password'/>
+                    {
+                        errorPassword &&
+                        <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Les mots de passe ne correspondent pas. </Text>
+                    }
+                    <InputComponent type='PASSWORD' placeholder='Password' value={password} onChangeText={(value) => setPassword(value)}/>
 
                 </View>
 
                 <View>
-                    <ConnectButton text='CONNEXION' onPress={() => navigation.navigate('Landing')}/>
+                    <ConnectButton text='CONNEXION' onPress={login}/>
                     <LittleTextComponent littleText='Nouveau chez Lucidity ?' clicText='Inscrivez-vous !' onPress={() => navigation.navigate('SignUp')}/>
                 </View>
 
