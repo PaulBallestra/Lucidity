@@ -4,7 +4,7 @@ import { COLORS } from '../constants/themes'
 
 const {width, height} = Dimensions.get('window');
 
-const InputComponent= ({value, setValue, type, placeholder}) => {
+const InputComponent= ({value, onChangeText, type, placeholder}) => {
 
         var imageSource;
 
@@ -24,6 +24,7 @@ const InputComponent= ({value, setValue, type, placeholder}) => {
                     placeholderTextColor={COLORS.customDisabledDark}
                     secureTextEntry={type !== 'USERNAME' ? true : false }
                     value={value}
+                    onChangeText={onChangeText}
                 />
 
             </View>

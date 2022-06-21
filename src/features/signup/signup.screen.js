@@ -9,19 +9,21 @@ import ConnectButton from '../../components/connect-button';
 import InputComponent from '../../components/input-component';
 import LittleTextComponent from '../../components/littletext-component'
 
+import client from '../../api/client';
+
 import styles from './signup.styles'
 import { COLORS } from '../../constants/themes'
-import { API } from '../../constants/constants'
 
 const SignUp = ({navigation}) => {
 
-    var confirmPassword;
-
     const {dreams, setDreams} = useState([])
-    const {username, setUsername} = useState('')
-    const {password, setPassword} = useState('')
+    const [username, setUsername] = useState()
+    const [password, setPassword] = useState()
+    const [confirmPassword, setConfirmPassord] = useState()
 
-    useEffect(() => {
+    const [errorUsername, setErrorUsername] = useState(false)
+
+    {/* useEffect(() => {
         async function getAllDreams(){
             try{
                 const dreams = await axios.get('http://10.0.2.2:8000/api/dreams')
@@ -32,13 +34,48 @@ const SignUp = ({navigation}) => {
             }
         }
         getAllDreams()
-    }, [])
+    }, []) */}
 
-    const signUp = () => {
-        if(this.state.username!=""){
-            alert(this.state.username)
+    //SignUp function
+    const signUp = async (event) => {
+        
+        const errorMessage = null;
+
+        try {
+
+            if(password === confirmPassword){
+
+                const response = await axios.post('http://10.0.2.2:8000/api/auth/signup', {
+                    username,
+                    password,
+                    'confirm_password': confirmPassword
+                });
+                if (response.status === 201) {
+                    alert(` You have created: ${JSON.stringify(response.data)}`);
+                    setUsername('');
+                    setPassword('');
+                    setConfirmPassord('');
+                } else {
+                    throw new Error();
+                }
+
+            }else {
+                alert('Les mots de passe ne correspondent pas.')
+            }
+        } catch (error) {
+
+            //Errors
+            switch(error.response.status){
+                case 409:
+                    alert('Conflit, utilisateur ou mot de passe erroné.')
+                    break;
+                case 422:
+                    alert('Tous les champs sont obligatoires.')
+                    break;
+            }
         }
-    }
+
+    };
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.body}>
@@ -59,11 +96,16 @@ const SignUp = ({navigation}) => {
                         <Text style={styles.pageNameText}> Inscription </Text>
                     </View>
 
-                    <InputComponent type='USERNAME' placeholder='Username' value={username} setValue={setUsername}/>
+                    {
+                        errorUsername &&
+                        <Text style={{color: '#F00'}}> Utilisateur déjà inscrit </Text>
+                    }
 
-                    <InputComponent type='PASSWORD' placeholder='Password' value={password} setValue={setPassword}/>
+                    <InputComponent type='USERNAME' placeholder='Username' value={username} onChangeText={(value) => setUsername(value)} />
 
-                    <InputComponent type='PASSWORD' placeholder='Confirm Password' value={confirmPassword} />
+                    <InputComponent type='PASSWORD' placeholder='Password' value={password} onChangeText={(value) => setPassword(value)}/>
+
+                    <InputComponent type='PASSWORD' placeholder='Confirm Password' value={confirmPassword} onChangeText={(value) => setConfirmPassord(value)}/>
 
                 </View>
 

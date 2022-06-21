@@ -45,7 +45,7 @@ export default function App() {
           screenOptions={{
             headerShown: false
           }}
-          initialRouteName={!isAppFirstLaunched ? 'Landing' : 'OnBoardingScreen'}
+          initialRouteName={!isAppFirstLaunched ? 'SignUp' : 'OnBoardingScreen'}
         >
 
           <Stack.Screen name='OnBoardingScreen' component={OnBoardingScreen}/>
