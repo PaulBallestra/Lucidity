@@ -36,9 +36,6 @@ const Login = ({navigation}) => {
     const onLogin = async () => {
         try {
 
-            console.log(username)
-            console.log(password)
-
             const response = await publicAxios.post('/auth/login', {
                 username,
                 password,
@@ -53,23 +50,26 @@ const Login = ({navigation}) => {
                 setErrorAllChamps(false)
 
                 //Save des valeurs perennes
-                const {accessToken} = response.data.token
-                const {refreshToken} = response.data;
+                const accessToken = response.data.token
+                const refreshToken = response.data.token;
+
                 authContext.setAuthState({
                     accessToken,
                     refreshToken,
                     authenticated: true,
                 });
-    
+
                 await Keychain.setGenericPassword(
-                'token',
-                JSON.stringify({
-                    accessToken,
-                    refreshToken,
-                }),
+                    'token',
+                    JSON.stringify({
+                        accessToken,
+                        refreshToken,
+                    }),
                 );
 
                 console.log(JSON.stringify(response.data))
+
+                console.log(authContext.accessToken)
 
                 //REDIRECTION
                 navigation.navigate('Landing')
@@ -100,7 +100,6 @@ const Login = ({navigation}) => {
             }
         }
     };
-
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.body}>

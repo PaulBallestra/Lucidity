@@ -1,4 +1,4 @@
-import { View, Text, Image, ScrollView, TouchableOpacity, Button } from 'react-native'
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
 import React, {useState} from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -7,6 +7,8 @@ import { COLORS } from '../../constants/themes'
 
 import RealityTestComponent from './components/realityTest-component';
 import HoraireDayComponent from './components/horaireDay-component';
+import HeaderComponent from '../../components/header-component';
+import SubTitlePageComponent from '../../components/subtitlepage-component';
 
 const RealityTests = ({props, navigation}) => {
 
@@ -49,67 +51,72 @@ const RealityTests = ({props, navigation}) => {
             <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
 
             {/* HEADER */}
-            <View style={styles.headerView}>
-                <Text style={styles.headerTitle}> LUCIDITY </Text>
-                <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
-            </View>
+            <HeaderComponent />
 
-            {/* ALL TESTS */}
-            <View style={styles.allTests}>
+            {/* SUBTITLE PAGE */}
+            <SubTitlePageComponent subtitle='TESTS DE RÉALITÉ' />
 
-                <View style={styles.allTestsHeader}>
-                    <Text style={styles.allTestsHeaderTitle}> TESTS DE RÉALITÉ </Text>
-                    <Image source={require('../../assets/icons/realitytests_picto.png')} style={styles.allTestsHeaderImage}/>
-                </View>
-                <View style={styles.allTestsContent}>
 
-                    <ScrollView>
+            <ScrollView>
 
-                        <RealityTestComponent type='hand' title='Main' subtitle='est-elle normale ?' onPress={() => setHandState(!handState)} isChecked={handState}/>
+                {/* ALL TESTS */}
+                <View style={styles.allTests}>
 
-                        <RealityTestComponent type='nose' title='Nez' subtitle="est ce que j'arrive à respirer ?" onPress={() => setNoseState(!noseState)} isChecked={noseState}/>
+                    <View style={styles.allTestsHeader}>
+                        <Text style={styles.allTestsHeaderTitle}> TESTS DE RÉALITÉ </Text>
+                        <Image source={require('../../assets/icons/realitytests_picto.png')} style={styles.allTestsHeaderImage}/>
+                    </View>
+                    <View style={styles.allTestsContent}>
 
-                        <RealityTestComponent type='eye' title='Oeil' subtitle="lorsque je ferme un oeil, puis-je voir mon nez ?" onPress={() => setEyeState(!eyeState)} isChecked={eyeState}/>
+                        <ScrollView>
 
-                        <RealityTestComponent type='mirror' title='Mirroir' subtitle="mon reflet est-il normal ?" onPress={() => setMirrorState(!mirrorState)} isChecked={mirrorState}/>
+                            <RealityTestComponent type='hand' title='Main' subtitle='est-elle normale ?' onPress={() => setHandState(!handState)} isChecked={handState}/>
 
-                        <RealityTestComponent type='pinch' title='Pincement' subtitle="pince moi, je rêve ?" onPress={() => setPinchState(!pinchState)} isChecked={pinchState}/>
+                            <RealityTestComponent type='nose' title='Nez' subtitle="est ce que j'arrive à respirer ?" onPress={() => setNoseState(!noseState)} isChecked={noseState}/>
 
-                    </ScrollView>
+                            <RealityTestComponent type='eye' title='Oeil' subtitle="lorsque je ferme un oeil, puis-je voir mon nez ?" onPress={() => setEyeState(!eyeState)} isChecked={eyeState}/>
 
-                </View>
-            </View>
+                            <RealityTestComponent type='mirror' title='Mirroir' subtitle="mon reflet est-il normal ?" onPress={() => setMirrorState(!mirrorState)} isChecked={mirrorState}/>
 
-            {/* HORAIRES */}
-            <View style={[styles.allTests, {marginTop: 15}]}>
+                            <RealityTestComponent type='pinch' title='Pincement' subtitle="pince moi, je rêve ?" onPress={() => setPinchState(!pinchState)} isChecked={pinchState}/>
 
-                <View style={styles.allTestsHeader}>
-                    <Text style={styles.allTestsHeaderTitle}> HORAIRES </Text>
-                    <Image source={require('../../assets/icons/clock_picto.png')} style={styles.allTestsHeaderImage}/>
-                </View>
-                <View style={styles.allTestsContent}>
-
-                    <View style={{flexDirection: 'row', justifyContent: 'space-evenly', paddingHorizontal: 25, paddingVertical: 20}}>
-                        
-                        <HoraireDayComponent onPress={() => setLundiState(!lundiState)} dayLetter='L' isChecked={lundiState}/>
-                        <HoraireDayComponent onPress={() => setMardiState(!mardiState)} dayLetter='M' isChecked={mardiState}/>
-                        <HoraireDayComponent onPress={() => setMercrediState(!mercrediState)} dayLetter='M' isChecked={mercrediState}/>
-                        <HoraireDayComponent onPress={() => setJeudiState(!jeudiState)} dayLetter='J' isChecked={jeudiState}/>
-                        <HoraireDayComponent onPress={() => setVendrediState(!vendrediState)} dayLetter='V' isChecked={vendrediState}/>
-                        <HoraireDayComponent onPress={() => setSamediState(!samediState)} dayLetter='S' isChecked={samediState}/>
-                        <HoraireDayComponent onPress={() => setDimancheState(!dimancheState)} dayLetter='D' isChecked={dimancheState}/>
+                        </ScrollView>
 
                     </View>
                 </View>
-            </View>
 
-            <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
+                {/* HORAIRES */}
+                <View style={[styles.allTests, {marginTop: 150}]}>
 
-                <TouchableOpacity onPress={savePage} style={{backgroundColor: COLORS.purple, width: '90%', borderRadius: 5}}> 
-                    <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 20, fontWeight: 'bold', textAlign: 'center', padding: 7.5, color: COLORS.customDark}}> SAUVEGARDER </Text>
-                </TouchableOpacity>
+                    <View style={styles.allTestsHeader}>
+                        <Text style={styles.allTestsHeaderTitle}> HORAIRES </Text>
+                        <Image source={require('../../assets/icons/clock_picto.png')} style={styles.allTestsHeaderImage}/>
+                    </View>
+                    <View style={styles.allTestsContent}>
 
-            </View>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly', paddingHorizontal: 25, paddingVertical: 20}}>
+                            
+                            <HoraireDayComponent onPress={() => setLundiState(!lundiState)} dayLetter='L' isChecked={lundiState}/>
+                            <HoraireDayComponent onPress={() => setMardiState(!mardiState)} dayLetter='M' isChecked={mardiState}/>
+                            <HoraireDayComponent onPress={() => setMercrediState(!mercrediState)} dayLetter='M' isChecked={mercrediState}/>
+                            <HoraireDayComponent onPress={() => setJeudiState(!jeudiState)} dayLetter='J' isChecked={jeudiState}/>
+                            <HoraireDayComponent onPress={() => setVendrediState(!vendrediState)} dayLetter='V' isChecked={vendrediState}/>
+                            <HoraireDayComponent onPress={() => setSamediState(!samediState)} dayLetter='S' isChecked={samediState}/>
+                            <HoraireDayComponent onPress={() => setDimancheState(!dimancheState)} dayLetter='D' isChecked={dimancheState}/>
+
+                        </View>
+                    </View>
+                </View>
+
+                <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
+
+                    <TouchableOpacity onPress={savePage} style={{backgroundColor: COLORS.purple, width: '90%', borderRadius: 5}}> 
+                        <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 20, fontWeight: 'bold', textAlign: 'center', padding: 7.5, color: COLORS.customDark}}> SAUVEGARDER </Text>
+                    </TouchableOpacity>
+
+                </View>
+
+            </ScrollView>
 
             </LinearGradient>
         </View>

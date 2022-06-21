@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react'
 import { View, Text, ScrollView, Image } from 'react-native'
-import { AuthContext } from '../../context/AuthContext';
-import axios from 'axios'
+import * as Keychain from 'react-native-keychain';
+import {AxiosContext} from '../../context/AxiosContext';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -9,23 +9,28 @@ import styles from './dreambook.styles'
 import { COLORS } from '../../constants/themes'
 
 import DreamComponent from './components/dream-component';
+import SubTitlePageComponent from '../../components/subtitlepage-component';
+import HeaderComponent from '../../components/header-component'
 
 const DreamBook = () => {
 
     const [errorState, setErrorState] = useState(false)
     const [contentErrorState, setContentErrorState] = useState('')
 
-    const authContext = useContext(AuthContext);
+    const {publicAxios} = useContext(AxiosContext);
 
     //DREAMBOOK ALL DREAMS PAGE
     useEffect(() => {
 
         async function getAllDreams(){
 
-            console.log(authContext.getAccessToken)
+            const value = await Keychain.getGenericPassword();
+            const jwt = JSON.parse(value.password)
+        
+            console.log(jwt)
 
             try{
-                const dreams = await axios.get('http://10.0.2.2:8000/api/dreams')
+                const dreams = await publicAxios.get('/dreams')
                 setDreams(dreams.data)
                 console.log(dreams.data)
             }catch(error){
@@ -45,15 +50,10 @@ const DreamBook = () => {
             <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
 
                 {/* HEADER */}
-                <View style={styles.headerView}>
-                    <Text style={styles.headerTitle}> LUCIDITY </Text>
-                    <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
-                </View>
-            
-                <View style={{marginTop: 10, borderBottomWidth: 3, borderBottomColor: COLORS.customLightDark, }}>
-                    <Text style={{textAlign: 'center', color: COLORS.text, fontSize: 20, fontFamily: 'Montserrat-Medium', marginBottom: 10}}> DreamBook </Text>
-                </View>
+                <HeaderComponent/>
 
+
+                <SubTitlePageComponent subtitle='DREAMBOOK' />
                 {/* View des errors Si il a des errors*/}
                 {
                     errorState && 
