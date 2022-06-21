@@ -1,5 +1,7 @@
+import React, { useEffect, useState, useContext } from 'react'
 import { View, ScrollView } from 'react-native'
-import React from 'react'
+import * as Keychain from 'react-native-keychain';
+import {AxiosContext} from '../../context/AxiosContext';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -13,31 +15,64 @@ import SubTitlePageComponent from '../../components/subtitlepage-component';
 
 const Tools = ({navigation}) => {
 
-      return (
-        <View style={styles.body}>
-            
-        <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
+  const [numberOfLucidDreams, setNumberOfLucidDreams] = useState()
+  const [numberOfClassicDreams, setNumberOfClassicDreams] = useState()
 
-            <HeaderComponent />
+  const {publicAxios} = useContext(AxiosContext);
 
-            <SubTitlePageComponent subtitle='OUTILS' />
+  useEffect(() => {
 
-          <ScrollView style={{marginTop: 4}}>
+    async function getNumberOfDreams(){
+      const value = await Keychain.getGenericPassword();
+      const jwt = JSON.parse(value.password)
+      const token = jwt.accessToken;
 
-            {/*REVEILS*/}
-            <ToolsComponent type="reveil" />
+      const config = {
+        headers: { 
+          "Authorization": `Bearer ${token}`
+        }
+      };
 
-            {/*DREAMBOOK*/}
-            <ToolsComponent type="dreambook" onPress={() => navigation.navigate('DreamBook')}/>
+      try{
+        const numbers = await publicAxios.get('/dreams/count',
+            config
+        )
 
-            {/*TESTS*/}
-            <ToolsComponent type="tests" onPress={() => navigation.navigate('RealityTests')}/>
+        setNumberOfClassicDreams(numbers.data.numberOfClassicDreams)
+        setNumberOfLucidDreams(numbers.data.numberOfLucidDreams)
+        
+      }catch(error){
+        console.log(error.response.status)
+      }
+    }
+    getNumberOfDreams()
+  }, []);
 
-          </ScrollView>
+  return (
+    <View style={styles.body}>
 
-        </LinearGradient>
-      </View>
-    );
-}
+      <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
+
+        <HeaderComponent />
+
+        <SubTitlePageComponent subtitle='OUTILS' />
+
+        <ScrollView style={{marginTop: 4}}>
+
+          {/*REVEILS*/}
+          <ToolsComponent type="reveil" />
+
+          {/*DREAMBOOK*/}
+          <ToolsComponent type="dreambook" numberClassic={numberOfClassicDreams} numberLucid={numberOfLucidDreams} onPress={() => navigation.navigate('DreamBook')}/>
+
+          {/*TESTS*/}
+          <ToolsComponent type="tests" onPress={() => navigation.navigate('RealityTests')}/>
+
+        </ScrollView>
+
+      </LinearGradient>
+    </View>
+  );
+  }
 
 export default Tools;

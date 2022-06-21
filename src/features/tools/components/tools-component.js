@@ -26,8 +26,8 @@ const ToolsComponent = (props) => {
             pictoComponent = require('../../../assets/icons/dreambook_picto.png');
             titleLeftSide = 'DREAMS';
             titleRightSide = 'LUCID DREAMS';
-            valueLeftSide = '2';
-            valueRightSide = '1';
+            valueLeftSide = props.numberClassic;
+            valueRightSide = props.numberLucid;
             colorUpHR = COLORS.blue,
             colorDownHR = COLORS.purple
             break;   

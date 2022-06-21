@@ -60,7 +60,6 @@ useEffect(() => {
     if(appData === null){
       setIsAppFirstLaunched(true)
       AsyncStorage.setItem('isAppFirstLaunched', 'false')
-
     }else{
       setIsAppFirstLaunched(false)
     }
@@ -76,7 +75,10 @@ return (
         screenOptions={{
           headerShown: false
         }}
-        initialRouteName={!isAppFirstLaunched ? 'Login' : 'OnBoardingScreen'}
+        initialRouteName={!isAppFirstLaunched ? 
+          status === 'success' ? 'Landing' : 'Login'
+          : 'OnBoardingScreen'
+        }
       >
 
         <Stack.Screen name='OnBoardingScreen' component={OnBoardingScreen}/>
