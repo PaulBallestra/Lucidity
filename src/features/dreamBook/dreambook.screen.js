@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react'
-import { View, Text, ScrollView, Image } from 'react-native'
+import { View, ScrollView, FlatList } from 'react-native'
 import * as Keychain from 'react-native-keychain';
 import {AxiosContext} from '../../context/AxiosContext';
 
@@ -11,12 +11,13 @@ import { COLORS } from '../../constants/themes'
 import DreamComponent from './components/dream-component';
 import SubTitlePageComponent from '../../components/subtitlepage-component';
 import HeaderComponent from '../../components/header-component'
+import ErrorComponent from '../../components/error-component';
 
 const DreamBook = () => {
 
-    const [errorState, setErrorState] = useState(false)
-    const [contentErrorState, setContentErrorState] = useState('')
+    const [dreams, setDreams] = useState()
 
+    const [errorState, setErrorState] = useState('')
     const {publicAxios} = useContext(AxiosContext);
 
     //DREAMBOOK ALL DREAMS PAGE
@@ -26,19 +27,32 @@ const DreamBook = () => {
 
             const value = await Keychain.getGenericPassword();
             const jwt = JSON.parse(value.password)
-        
-            console.log(jwt)
+            const token = jwt.accessToken;
+
+            const config = {
+                headers: { 
+                    "Authorization": `Bearer ${token}`
+                }
+            };
 
             try{
-                const dreams = await publicAxios.get('/dreams')
-                setDreams(dreams.data)
-                console.log(dreams.data)
-            }catch(error){
+                const dreams = await publicAxios.get('/dreams',
+                    config
+                )
                 
-                setErrorState(true)
-                setContentErrorState(error.response.data.message)
-                console.log(error.response.data.message)
+                if(dreams.data.dreams.length !== 0){
 
+                    setErrorState('')
+                    setDreams(dreams.data.dreams)
+
+                    console.log(dreams.data.dreams)
+
+                }else {
+                    setErrorState("Vous n'avez aucun rêve noté pour le moment.")
+                }
+            }catch(error){
+                setErrorState('Non Authentifié.')
+                console.log(error.response.status)
             }
         }
         getAllDreams()
@@ -52,38 +66,25 @@ const DreamBook = () => {
                 {/* HEADER */}
                 <HeaderComponent/>
 
-
                 <SubTitlePageComponent subtitle='DREAMBOOK' />
+
                 {/* View des errors Si il a des errors*/}
                 {
-                    errorState && 
-                    <View style={styles.contentErrors}>
-                        
-                        <Image source={require('../../assets/icons/profile_picto.png')} style={{width: 55, height: 55}}/>
-                        <Text style={styles.textErrors}> {contentErrorState} </Text>
-
-                    </View>
+                    errorState !== '' && 
+                    <ErrorComponent errorText={errorState} errorImage={errorState === 'Non Authentifié.' ? 'profile_error' : 'no_dreams_error'}/>
                 }
 
                 {/* CONTENT DES REVES POUR USER CONNECTED */}
                 {
-                    !errorState && 
-                    <ScrollView>
-                        <DreamComponent type='LUCID'/>
-                        <DreamComponent type='CLASSIC'/>
-                    </ScrollView>
+                    errorState === '' &&
+                    <FlatList
+                        data={dreams}
+                        keyExtractor={({ id }, index) => id}
+                        renderItem={({item}) => (
+                            <DreamComponent type={item.isLucid} date={item.date} title={item.title} subtitle={item.subtitle} content={item.content}/>
+                        )}
+                    />
                 }
-                
-
-                
-                
-                {/*<FlatList
-                    data={data}
-                    keyExtractor={({ id }, index) => id}
-                    renderItem={({item}) => (
-                        <DreamComponent type='LUCID' />
-                    )}
-                    />*/}
 
             </LinearGradient>
         </View>

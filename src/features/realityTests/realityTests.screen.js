@@ -86,7 +86,7 @@ const RealityTests = ({props, navigation}) => {
                 </View>
 
                 {/* HORAIRES */}
-                <View style={[styles.allTests, {marginTop: 150}]}>
+                <View style={[styles.allTests, {marginTop: 15}]}>
 
                     <View style={styles.allTestsHeader}>
                         <Text style={styles.allTestsHeaderTitle}> HORAIRES </Text>

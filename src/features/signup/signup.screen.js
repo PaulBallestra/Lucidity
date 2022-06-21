@@ -53,8 +53,8 @@ const SignUp = ({navigation}) => {
                     setConfirmPassord('');
 
                     //Save des valeurs perennes
-                    const {accessToken} = response.data.token
-                    const {refreshToken} = response.data;
+                    const accessToken = response.data.token
+                    const refreshToken = response.data;
                     authContext.setAuthState({
                         accessToken,
                         refreshToken,

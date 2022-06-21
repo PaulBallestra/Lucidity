@@ -76,7 +76,7 @@ return (
         screenOptions={{
           headerShown: false
         }}
-        initialRouteName={!isAppFirstLaunched ? 'Tools' : 'OnBoardingScreen'}
+        initialRouteName={!isAppFirstLaunched ? 'Login' : 'OnBoardingScreen'}
       >
 
         <Stack.Screen name='OnBoardingScreen' component={OnBoardingScreen}/>

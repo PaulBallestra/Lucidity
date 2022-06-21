@@ -25,7 +25,6 @@ class DreamComponent extends React.Component {
                 onClicked: true
             })
         }
-        console.log(this.props.type)
     }
 
     render(){
@@ -50,7 +49,7 @@ class DreamComponent extends React.Component {
             }
         }
 
-        if(this.props.type === 'LUCID'){
+        if(this.props.type){
             dreamColors = {
                 backgroundColor: 'rgba(181, 108, 255, 0.01)',
                 borderColor: COLORS.purple,
@@ -66,21 +65,18 @@ class DreamComponent extends React.Component {
             <View style={styles.dream}>
 
                 <View style={styles.dreamHeader}>
-                    <Text style={styles.dreamHeaderTitle}> 12-12-2020 </Text>
+                    <Text style={styles.dreamHeaderTitle}> {this.props.date} </Text>
                     <Image source={require('../../../assets/icons/dreambook_picto.png')} style={styles.dreamHeaderImage}/>
                 </View>
 
                 <TouchableOpacity onPress={this.handlerButtonOnClick} style={[styles.dreamContent, dreamColors]}>
                     <View style={{margin: 5}}>
-                        <Text style={styles.dreamContentTitle}> TITLE </Text>
-                        <Text style={styles.dreamContentContent}> CONTENT </Text>
+                        <Text style={styles.dreamContentTitle}> {this.props.title} </Text>
+                        <Text style={styles.dreamContentContent}> {this.props.subtitle} </Text>
                     </View>
                     <View style={[contentStyleDream, {margin: 10}]}>
                         <Text style={styles.dreamContentContent}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            {this.props.content}
                         </Text>
                     </View>            
                 </TouchableOpacity>

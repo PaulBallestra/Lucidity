@@ -7,8 +7,6 @@ import {AxiosContext} from '../../context/AxiosContext';
 
 import LinearGradient from 'react-native-linear-gradient';
 
-import axios from 'axios'
-
 import InputComponent from '../../components/input-component';
 import ConnectButton from '../../components/connect-button';
 import LittleTextComponent from '../../components/littletext-component';
@@ -17,9 +15,6 @@ import styles from './login.styles'
 import { COLORS } from '../../constants/themes'
 
 const Login = ({navigation}) => {
-
-    const [isUserConnected, setIsUserConnected] = useState(false)
-    const [userToken, setUserToken] = useState(null)
 
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
@@ -69,11 +64,8 @@ const Login = ({navigation}) => {
 
                 console.log(JSON.stringify(response.data))
 
-                console.log(authContext.accessToken)
-
                 //REDIRECTION
                 navigation.navigate('Landing')
-
             } else {
                 throw new Error();
             }
