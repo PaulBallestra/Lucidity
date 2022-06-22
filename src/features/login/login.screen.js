@@ -13,6 +13,7 @@ import LittleTextComponent from '../../components/littletext-component';
 
 import styles from './login.styles'
 import { COLORS } from '../../constants/themes'
+import HeaderComponent from '../../components/header-component';
 
 const Login = ({navigation}) => {
 
@@ -22,7 +23,6 @@ const Login = ({navigation}) => {
     const [errorUsername, setErrorUsername] = useState(false)
     const [errorPassword, setErrorPassword] = useState(false)
     const [errorAllChamps, setErrorAllChamps] = useState(false)
-
 
     const authContext = useContext(AuthContext);
     const {publicAxios} = useContext(AxiosContext);
@@ -62,7 +62,7 @@ const Login = ({navigation}) => {
                     user
                 );
 
-                console.log(JSON.stringify(response.data))
+                //console.log(JSON.stringify(response.data))
 
                 //REDIRECTION
                 navigation.navigate('Landing')
@@ -99,10 +99,7 @@ const Login = ({navigation}) => {
             <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
 
                 {/* HEADER */}
-                <View style={styles.headerView}>
-                    <Text style={styles.headerTitle}> LUCIDITY </Text>
-                    <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
-                </View>
+                <HeaderComponent />
 
                 {/* INPUTS */}
                 <View>

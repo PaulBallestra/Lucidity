@@ -10,6 +10,7 @@ import { format } from 'date-fns'
 import styles from './createDream.styles'
 import { COLORS } from '../../constants/themes'
 import SubHeaderComponent from '../../components/subheader-component';
+import HeaderComponent from '../../components/header-component';
 
 const CreateDream = (props) => {
 
@@ -18,28 +19,40 @@ const CreateDream = (props) => {
     const [subtitleDream, setSubtitleDream] = useState('')
     const [contentDream, setContentDream] = useState('')
 
+    const [errorAllChamps, setErrorAllChamps] = useState(false)
+
     const {publicAxios} = useContext(AxiosContext);
 
     //Date
     const {dateString} = props.route.params;
     const date = new Date(dateString);
     var dateToString = format(date, 'dd-MM-yyyy');
+    var dateToSend = format(date, 'yyyy-MM-dd')
 
-    async function sendNewDream(){
+    const sendNewDream = async () => {
 
-        const value = await Keychain.getInternetCredentials();
-        const user = JSON.parse(value.username)
-        const user_id = user.id;
+        if (!titleDream.trim() || !subtitleDream.trim() || !contentDream.trim()) {
+            setErrorAllChamps(true)
+            return;
+        }
 
-        console.log(user)
+        setErrorAllChamps(false)
+
+        const value = await Keychain.getGenericPassword();
+        const jwt = JSON.parse(value.username)
+        const token = jwt.accessToken;
+
+        const user = JSON.parse(value.password)
+
+        //console.log(dateToSend)
 
         const body = {
+            'user_id': user.id,
             'title': titleDream,
             'subtitle': subtitleDream,
             'content': contentDream,
-            'date': dateToString,
+            'date': dateToSend,
             'isLucid': isLucidDream,
-            'user_id': user_id
         }
 
         const config = {
@@ -50,21 +63,22 @@ const CreateDream = (props) => {
 
         try{
 
-            const dreamsUploaded = await publicAxios.post('/dreams',
+            const dreamsUploaded = await publicAxios.post('/dreams', 
                 body,
                 config
             )
             
             if(dreamsUploaded){
-
-                console.log(dreamsUploaded.data)
+                
+                props.navigation.navigate('Landing')
+                console.log(dreamsUploaded)
 
             }else {
                 //setErrorState("Vous n'avez aucun rêve noté pour le moment.")
             }
         }catch(error){
             //setErrorState('Non Authentifié.')
-            console.log(error.response.status)
+            console.log(error)
         }
 
     }
@@ -76,10 +90,7 @@ const CreateDream = (props) => {
             <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
 
             {/* HEADER */}
-            <View style={styles.headerView}>
-                <Text style={styles.headerTitle}> LUCIDITY </Text>
-                <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
-            </View>
+            <HeaderComponent />
 
             <SubHeaderComponent subtitle='Notez votre rêve' />
 
@@ -93,6 +104,10 @@ const CreateDream = (props) => {
                     </View>
                     <View style={styles.dreamWritingContent}>
                         <View>
+                            {
+                                errorAllChamps &&
+                                <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Tous les champs sont obligatoires. </Text>
+                            }
                             <TextInput
                                 style={[styles.textInputs, {maxHeight: 'auto'}]}
                                 placeholder='Nommez,'

@@ -76,7 +76,7 @@ return (
           headerShown: false
         }}
         initialRouteName={!isAppFirstLaunched ? 
-          status === 'success' ? 'Landing' : 'SignUp'
+          status === 'success' ? 'Landing' : 'Login'
           : 'OnBoardingScreen'
         }
       >

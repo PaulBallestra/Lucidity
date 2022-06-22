@@ -40,7 +40,7 @@ const Tools = ({navigation}) => {
             config
         )
 
-        setNumberOfClassicDreams(numbers.data.numberOfClassicDreams)
+        setNumberOfClassicDreams(numbers.data.numberOfClassicDreams + numbers.data.numberOfLucidDreams)
         setNumberOfLucidDreams(numbers.data.numberOfLucidDreams)
         
       }catch(error){

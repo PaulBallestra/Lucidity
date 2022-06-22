@@ -19,7 +19,7 @@ const LandingStats = () =>  {
 
     async function getNumberOfDreams(){
         const value = await Keychain.getGenericPassword();
-        const jwt = JSON.parse(value.password)
+        const jwt = JSON.parse(value.username)
         const token = jwt.accessToken;
 
         const config = {
@@ -51,9 +51,9 @@ const LandingStats = () =>  {
 
     const spentAmount = numberOfAllDream - numberOfClassicDreams;
     const percentage = (spentAmount / numberOfAllDream) * 100;
-    console.log(percentage)
+    //console.log(percentage)
     const strokeDashoffset = circleCircumference - (circleCircumference * percentage) / 100;
-    console.log(strokeDashoffset)
+    //console.log(strokeDashoffset)
 
     return (
         <View style={styles.body}>

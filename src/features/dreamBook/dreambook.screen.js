@@ -45,8 +45,6 @@ const DreamBook = () => {
                     setErrorState('')
                     setDreams(dreams.data.dreams)
 
-                    console.log(dreams.data.dreams)
-
                 }else {
                     setErrorState("Vous n'avez aucun rêve noté pour le moment.")
                 }
