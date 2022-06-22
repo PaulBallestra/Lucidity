@@ -54,12 +54,12 @@ const Login = ({navigation}) => {
                     authenticated: true,
                 });
 
+                const token = JSON.stringify({accessToken})
+                const user = JSON.stringify(response.data.user)
+
                 await Keychain.setGenericPassword(
-                    'token',
-                    JSON.stringify({
-                        accessToken,
-                        refreshToken,
-                    }),
+                    token,
+                    user
                 );
 
                 console.log(JSON.stringify(response.data))

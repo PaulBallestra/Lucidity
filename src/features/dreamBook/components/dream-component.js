@@ -2,6 +2,8 @@ import * as React from 'react';
 import {Text, StyleSheet, View, TouchableOpacity, Dimensions, Image} from 'react-native';
 import { COLORS } from '../../../constants/themes'
 
+import { format } from 'date-fns'
+
 const {width, height} = Dimensions.get('window');
 
 class DreamComponent extends React.Component {
@@ -28,6 +30,8 @@ class DreamComponent extends React.Component {
     }
 
     render(){
+
+        //var dateToString = format(this.props.date, 'dd-MM-yyyy');
 
         var miniatureStyleDream, contentStyleDream, dreamColors;
         

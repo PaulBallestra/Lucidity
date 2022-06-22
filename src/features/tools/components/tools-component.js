@@ -40,6 +40,16 @@ const ToolsComponent = (props) => {
             valueRightSide = '0';
             colorUpHR = COLORS.purple,
             colorDownHR = COLORS.blue
+            break;
+        case 'profile':
+            titleComponent = 'PROFIL';
+            pictoComponent = require('../../../assets/icons/profile_picto.png')
+            titleLeftSide = 'TESTS';
+            titleRightSide = 'ACTIVÉS';
+            valueLeftSide = '5';
+            valueRightSide = '0';
+            colorUpHR = COLORS.purple,
+            colorDownHR = COLORS.blue
             break;  
     }
 

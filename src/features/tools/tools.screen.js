@@ -25,7 +25,8 @@ const Tools = ({navigation}) => {
 
     async function getNumberOfDreams(){
       const value = await Keychain.getGenericPassword();
-      const jwt = JSON.parse(value.password)
+      const jwt = JSON.parse(value.username)
+
       const token = jwt.accessToken;
 
       const config = {
@@ -43,6 +44,9 @@ const Tools = ({navigation}) => {
         setNumberOfLucidDreams(numbers.data.numberOfLucidDreams)
         
       }catch(error){
+        setNumberOfClassicDreams(0)
+        setNumberOfLucidDreams(0)
+
         console.log(error.response.status)
       }
     }
@@ -56,7 +60,7 @@ const Tools = ({navigation}) => {
 
         <HeaderComponent />
 
-        <ScrollView>
+        <ScrollView style={{paddingBottom: 25}}>
 
           <SubTitlePageComponent subtitle='OUTILS' />
 
@@ -68,6 +72,9 @@ const Tools = ({navigation}) => {
 
           {/*TESTS*/}
           <ToolsComponent type="tests" onPress={() => navigation.navigate('RealityTests')}/>
+
+          {/* PROFILE */}
+          <ToolsComponent type="profile" />
 
         </ScrollView>
 

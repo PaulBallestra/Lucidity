@@ -26,7 +26,7 @@ const DreamBook = () => {
         async function getAllDreams(){
 
             const value = await Keychain.getGenericPassword();
-            const jwt = JSON.parse(value.password)
+            const jwt = JSON.parse(value.username)
             const token = jwt.accessToken;
 
             const config = {

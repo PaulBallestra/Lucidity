@@ -60,16 +60,17 @@ const SignUp = ({navigation}) => {
                         refreshToken,
                         authenticated: true,
                     });
-        
+                    
+                    //Save du token et de l'user
+                    const token = JSON.stringify({accessToken, refreshToken,})
+                    const user = JSON.stringify(response.data.user)
+
                     await Keychain.setGenericPassword(
-                    'token',
-                    JSON.stringify({
-                        accessToken,
-                        refreshToken,
-                    }),
+                        token,
+                        user
                     );
 
-                    console.log(JSON.stringify(response.data))
+                    console.log(response.data)
 
                     //REDIRECTION
                     navigation.navigate('Landing')
