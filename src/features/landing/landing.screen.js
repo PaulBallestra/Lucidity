@@ -97,12 +97,12 @@ const Landing = ({navigation}) => {
 
                 {/* HEADER */}
                 <HeaderComponent />
+
+                {/* SubHeader */}
+                <SubHeaderComponent subtitle='CALENDRIER' />
                 
                 {/* CONTENT */}
                 <ScrollView style={{flex: 1, flexDirection: 'column'}}>
-
-                    {/* SubHeader */}
-                    <SubHeaderComponent subtitle='CALENDRIER' />
 
                     <View style={styles.calendar}>
 

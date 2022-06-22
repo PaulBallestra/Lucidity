@@ -20,9 +20,9 @@ const Tools = ({navigation}) => {
 
         <HeaderComponent />
 
-        <ScrollView style={{paddingBottom: 25}}>
+        <SubTitlePageComponent subtitle='OUTILS' />
 
-          <SubTitlePageComponent subtitle='OUTILS' />
+        <ScrollView style={{paddingBottom: 25}}>
 
           {/*REVEILS*/}
           <ToolsComponent type="reveil"/>
