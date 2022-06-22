@@ -109,7 +109,7 @@ techniqueContent: {
     elevation: 13,
 },
 techniqueContentTitlesContent: {
-    marginHorizontal: 7,
+    margin: 7,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center'

@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginRight: height*0.02,
         marginLeft:  height*0.02,
-        marginBottom: height*0.025
     },
     techniqueHeader: {
         flexDirection: 'row',

@@ -21,26 +21,25 @@ const Learning = () => {
 
           <SubHeaderComponent subtitle='TECHNIQUES' />
 
-          {/* Techniques */}
-          <View style={styles.techniqueBody}>
+          <ScrollView>
 
-                <View style={styles.techniqueHeader}>
-                  <Text style={styles.techniqueHeaderTitle}> TECHNIQUES </Text>
-                  <Image source={require('../../assets/icons/technique_picto.png')} style={styles.techniqueHeaderImage}/>
-                </View>
+            {/* Techniques */}
+            <View style={styles.techniqueBody}>
 
-                <ScrollView>
+                  <View style={styles.techniqueHeader}>
+                    <Text style={styles.techniqueHeaderTitle}> TECHNIQUES </Text>
+                    <Image source={require('../../assets/icons/technique_picto.png')} style={styles.techniqueHeaderImage}/>
+                  </View>
 
-                  <TechniqueComponent type='WILD'/>
+                    <TechniqueComponent type='WILD'/>
 
-                  <TechniqueComponent type='MILD'/>
-                  
-                  <TechniqueComponent type='WBTB'/>
+                    <TechniqueComponent type='MILD'/>
+                    
+                    <TechniqueComponent type='WBTB'/>
 
-                  <TechniqueComponent type='AUTO'/>
-
-                </ScrollView>
-          </View>
+                    <TechniqueComponent type='AUTO'/>
+            </View>
+          </ScrollView>
         </LinearGradient>
       </View>
     );
