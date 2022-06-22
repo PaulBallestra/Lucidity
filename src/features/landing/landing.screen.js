@@ -27,6 +27,68 @@ LocaleConfig.defaultLocale = 'fr';
 
 const Landing = ({navigation}) => {
 
+    const {publicAxios} = useContext(AxiosContext);
+    const [customDates, setCustomDates] = useState([])
+
+    const [customDay, setCustomDay] = useState()
+
+    useEffect(() => {
+        async function getAllDreams(){
+
+            const value = await Keychain.getGenericPassword();
+            const jwt = JSON.parse(value.username)
+            const token = jwt.accessToken;
+
+            const config = {
+                headers: { 
+                    "Authorization": `Bearer ${token}`
+                }
+            };
+
+            try{
+                const dreams = await publicAxios.get('/dreams',
+                    config
+                )
+                
+                //Récuperation des dates déjà 
+                const dateDreams = dreams.data.dreams
+                
+                dateDreams.forEach(dream => {
+                    customDates.push({
+                        'date': dream.date, 
+                        'isLucid': dream.isLucid
+                    })
+                });
+
+                //console.log(customDates)
+                
+
+            }catch(error){
+                //setErrorState('Non Authentifié.')
+                console.log(error.response.status)
+            }
+        }
+        getAllDreams()
+    }, []);
+
+    const changeColor = (date) => {
+        customDates.forEach(customDate => {
+
+            //Si c'est le meme jour
+            if(customDate.date === date){
+                //On vérifie si il est lucide ou non
+                if(customDate.isLucid){
+                    setCustomDay('lucid')
+                }else{
+                    setCustomDay('classic')
+                }
+            }else{
+                setCustomDay('')
+            }
+
+        });
+    }
+
     //LANDING CALENDAR PAGE
     return (
         <View style={styles.body}>
@@ -79,12 +141,14 @@ const Landing = ({navigation}) => {
                                 }}
                                 enableSwipeMonths={true}
                                 dayComponent={({date, state}) => {
+                                    
+                                    //changeColor(date.dateString)
                                     return (
                                         <TouchableOpacity onPress={() => navigation.navigate('CreateDream', {
                                                 dateString: date.dateString,
                                                 timestamp: date.timestamp
                                             })}>
-                                            <View style={[styles.dayDotCustom, {backgroundColor: state === 'disabled' ? 'rgba(0, 0, 0, 0)' : COLORS.customDark}]}>
+                                            <View style={[styles.dayDotCustom, state === 'disabled' ? styles.dayDisabled : styles.dayIdle]}>
                                                 <Text style={[{color: state === 'disabled' ? COLORS.customDisabledDark : COLORS.text}, styles.dayTextCustom]}>
                                                     {date.day}
                                                 </Text>

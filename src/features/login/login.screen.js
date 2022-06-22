@@ -99,7 +99,10 @@ const Login = ({navigation}) => {
             <LinearGradient colors={[COLORS.backgroundTop, COLORS.backgroundTop, COLORS.backgroundBottom,  COLORS.backgroundBottom]} style={styles.linearGradient}>
 
                 {/* HEADER */}
-                <HeaderComponent />
+                <View style={styles.headerView}>
+                    <Text style={styles.headerTitle}> LUCIDITY </Text>
+                    <Text style={styles.headerSubTitle}> PRENEZ LE CONTRÔLE </Text>
+                </View>
 
                 {/* INPUTS */}
                 <View>

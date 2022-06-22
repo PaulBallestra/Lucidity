@@ -14,53 +14,6 @@ const styles = StyleSheet.create({
     linearGradient: {
         flex: 1,
     },
-    headerView: {
-        height: height*0.12,
-        width: width,
-        backgroundColor: '#FFF',
-        textAlign: 'center',
-        justifyContent: 'center',
-        backgroundColor: COLORS.backgroundTop,
-    },
-    headerTitle: {
-        fontFamily: 'Montserrat-Black',
-        fontSize: 32.5,
-        letterSpacing: 2.17,
-        textAlign: 'center',
-        color: COLORS.text
-    },
-    headerSubTitle: {
-        fontFamily: 'Montserrat-Medium',
-        fontSize: 15,
-        letterSpacing: 3.6,
-        textAlign: 'center',
-        color: COLORS.text
-    },
-    subHeaderView: {
-        marginTop: 5,
-        marginBottom: -5,
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignContent: 'center',
-        flexWrap: 'wrap',
-        maxWidth: width*1,
-        maxHeight: height*0.05,
-    },
-    subHeaderText: {
-        color: COLORS.text,
-        fontFamily: 'Montserrat-ExtraBold',
-        fontSize: 12.5,
-        letterSpacing: 1.5,
-        textAlign: 'left'
-    },
-    subHeaderTextOnPage: {
-        color: COLORS.blue,
-        fontFamily: 'Montserrat-ExtraBold',
-        fontSize: 12.5,
-        letterSpacing: 1.5,
-        textAlign: 'center'
-    },
     horizontalBreak: {
         width: 5, 
         height: 35, 
@@ -119,6 +72,24 @@ const styles = StyleSheet.create({
         fontSize: 17,
         textAlign: 'center',
         margin: 6,
+    },
+    dayDisabled: {
+        backgroundColor: 'rgba(0, 0, 0, 0)'
+    },
+    dayIdle: {
+        backgroundColor: COLORS.customDark,
+        borderWidth: 0,
+        borderColor: 'none'
+    },
+    dayClassic: {
+        backgroundColor: 'rgba(43, 183, 247, 0.01)',
+        borderWidth: 1,
+        borderColor: COLORS.blue
+    },
+    dayLucid: {
+        backgroundColor: 'rgba(181, 108, 255, 0.01)',
+        borderWidth: 1,
+        borderColor: COLORS.purple
     }
 
 });

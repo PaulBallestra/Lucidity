@@ -65,11 +65,13 @@ class DreamComponent extends React.Component {
             }
         }
 
+        const dateToString = format(new Date(this.props.date), 'dd-MM-yyyy')
+
         return (
             <View style={styles.dream}>
 
                 <View style={styles.dreamHeader}>
-                    <Text style={styles.dreamHeaderTitle}> {this.props.date} </Text>
+                    <Text style={styles.dreamHeaderTitle}> {dateToString} </Text>
                     <Image source={require('../../../assets/icons/dreambook_picto.png')} style={styles.dreamHeaderImage}/>
                 </View>
 

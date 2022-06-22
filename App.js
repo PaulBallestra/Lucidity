@@ -31,9 +31,6 @@ const loadJWT = useCallback(async () => {
     const value = await Keychain.getGenericPassword();
     const jwt = JSON.parse(value.password);
 
-    //console.log(value)
-    //console.log(jwt)
-
     authContext.setAuthState({
       accessToken: jwt.accessToken || null,
       refreshToken: jwt.refreshToken || null,
@@ -76,7 +73,7 @@ return (
           headerShown: false
         }}
         initialRouteName={!isAppFirstLaunched ? 
-          status === 'success' ? 'Landing' : 'Login'
+          (status !== 'success' ? 'Login' : 'Landing')
           : 'OnBoardingScreen'
         }
       >

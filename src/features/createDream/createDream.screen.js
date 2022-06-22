@@ -67,15 +67,10 @@ const CreateDream = (props) => {
                 body,
                 config
             )
-            
-            if(dreamsUploaded){
-                
-                props.navigation.navigate('Landing')
-                console.log(dreamsUploaded)
 
-            }else {
-                //setErrorState("Vous n'avez aucun rêve noté pour le moment.")
-            }
+            props.navigation.goBack()
+            //console.log(dreamsUploaded)
+
         }catch(error){
             //setErrorState('Non Authentifié.')
             console.log(error)

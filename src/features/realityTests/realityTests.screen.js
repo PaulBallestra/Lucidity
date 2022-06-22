@@ -10,7 +10,7 @@ import HoraireDayComponent from './components/horaireDay-component';
 import HeaderComponent from '../../components/header-component';
 import SubHeaderComponent from '../../components/subheader-component';
 
-const RealityTests = ({props, navigation}) => {
+const RealityTests = ({navigation}) => {
 
     const [lundiState, setLundiState] = useState(false);
     const [mardiState, setMardiState] = useState(false);
@@ -41,7 +41,7 @@ const RealityTests = ({props, navigation}) => {
         console.log(mirrorState)
         console.log(pinchState)
 
-        navigation.navigate('Tools')
+        navigation.goBack()
     }
 
     //Reality Tests

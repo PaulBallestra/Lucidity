@@ -1,12 +1,20 @@
-import * as React from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Text, StyleSheet, Image, View, TouchableOpacity, Dimensions} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { COLORS } from '../../../constants/themes'
 
+import * as Keychain from 'react-native-keychain';
+import { AxiosContext } from '../../../context/AxiosContext';
+
 const {width, height} = Dimensions.get('window');
 
 const ToolsComponent = (props) => {
+
+    const [numberOfLucidDreams, setNumberOfLucidDreams] = useState()
+    const [numberOfClassicDreams, setNumberOfClassicDreams] = useState()
+
+    const {publicAxios} = useContext(AxiosContext);
 
     var titleComponent = null, pictoComponent = null, titleLeftSide = null, titleRightSide = null, valueLeftSide = null, valueRightSide = null, colorUpHR = null, colorDownHR = null;
 
@@ -26,8 +34,8 @@ const ToolsComponent = (props) => {
             pictoComponent = require('../../../assets/icons/dreambook_picto.png');
             titleLeftSide = 'DREAMS';
             titleRightSide = 'LUCID DREAMS';
-            valueLeftSide = props.numberClassic;
-            valueRightSide = props.numberLucid;
+            valueLeftSide = numberOfClassicDreams+numberOfLucidDreams;
+            valueRightSide = numberOfLucidDreams;
             colorUpHR = COLORS.blue,
             colorDownHR = COLORS.purple
             break;   
@@ -52,6 +60,38 @@ const ToolsComponent = (props) => {
             colorDownHR = COLORS.blue
             break;  
     }
+
+    useEffect(() => {
+
+        async function getNumberOfDreams(){
+            const value = await Keychain.getGenericPassword();
+            const jwt = JSON.parse(value.username)
+
+            const token = jwt.accessToken;
+
+            const config = {
+            headers: { 
+                "Authorization": `Bearer ${token}`
+            }
+            };
+
+            try{
+            const numbers = await publicAxios.get('/dreams/count',
+                config
+            )
+
+            setNumberOfClassicDreams(numbers.data.numberOfClassicDreams + numbers.data.numberOfLucidDreams)
+            setNumberOfLucidDreams(numbers.data.numberOfLucidDreams)
+            
+            }catch(error){
+            setNumberOfClassicDreams(0)
+            setNumberOfLucidDreams(0)
+
+            console.log(error.response.status)
+            }
+        }
+        getNumberOfDreams()
+    }, []);
 
     return (
 
