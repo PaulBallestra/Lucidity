@@ -21,6 +21,7 @@ import Login from './src/features/login/login.screen'
 import RealityTests from './src/features/realityTests/realityTests.screen'
 
 export default function App() {
+  
 
 const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null)
 const authContext = useContext(AuthContext);

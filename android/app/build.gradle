@@ -137,6 +137,8 @@ android {
     defaultConfig {
         applicationId "com.lucidity"
         minSdkVersion rootProject.ext.minSdkVersion
+        //minSdkVersion 21
+        multiDexEnabled true
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
@@ -263,7 +265,9 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     //noinspection GradleDynamicVersion
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation "com.facebook.react:react-native:0.68.2"  // From node_modules
+
+    implementation project(':react-native-push-notification')
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 

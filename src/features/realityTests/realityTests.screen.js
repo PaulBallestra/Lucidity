@@ -110,7 +110,7 @@ const RealityTests = ({navigation}) => {
 
                 <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
 
-                    <TouchableOpacity onPress={savePage} style={{backgroundColor: COLORS.purple, width: '90%', borderRadius: 5}}> 
+                    <TouchableOpacity onPress={savePage} style={{backgroundColor: COLORS.blue, width: '90%', borderRadius: 5}}> 
                         <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 20, fontWeight: 'bold', textAlign: 'center', padding: 7.5, color: COLORS.customDark}}> SAUVEGARDER </Text>
                     </TouchableOpacity>
 
