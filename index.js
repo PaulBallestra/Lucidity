@@ -1,8 +1,8 @@
 import React from 'react';
 import App from './App';
-
 import {AppRegistry} from 'react-native';
 import {name as appName} from './app.json';
+
 import {AuthProvider} from './src/context/AuthContext';
 import {AxiosProvider} from './src/context/AxiosContext';
 
@@ -31,6 +31,8 @@ class Root extends React.Component {
             requestPermissions: Platform.OS === 'ios'
         });
     }
+
+    
 
     render (){
         return (

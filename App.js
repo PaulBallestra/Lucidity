@@ -19,9 +19,9 @@ import DreamBook from './src/features/dreamBook/dreambook.screen'
 import SignUp from './src/features/signup/signup.screen'
 import Login from './src/features/login/login.screen'
 import RealityTests from './src/features/realityTests/realityTests.screen'
+import AlarmClocks from './src/features/alarmClocks/alarmClocks.screen'
 
 export default function App() {
-  
 
 const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null)
 const authContext = useContext(AuthContext);
@@ -49,8 +49,8 @@ const loadJWT = useCallback(async () => {
   }
 }, []);
 
-
 useEffect(() => {
+
   async function getStorageData(){
 
     const appData = await AsyncStorage.getItem('isAppFirstLaunched')
@@ -74,7 +74,7 @@ return (
           headerShown: false
         }}
         initialRouteName={!isAppFirstLaunched ? 
-          (status !== 'success' ? 'Login' : 'Landing')
+          (status === 'success' ? 'Landing' : 'Landing')
           : 'OnBoardingScreen'
         }
       >
@@ -92,6 +92,7 @@ return (
 
         <Stack.Screen name='DreamBook' component={DreamBook}/>
         <Stack.Screen name='RealityTests' component={RealityTests}/>
+        <Stack.Screen name='AlarmClocks' component={AlarmClocks}/>
 
       </Stack.Navigator>
     </NavigationContainer>

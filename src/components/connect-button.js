@@ -14,7 +14,7 @@ class ConnectButton extends React.Component {
 
         return (
             <View>
-                <TouchableOpacity style={styles.buttonConnect} {...this.props}>
+                <TouchableOpacity style={[styles.buttonConnect, this.props.canGo ? styles.buttonConnectStyleEnabled : styles.buttonConnectStyleDisabled]} {...this.props}>
                     <Text style={styles.buttonConnectText}> {this.props.text} </Text>
                 </TouchableOpacity>
             </View>
@@ -25,9 +25,15 @@ class ConnectButton extends React.Component {
 const styles = StyleSheet.create({
 
     buttonConnect: {
-        backgroundColor: COLORS.blue, 
         width: width*0.9,
         borderRadius: 8
+    },
+    buttonConnectStyleEnabled: {
+        backgroundColor: COLORS.blue,
+    },
+    buttonConnectStyleDisabled: {
+        backgroundColor: COLORS.blue, 
+        opacity: 0.35
     },
     buttonConnectText: {
         color: COLORS.customDark,

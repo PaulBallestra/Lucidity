@@ -12,6 +12,7 @@ import icons from '../constants/icons'
 
 const Nav = createBottomTabNavigator();
 
+
 export default function index() {
     return (
 

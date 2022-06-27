@@ -71,6 +71,7 @@ const Landing = ({navigation}) => {
         getAllDreams()
     }, []);
 
+    //Fonction qui gere la couleur custom des jours du calendrier
     const changeColor = (date) => {
         customDates.forEach(customDate => {
 
@@ -163,7 +164,7 @@ const Landing = ({navigation}) => {
                         </View>
                     </View>
 
-                    <LandingStats />
+                    <LandingStats nbClassicDreams={6} nbLucidDreams={10} />
 
                 </ScrollView>
             </LinearGradient>

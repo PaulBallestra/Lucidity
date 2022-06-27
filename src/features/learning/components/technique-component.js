@@ -29,7 +29,7 @@ class TechniqueComponent extends React.Component {
 
     render(){
 
-        var miniatureStyleTechnique, contentStyleTechnique, titleTechnique = null, fullTitleTechnique = null;
+        var miniatureStyleTechnique, contentStyleTechnique, titleTechnique = null, fullTitleTechnique = null, contentTechnique = null;
 
         //Etat en clic
         if (this.state.onClicked){
@@ -53,21 +53,25 @@ class TechniqueComponent extends React.Component {
             case 'WILD':
                 titleTechnique = 'WILD',
                 fullTitleTechnique = 'Wake Initiated Lucid Dream'
+                contentTechnique = ''
                 break;
 
             case 'MILD':
                 titleTechnique = 'MILD',
                 fullTitleTechnique = 'Mnémonique Induction of Lucid Dreams'
+                contentTechnique = ''
                 break;   
 
             case 'WBTB':
                 titleTechnique = 'WBTB',
                 fullTitleTechnique = 'Wake Back To Bed'
+                contentTechnique = ''
                 break; 
 
             case 'AUTO':
                 titleTechnique = 'AUTO SUGGESTION',
-                fullTitleTechnique = ''
+                fullTitleTechnique = 'Comme son nom l\'indique',
+                contentTechnique = "L’autosuggestion est une des techniques d’induction de rêves lucides les plus courantes. Elle est aussi utile pour développer son rappel de rêves, et certains l’utilisent même pour se réveiller à une heure particulière (cela reste cependant moins fiable qu’un réveil en général). Le principe est simple : il s’agit de choisir une phrase exprimant clairement une intention, et de se la répéter de nombreuses fois, au moment de s’endormir, pour affirmer cette intention et, en quelque sorte, la faire “enregistrer” par le subconscient."
                 break;
         }
 
@@ -79,10 +83,7 @@ class TechniqueComponent extends React.Component {
                 </View>
                 <View style={[contentStyleTechnique, styles.contentTechnique]}>
                     <Text style={styles.textContentTechnique}>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        {contentTechnique}
                     </Text>
                 </View>
             </TouchableOpacity>

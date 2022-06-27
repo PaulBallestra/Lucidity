@@ -1,5 +1,8 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
 import React, {useState} from 'react'
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import LinearGradient from 'react-native-linear-gradient';
 
 import styles from './realityTests.styles'
@@ -12,35 +15,57 @@ import SubHeaderComponent from '../../components/subheader-component';
 
 const RealityTests = ({navigation}) => {
 
-    const [lundiState, setLundiState] = useState(false);
-    const [mardiState, setMardiState] = useState(false);
-    const [mercrediState, setMercrediState] = useState(false);
-    const [jeudiState, setJeudiState] = useState(false);
-    const [vendrediState, setVendrediState] = useState(false);
-    const [samediState, setSamediState] = useState(false);
-    const [dimancheState, setDimancheState] = useState(false);
+    const [lundiState, setLundiState] = useState(AsyncStorage.getItem('lundi').then((value) => value));
+    const [mardiState, setMardiState] = useState(AsyncStorage.getItem('mardi').then((value) => value));
+    const [mercrediState, setMercrediState] = useState(AsyncStorage.getItem('mercredi').then((value) => value));
+    const [jeudiState, setJeudiState] = useState(AsyncStorage.getItem('jeudi').then((value) => value));
+    const [vendrediState, setVendrediState] = useState(AsyncStorage.getItem('vendredi').then((value) => value));
+    const [samediState, setSamediState] = useState(AsyncStorage.getItem('samedi').then((value) => value));
+    const [dimancheState, setDimancheState] = useState(AsyncStorage.getItem('dimanche').then((value) => value));
 
-    const [handState, setHandState] = useState(false);
-    const [noseState, setNoseState] = useState(false);
-    const [eyeState, setEyeState] = useState(false);
-    const [mirrorState, setMirrorState] = useState(false);
-    const [pinchState, setPinchState] = useState(false);
+    const [handState, setHandState] = useState(AsyncStorage.getItem('hand').then((value) => value));
+    const [noseState, setNoseState] = useState(AsyncStorage.getItem('nose').then((value) => value));
+    const [eyeState, setEyeState] = useState(AsyncStorage.getItem('eye').then((value) => value));
+    const [mirrorState, setMirrorState] = useState(AsyncStorage.getItem('mirror').then((value) => value));
+    const [pinchState, setPinchState] = useState(AsyncStorage.getItem('pinch').then((value) => value));
 
-    const savePage = () => {
-        //console.log(lundiState)
-        //console.log(mardiState)
-        //console.log(mercrediState)
-        //console.log(jeudiState)
-        //console.log(vendrediState)
-        //console.log(samediState)
-        //console.log(dimancheState)
+    //Function qui va ajouter les valeurs des jours et des tests
+    const add = async () => {
+        try {
+            await AsyncStorage.setItem('lundi', JSON.stringify(lundiState))
+            await AsyncStorage.setItem('mardi', JSON.stringify(mardiState))
+            await AsyncStorage.setItem('mercredi', JSON.stringify(mercrediState))
+        }catch (e){
+            console.error(e);
+        }
+    }
 
-        console.log(handState)
-        console.log(noseState)
-        console.log(eyeState)
-        console.log(mirrorState)
-        console.log(pinchState)
+    //Function qui va save la page et save les valeurs
+    const savePage = async () => {
 
+        add()
+
+        const value = await AsyncStorage.getItem('lundi').then((value) => value)
+
+        if(value)
+            setData(value)
+
+        console.log(value)
+
+        var numberOfTestsChecked = 0
+
+        if(handState)
+            numberOfTestsChecked++
+        if(noseState)
+            numberOfTestsChecked++
+        if(eyeState)
+            numberOfTestsChecked++
+        if(mirrorState)
+            numberOfTestsChecked++
+        if(pinchState)
+            numberOfTestsChecked++
+
+        //AsyncStorage.setItem('numberOfTestsChecked', {numberOfTestsChecked})
         navigation.goBack()
     }
 

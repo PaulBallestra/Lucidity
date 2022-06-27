@@ -1,13 +1,13 @@
 import React, {useContext, useState} from 'react'
 import { KeyboardAvoidingView, View, Text} from 'react-native'
 
-import { AuthContext } from '../../context/AuthContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import * as Keychain from 'react-native-keychain';
+import { AuthContext } from '../../context/AuthContext';
 import {AxiosContext} from '../../context/AxiosContext';
 
 import LinearGradient from 'react-native-linear-gradient';
-
-import axios from "axios";
 
 import ConnectButton from '../../components/connect-button';
 import InputComponent from '../../components/input-component';
@@ -21,6 +21,8 @@ const SignUp = ({navigation}) => {
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const [confirmPassword, setConfirmPassord] = useState()
+
+    const [canGo, setCanGo] = useState(false)
 
     const authContext = useContext(AuthContext);
     const {publicAxios} = useContext(AxiosContext);
@@ -42,6 +44,22 @@ const SignUp = ({navigation}) => {
                     'confirm_password': confirmPassword
                 });
                 if (response.status === 201) {
+
+                    AsyncStorage.setItem('hand', JSON.stringify(false))
+                    AsyncStorage.setItem('nose', JSON.stringify(false))
+                    AsyncStorage.setItem('eye', JSON.stringify(false))
+                    AsyncStorage.setItem('mirror', JSON.stringify(false))
+                    AsyncStorage.setItem('pinch', JSON.stringify(false))
+
+                    AsyncStorage.setItem('lundi', JSON.stringify(false))
+                    AsyncStorage.setItem('mardi', JSON.stringify(false))
+                    AsyncStorage.setItem('mercredi', JSON.stringify(false))
+                    AsyncStorage.setItem('jeudi', JSON.stringify(false))
+                    AsyncStorage.setItem('vendredi', JSON.stringify(false))
+                    AsyncStorage.setItem('samedi', JSON.stringify(false))
+                    AsyncStorage.setItem('dimanche', JSON.stringify(false))
+
+                    console.log(AsyncStorage.getAllKeys().then((value) => value))
 
                     setErrorAllChamps(false)
                     setErrorPassword(false)
@@ -106,6 +124,50 @@ const SignUp = ({navigation}) => {
         }
     }
 
+    const onChangeUsername = username => {
+
+        let password = password
+        let confirmPassword = confirmPassword
+
+        let canGo = false
+
+        setUsername(username)
+
+        if(password.length > 3 && username.length > 3 && confirmPassword.length > 3)
+            canGo = true
+
+        setCanGo(canGo)
+    }
+
+    const onChangePassword = password => {
+
+        let username = username
+        let confirmPassword = confirmPassword
+
+        let canGo = false
+
+        setPassword(password)
+
+        if(password.length > 3 && username.length > 3 && confirmPassword.length > 3)
+            canGo = true
+
+        setCanGo(canGo)
+    }
+
+    const onChangeConfirmPassword = confirmPassword => {
+        let password = password
+        let username = username
+
+        let canGo = false
+
+        setConfirmPassord(confirmPassword)
+
+        if(password.length > 3 && username.length > 3 && confirmPassword.length > 3)
+            canGo = true
+
+        setCanGo(canGo)
+    }
+
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.body}>
             
@@ -133,24 +195,24 @@ const SignUp = ({navigation}) => {
                         errorUsername &&
                         <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Utilisateur déjà inscrit. </Text>
                     }
-                    <InputComponent type='USERNAME' placeholder='Username' value={username} onChangeText={(value) => setUsername(value)} />
+                    <InputComponent type='USERNAME' placeholder='Username' value={username} onChangeText={value => onChangeUsername(value)} />
 
                     {
                         errorPassword &&
                         <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Les mots de passe ne correspondent pas. </Text>
                     }
-                    <InputComponent type='PASSWORD' placeholder='Password' value={password} onChangeText={(value) => setPassword(value)}/>
+                    <InputComponent type='PASSWORD' placeholder='Password' value={password} onChangeText={value => onChangePassword(value)}/>
 
                     {
                         errorConfirmPassword &&
                         <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Les mots de passe ne correspondent pas. </Text>
                     }
-                    <InputComponent type='PASSWORD' placeholder='Confirm Password' value={confirmPassword} onChangeText={(value) => setConfirmPassord(value)}/>
+                    <InputComponent type='PASSWORD' placeholder='Confirm Password' value={confirmPassword} onChangeText={value => onChangeConfirmPassword(value)}/>
 
                 </View>
 
                 <View>
-                    <ConnectButton text="S'INSCRIRE" onPress={onSignUp}/>
+                    <ConnectButton disabled={canGo} text="S'INSCRIRE" onPress={onSignUp}/>
                     <LittleTextComponent littleText='Déjà chez Lucidity ?' clicText='Connectez-vous !' onPress={() => navigation.navigate('Login')}/>
                 </View>
 

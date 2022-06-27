@@ -4,17 +4,9 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import { COLORS } from '../../../constants/themes'
 
-import * as Keychain from 'react-native-keychain';
-import { AxiosContext } from '../../../context/AxiosContext';
-
 const {width, height} = Dimensions.get('window');
 
 const ToolsComponent = (props) => {
-
-    const [numberOfLucidDreams, setNumberOfLucidDreams] = useState()
-    const [numberOfClassicDreams, setNumberOfClassicDreams] = useState()
-
-    const {publicAxios} = useContext(AxiosContext);
 
     var titleComponent = null, pictoComponent = null, titleLeftSide = null, titleRightSide = null, valueLeftSide = null, valueRightSide = null, colorUpHR = null, colorDownHR = null;
 
@@ -24,74 +16,45 @@ const ToolsComponent = (props) => {
             pictoComponent = require('../../../assets/icons/bell_picto.png');
             titleLeftSide = 'ACTIVÉS';
             titleRightSide = 'AUTO-STOP';
-            valueLeftSide = '0';
-            valueRightSide = '0';
+            valueLeftSide = props.valueLeftSide;
+            valueRightSide = props.valueRightSide;
             colorUpHR = COLORS.purple,
             colorDownHR = COLORS.blue
             break;
+
         case 'dreambook':
             titleComponent = 'DREAMBOOK'
             pictoComponent = require('../../../assets/icons/dreambook_picto.png');
             titleLeftSide = 'DREAMS';
             titleRightSide = 'LUCID DREAMS';
-            valueLeftSide = numberOfClassicDreams+numberOfLucidDreams;
-            valueRightSide = numberOfLucidDreams;
+            valueLeftSide = props.valueLeftSide;
+            valueRightSide = props.valueRightSide;
             colorUpHR = COLORS.blue,
             colorDownHR = COLORS.purple
-            break;   
+            break;
+
         case 'tests':
             titleComponent = 'TESTS DE RÉALITÉ';
             pictoComponent = require('../../../assets/icons/realitytests_picto.png')
             titleLeftSide = 'TESTS';
             titleRightSide = 'ACTIVÉS';
-            valueLeftSide = '5';
-            valueRightSide = '0';
+            valueLeftSide = props.valueLeftSide;
+            valueRightSide = props.valueRightSide;
             colorUpHR = COLORS.purple,
             colorDownHR = COLORS.blue
             break;
+
         case 'profile':
             titleComponent = 'PROFIL';
             pictoComponent = require('../../../assets/icons/profile_picto.png')
             titleLeftSide = 'TESTS';
             titleRightSide = 'ACTIVÉS';
-            valueLeftSide = '5';
-            valueRightSide = '0';
+            valueLeftSide = props.valueLeftSide;
+            valueRightSide = props.valueRightSide;
             colorUpHR = COLORS.purple,
             colorDownHR = COLORS.blue
-            break;  
+            break;
     }
-
-    useEffect(() => {
-
-        async function getNumberOfDreams(){
-            const value = await Keychain.getGenericPassword();
-            const jwt = JSON.parse(value.username)
-
-            const token = jwt.accessToken;
-
-            const config = {
-            headers: { 
-                "Authorization": `Bearer ${token}`
-            }
-            };
-
-            try{
-            const numbers = await publicAxios.get('/dreams/count',
-                config
-            )
-
-            setNumberOfClassicDreams(numbers.data.numberOfClassicDreams + numbers.data.numberOfLucidDreams)
-            setNumberOfLucidDreams(numbers.data.numberOfLucidDreams)
-            
-            }catch(error){
-            setNumberOfClassicDreams(0)
-            setNumberOfLucidDreams(0)
-
-            console.log(error.response.status)
-            }
-        }
-        getNumberOfDreams()
-    }, []);
 
     return (
 
