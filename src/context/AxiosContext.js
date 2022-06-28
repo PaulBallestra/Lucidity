@@ -11,11 +11,11 @@ const AxiosProvider = ({children}) => {
 const authContext = useContext(AuthContext);
 
 const authAxios = axios.create({
-    baseURL: 'http://10.0.2.2:8000/api/auth',
+    baseURL: 'https://lucidity-api.herokuapp.com/api/auth',
 });
 
 const publicAxios = axios.create({
-    baseURL: 'http://10.0.2.2:8000/api',
+    baseURL: 'https://lucidity-api.herokuapp.com/api',
 });
 
 authAxios.interceptors.request.use(
@@ -40,7 +40,7 @@ const refreshAuthLogic = failedRequest => {
     const options = {
     method: 'POST',
     data,
-    url: 'http://10.0.2.2/api/refreshToken',
+    url: 'https://lucidity-api.herokuapp.com/api/refreshToken',
     };
 
     return axios(options)

@@ -22,7 +22,7 @@ const Tools = ({navigation}) => {
     const [numberOfClassicDreams, setNumberOfClassicDreams] = useState()
 
     const useForceUpdate = async () => {
-      const {publicAxios} = useContext(AxiosContext);
+      const {authAxios} = useContext(AxiosContext);
         const value = await Keychain.getGenericPassword();
         const jwt = JSON.parse(value.username)
 
@@ -38,7 +38,7 @@ const Tools = ({navigation}) => {
 
         try{
 
-          const numbers = await publicAxios.get('/dreams/count', config)
+          const numbers = await authAxios.get('/dreams/count', config)
 
           console.log(numbers)
 

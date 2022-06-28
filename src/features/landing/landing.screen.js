@@ -27,7 +27,7 @@ LocaleConfig.defaultLocale = 'fr';
 
 const Landing = ({navigation}) => {
 
-    const {publicAxios} = useContext(AxiosContext);
+    const {authAxios} = useContext(AxiosContext);
     const [customDates, setCustomDates] = useState([])
 
     const [customDay, setCustomDay] = useState()
@@ -46,7 +46,7 @@ const Landing = ({navigation}) => {
             };
 
             try{
-                const dreams = await publicAxios.get('/dreams',
+                const dreams = await authAxios.get('/dreams',
                     config
                 )
                 

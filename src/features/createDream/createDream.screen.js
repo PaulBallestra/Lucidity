@@ -21,7 +21,7 @@ const CreateDream = (props) => {
 
     const [errorAllChamps, setErrorAllChamps] = useState(false)
 
-    const {publicAxios} = useContext(AxiosContext);
+    const {authAxios} = useContext(AxiosContext);
 
     //Date
     const {dateString} = props.route.params;
@@ -63,7 +63,7 @@ const CreateDream = (props) => {
 
         try{
 
-            const dreamsUploaded = await publicAxios.post('/dreams', 
+            const dreamsUploaded = await authAxios.post('/dreams/create', 
                 body,
                 config
             )

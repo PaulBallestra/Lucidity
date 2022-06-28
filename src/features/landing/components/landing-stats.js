@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext, useRef} from 'react';
-import {StyleSheet, View, Dimensions, Animated, Easing} from 'react-native';
+import {StyleSheet, View, Dimensions, Animated, Easing, Text} from 'react-native';
 
 import Lottie from 'lottie-react-native';
 
@@ -76,10 +76,12 @@ const LandingStats = ({nbClassicDreams, nbLucidDreams}) =>  {
 
     return (
         <View style={styles.body}>
-            <View style={{width: width*0.25}}>
-                <Lottie refs={animationRef} progress={classicAnimation.current} source={require('../../../assets/animations/anim_StatsClassicDreams.json')} />
+            <View style={styles.dividedView}>
+                <Text style={[styles.dividedText,{color: COLORS.blue}]}> CLASSIQUES </Text>
+                <Lottie progress={classicAnimation.current} source={require('../../../assets/animations/anim_StatsClassicDreams.json')} />
             </View>
-            <View style={{width: width*0.25}}>
+            <View style={styles.dividedView}>
+                <Text style={[styles.dividedText,{color: COLORS.purple}]}> LUCIDES </Text>
                 <Lottie 
                     progress={lucidAnimation.current} 
                     source={require('../../../assets/animations/anim_StatsLucidDreams.json')}
@@ -95,8 +97,17 @@ body: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     width: width,
-    height: height*0.22,
+    height: height*0.25,
 },
+dividedView: {
+    width: width*0.25, 
+    flexDirection: 'column'
+},
+dividedText: {
+    fontFamily: 'Montserrat-ExtraBold', 
+    marginTop: 10, 
+    textAlign: 'center'
+}
 });
 
 export default LandingStats;
