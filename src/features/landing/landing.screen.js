@@ -167,6 +167,7 @@ const Landing = ({navigation}) => {
                     <LandingStats nbClassicDreams={6} nbLucidDreams={10} />
 
                 </ScrollView>
+                
             </LinearGradient>
         </View>
     );

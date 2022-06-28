@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { KeyboardAvoidingView, View, Text} from 'react-native'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,11 +18,11 @@ import { COLORS } from '../../constants/themes'
 
 const SignUp = ({navigation}) => {
 
-    const [username, setUsername] = useState()
-    const [password, setPassword] = useState()
-    const [confirmPassword, setConfirmPassord] = useState()
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassord] = useState('')
 
-    const [canGo, setCanGo] = useState(false)
+    const [disabled, setDisabled] = useState(true)
 
     const authContext = useContext(AuthContext);
     const {publicAxios} = useContext(AxiosContext);
@@ -126,46 +126,40 @@ const SignUp = ({navigation}) => {
 
     const onChangeUsername = username => {
 
-        let password = password
-        let confirmPassword = confirmPassword
-
-        let canGo = false
+        let isDisabled = true
 
         setUsername(username)
 
         if(password.length > 3 && username.length > 3 && confirmPassword.length > 3)
-            canGo = true
+            isDisabled = false
 
-        setCanGo(canGo)
+        setDisabled(isDisabled)
+
     }
 
     const onChangePassword = password => {
 
-        let username = username
-        let confirmPassword = confirmPassword
-
-        let canGo = false
+        let isDisabled = true
 
         setPassword(password)
 
         if(password.length > 3 && username.length > 3 && confirmPassword.length > 3)
-            canGo = true
+            isDisabled = false
 
-        setCanGo(canGo)
+        setDisabled(isDisabled)
+
     }
 
     const onChangeConfirmPassword = confirmPassword => {
-        let password = password
-        let username = username
 
-        let canGo = false
+        let isDisabled = true
 
         setConfirmPassord(confirmPassword)
 
         if(password.length > 3 && username.length > 3 && confirmPassword.length > 3)
-            canGo = true
+            isDisabled = false
 
-        setCanGo(canGo)
+        setDisabled(isDisabled)
     }
 
     return (
@@ -212,7 +206,7 @@ const SignUp = ({navigation}) => {
                 </View>
 
                 <View>
-                    <ConnectButton disabled={canGo} text="S'INSCRIRE" onPress={onSignUp}/>
+                    <ConnectButton disabled={disabled} text="S'INSCRIRE" onPress={onSignUp}/>
                     <LittleTextComponent littleText='Déjà chez Lucidity ?' clicText='Connectez-vous !' onPress={() => navigation.navigate('Login')}/>
                 </View>
 

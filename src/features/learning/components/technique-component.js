@@ -53,7 +53,7 @@ class TechniqueComponent extends React.Component {
             case 'WILD':
                 titleTechnique = 'WILD',
                 fullTitleTechnique = 'Wake Initiated Lucid Dream'
-                contentTechnique = ''
+                contentTechnique = "C'est-à-dire 'rêve lucide débuté depuis l'état de veille'. Cet acronyme se réfère à toute technique qui implique de s'endormir consciemment.\n\nLes méthodes WILD sont réputées comme étant les plus difficiles à maîtriser. Selon le psychologue Paul Tholey, les personnes qui sont les plus aptes à pratiquer les méthodes WILD sont celles qui s'endorment facilement et qui sont fréquemment sujettes aux hallucinations hypnagogiques lors de l'endormissement. Les personnes sujettes au trouble appelé 'paralysie du sommeil' ont aussi des facilités à les pratiquer."
                 break;
 
             case 'MILD':
@@ -71,7 +71,7 @@ class TechniqueComponent extends React.Component {
             case 'AUTO':
                 titleTechnique = 'AUTO SUGGESTION',
                 fullTitleTechnique = 'Comme son nom l\'indique',
-                contentTechnique = "L’autosuggestion est une des techniques d’induction de rêves lucides les plus courantes. Elle est aussi utile pour développer son rappel de rêves, et certains l’utilisent même pour se réveiller à une heure particulière (cela reste cependant moins fiable qu’un réveil en général). Le principe est simple : il s’agit de choisir une phrase exprimant clairement une intention, et de se la répéter de nombreuses fois, au moment de s’endormir, pour affirmer cette intention et, en quelque sorte, la faire “enregistrer” par le subconscient."
+                contentTechnique = "L’autosuggestion est une des techniques d’induction de rêves lucides les plus courantes.\nElle est aussi utile pour développer son rappel de rêves, et certains l’utilisent même pour se réveiller à une heure particulière (cela reste cependant moins fiable qu’un réveil en général).\n\nLe principe est simple : il s’agit de choisir une phrase exprimant clairement une intention, et de se la répéter de nombreuses fois, au moment de s’endormir, pour affirmer cette intention et, en quelque sorte, la faire “enregistrer” par le subconscient."
                 break;
         }
 

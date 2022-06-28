@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Text, StyleSheet, View, TouchableOpacity, Dimensions} from 'react-native';
+
 import { COLORS } from '../constants/themes'
 
 const {width, height} = Dimensions.get('window');
@@ -14,7 +15,7 @@ class ConnectButton extends React.Component {
 
         return (
             <View>
-                <TouchableOpacity style={[styles.buttonConnect, this.props.canGo ? styles.buttonConnectStyleEnabled : styles.buttonConnectStyleDisabled]} {...this.props}>
+                <TouchableOpacity style={[styles.buttonConnect, !this.props.disabled ? styles.buttonConnectStyleEnabled : styles.buttonConnectStyleDisabled]} {...this.props}>
                     <Text style={styles.buttonConnectText}> {this.props.text} </Text>
                 </TouchableOpacity>
             </View>

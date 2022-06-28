@@ -19,7 +19,7 @@ const DreamBook = () => {
     const [dreams, setDreams] = useState()
 
     const [errorState, setErrorState] = useState('')
-    const {publicAxios} = useContext(AxiosContext);
+    const {authAxios} = useContext(AxiosContext);
 
     //DREAMBOOK ALL DREAMS PAGE
     useEffect(() => {
@@ -37,7 +37,7 @@ const DreamBook = () => {
             };
 
             try{
-                const dreams = await publicAxios.get('/dreams',
+                const dreams = await authAxios.get('/dreams',
                     config
                 )
                 

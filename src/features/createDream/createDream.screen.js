@@ -63,7 +63,7 @@ const CreateDream = (props) => {
 
         try{
 
-            const dreamsUploaded = await authAxios.post('/dreams/create', 
+            const dreamsUploaded = await authAxios.post('/dream/create', 
                 body,
                 config
             )
