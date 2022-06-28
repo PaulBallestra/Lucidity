@@ -44,23 +44,7 @@ const SignUp = ({navigation}) => {
                     'confirm_password': confirmPassword
                 });
                 if (response.status === 201) {
-
-                    AsyncStorage.setItem('hand', JSON.stringify(false))
-                    AsyncStorage.setItem('nose', JSON.stringify(false))
-                    AsyncStorage.setItem('eye', JSON.stringify(false))
-                    AsyncStorage.setItem('mirror', JSON.stringify(false))
-                    AsyncStorage.setItem('pinch', JSON.stringify(false))
-
-                    AsyncStorage.setItem('lundi', JSON.stringify(false))
-                    AsyncStorage.setItem('mardi', JSON.stringify(false))
-                    AsyncStorage.setItem('mercredi', JSON.stringify(false))
-                    AsyncStorage.setItem('jeudi', JSON.stringify(false))
-                    AsyncStorage.setItem('vendredi', JSON.stringify(false))
-                    AsyncStorage.setItem('samedi', JSON.stringify(false))
-                    AsyncStorage.setItem('dimanche', JSON.stringify(false))
-
-                    console.log(AsyncStorage.getAllKeys().then((value) => value))
-
+                    
                     setErrorAllChamps(false)
                     setErrorPassword(false)
                     setErrorConfirmPassword(false)
@@ -147,7 +131,6 @@ const SignUp = ({navigation}) => {
             isDisabled = false
 
         setDisabled(isDisabled)
-
     }
 
     const onChangeConfirmPassword = confirmPassword => {

@@ -17,51 +17,44 @@ import styles from './login.styles'
 import { COLORS } from '../../constants/themes'
 
 
-class Login extends React.Component {
+const Login = ({navigation}) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: '',
-            canGo: true,
-        };
-    }
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
-    onChangeUsername = username => {
-        const password = this.state.password
-        let canGo = false
+    const [disabled, setDisabled] = useState(true)
 
-        this.setState({username})
+    const [errorUsername, setErrorUsername] = useState(false)
+    const [errorPassword, setErrorPassword] = useState(false)
+    const [errorAllChamps, setErrorAllChamps] = useState(false)
 
-        if(password.length > 3 && username.length > 3)
-            canGo = true
-        else 
-            canGo = false
+    const authContext = useContext(AuthContext);
+    const {publicAxios} = useContext(AxiosContext);
 
-        this.setState({canGo})
-    }
+    const onChangeUsername = username => {
+        
+        let disabled = true
 
-    onChangePassword = password => {
-        const username = this.state.username
-        let canGo = false
-
-        this.setState({password})
+        setUsername(username)
 
         if(password.length > 3 && username.length > 3)
-            canGo = true
+            disabled = false
 
-        this.setState({canGo})
+        setDisabled(disabled)
     }
 
-    //const [errorUsername, setErrorUsername] = useState(false)
-    //const [errorPassword, setErrorPassword] = useState(false)
-    //const [errorAllChamps, setErrorAllChamps] = useState(false)
+    const onChangePassword = password => {
+        let disabled = true
 
-    //const authContext = useContext(AuthContext);
-    //const {publicAxios} = useContext(AxiosContext);
+        setPassword(password)
 
-    testPush = () => {
+        if(password.length > 3 && username.length > 3)
+            disabled = false
+
+        setDisabled(disabled)
+    }
+
+    const testPush = () => {
         PushNotification.localNotificationSchedule({
             //... You can use all the options from localNotifications
             title: 'TITRE',
@@ -75,9 +68,8 @@ class Login extends React.Component {
     }
 
     //FUNCTION LOGIN
-    Login = async () => {
-
-        /*try {
+    const Login = async () => {
+        try {
 
             const response = await publicAxios.post('/auth/login', {
                 username,
@@ -141,10 +133,9 @@ class Login extends React.Component {
                     setPassword('');
                     break;
             }
-        }*/
+        }
     };
 
-    render() {
         return (
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.body}>
                 
@@ -165,31 +156,29 @@ class Login extends React.Component {
                         </View>
     
                         {
-                            this.state.canGo &&
+                            errorAllChamps &&
                             <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Tous les champs sont obligatoires. </Text>
                         }
                         {
-                            this.state.canGo &&
+                            errorUsername &&
                             <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Identifiants inconnus ou erronés. </Text>
                         }
-                        <InputComponent type='USERNAME' placeholder='Username' value={this.state.username} onChangeText={value => this.onChangeUsername(value)}/>
+                        <InputComponent type='USERNAME' placeholder='Username' value={username} onChangeText={value => onChangeUsername(value)}/>
     
                         {
-                            this.state.canGo &&
+                            errorPassword &&
                             <Text style={{color: '#F00', fontFamily: 'Montserrat-Medium'}}> Les mots de passe ne correspondent pas. </Text>
                         }
-                        <InputComponent type='PASSWORD' placeholder='Password' value={this.state.password} onChangeText={value => this.onChangePassword(value)}/>
-    
+                        <InputComponent type='PASSWORD' placeholder='Password' value={password} onChangeText={value => onChangePassword(value)}/>
                     </View>
     
                     <View>
-                        <ConnectButton canGo={this.state.canGo} text='CONNEXION' onPress={this.Login}/>
+                        <ConnectButton disabled={disabled} text='CONNEXION' onPress={Login}/>
                         <LittleTextComponent littleText='Nouveau chez Lucidity ?' clicText='Inscrivez-vous !' onPress={() => this.props.navigation.navigate('SignUp')}/>
                     </View>
                 </LinearGradient>
             </KeyboardAvoidingView>
         );
-    }
 }
 
 export default Login;
