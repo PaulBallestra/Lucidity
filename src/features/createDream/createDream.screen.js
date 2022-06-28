@@ -63,13 +63,13 @@ const CreateDream = (props) => {
 
         try{
 
-            const dreamsUploaded = await authAxios.post('/dream/create', 
+            const dreamUploaded = await authAxios.post('/dream/create', 
                 body,
                 config
             )
 
+            //console.log(dreamUploaded)
             props.navigation.goBack()
-            //console.log(dreamsUploaded)
 
         }catch(error){
             //setErrorState('Non Authentifié.')

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, TouchableOpacity, Text } from 'react-native'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -33,6 +33,14 @@ const AlarmClocks = ({navigation}) => {
             {/* SUBTITLE PAGE */}
             <SubHeaderComponent subtitle='RÉVEILS' />
 
+
+            <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
+
+                <TouchableOpacity onPress={savePage} style={{backgroundColor: COLORS.blue, width: '90%', borderRadius: 5}}> 
+                    <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 20, fontWeight: 'bold', textAlign: 'center', padding: 7.5, color: COLORS.customDark}}> SAUVEGARDER </Text>
+                </TouchableOpacity>
+
+            </View>
 
             </LinearGradient>
         </View>

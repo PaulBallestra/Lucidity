@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,57 +15,176 @@ import SubHeaderComponent from '../../components/subheader-component';
 
 const RealityTests = ({navigation}) => {
 
-    const [lundiState, setLundiState] = useState(AsyncStorage.getItem('lundi').then((value) => value));
-    const [mardiState, setMardiState] = useState(AsyncStorage.getItem('mardi').then((value) => value));
-    const [mercrediState, setMercrediState] = useState(AsyncStorage.getItem('mercredi').then((value) => value));
-    const [jeudiState, setJeudiState] = useState(AsyncStorage.getItem('jeudi').then((value) => value));
-    const [vendrediState, setVendrediState] = useState(AsyncStorage.getItem('vendredi').then((value) => value));
-    const [samediState, setSamediState] = useState(AsyncStorage.getItem('samedi').then((value) => value));
-    const [dimancheState, setDimancheState] = useState(AsyncStorage.getItem('dimanche').then((value) => value));
+    const [lundiState, setLundiState] = useState(false);
+    const [mardiState, setMardiState] = useState(false);
+    const [mercrediState, setMercrediState] = useState(false);
+    const [jeudiState, setJeudiState] = useState(false);
+    const [vendrediState, setVendrediState] = useState(false);
+    const [samediState, setSamediState] = useState(false);
+    const [dimancheState, setDimancheState] = useState(false);
 
-    const [handState, setHandState] = useState(AsyncStorage.getItem('hand').then((value) => value));
-    const [noseState, setNoseState] = useState(AsyncStorage.getItem('nose').then((value) => value));
-    const [eyeState, setEyeState] = useState(AsyncStorage.getItem('eye').then((value) => value));
-    const [mirrorState, setMirrorState] = useState(AsyncStorage.getItem('mirror').then((value) => value));
-    const [pinchState, setPinchState] = useState(AsyncStorage.getItem('pinch').then((value) => value));
+    const [handState, setHandState] = useState(false);
+    const [noseState, setNoseState] = useState(false);
+    const [eyeState, setEyeState] = useState(false);
+    const [mirrorState, setMirrorState] = useState(false);
+    const [pinchState, setPinchState] = useState(false);
 
-    //Function qui va ajouter les valeurs des jours et des tests
-    const add = async () => {
-        try {
-            await AsyncStorage.setItem('lundi', JSON.stringify(lundiState))
-            await AsyncStorage.setItem('mardi', JSON.stringify(mardiState))
-            await AsyncStorage.setItem('mercredi', JSON.stringify(mercrediState))
-        }catch (e){
-            console.error(e);
+    useEffect(() => {
+
+        const loadValues = async () =>{
+
+            //LOAD TEST INFOS
+            const hand = await AsyncStorage.getItem('hand')
+            if(hand === 'true')
+                setHandState(true)
+            else
+                setHandState(false)
+
+            const nose = await AsyncStorage.getItem('nose')
+                if(nose === 'true')
+                    setNoseState(true)
+                else
+                    setNoseState(false)
+
+            const eye = await AsyncStorage.getItem('eye')
+            if(eye === 'true')
+                setEyeState(true)
+            else
+                setEyeState(false)
+
+            const mirror = await AsyncStorage.getItem('mirror')
+            if(mirror === 'true')
+                setMirrorState(true)
+            else
+                setMirrorState(false)
+
+            const pinch = await AsyncStorage.getItem('pinch')
+            if(pinch === 'true')
+                setPinchState(true)
+            else
+                setPinchState(false)
+
+            //LOAD WEEK INFOS
+            const lundi = await AsyncStorage.getItem('lundi')
+            if(lundi === 'true')
+                setLundiState(true)
+            else
+                setLundiState(false)
+
+            const mardi = await AsyncStorage.getItem('mardi')
+            if(mardi === 'true')
+                setMardiState(true)
+            else
+                setMardiState(false)
+
+            const mercredi = await AsyncStorage.getItem('mercredi')
+            if(mercredi === 'true')
+                setMercrediState(true)
+            else
+                setMercrediState(false)
+
+            const jeudi = await AsyncStorage.getItem('jeudi')
+            if(jeudi === 'true')
+                setJeudiState(true)
+            else
+                setJeudiState(false)
+
+            const vendredi = await AsyncStorage.getItem('vendredi')
+            if(vendredi === 'true')
+                setVendrediState(true)
+            else
+                setVendrediState(false)
+
+            const samedi = await AsyncStorage.getItem('samedi')
+            if(samedi === 'true')
+                setSamediState(true)
+            else
+                setSamediState(false)
+
+            const dimanche = await AsyncStorage.getItem('dimanche')
+            if(dimanche === 'true')
+                setDimancheState(true)
+            else
+                setDimancheState(false)
         }
-    }
+
+        loadValues()
+    }, [])
 
     //Function qui va save la page et save les valeurs
     const savePage = async () => {
 
-        add()
+        let numberOfTestsChecked = 0
 
-        const value = await AsyncStorage.getItem('lundi').then((value) => value)
-
-        if(value)
-            setData(value)
-
-        console.log(value)
-
-        var numberOfTestsChecked = 0
-
-        if(handState)
+        //Tests save
+        if(handState){
+            await AsyncStorage.setItem('hand', 'true')
             numberOfTestsChecked++
-        if(noseState)
-            numberOfTestsChecked++
-        if(eyeState)
-            numberOfTestsChecked++
-        if(mirrorState)
-            numberOfTestsChecked++
-        if(pinchState)
-            numberOfTestsChecked++
+        }else
+            await AsyncStorage.setItem('hand', 'false')
 
-        //AsyncStorage.setItem('numberOfTestsChecked', {numberOfTestsChecked})
+        if(noseState){
+            await AsyncStorage.setItem('nose', 'true')
+            numberOfTestsChecked++
+        }else
+            await AsyncStorage.setItem('nose', 'false')
+        
+        if(eyeState){
+            await AsyncStorage.setItem('eye', 'true')
+            numberOfTestsChecked++
+        }else
+            await AsyncStorage.setItem('eye', 'false')
+
+        if(mirrorState){
+            await AsyncStorage.setItem('mirror', 'true')
+            numberOfTestsChecked++
+        }else
+            await AsyncStorage.setItem('mirror', 'false')
+
+        if(pinchState){
+            await AsyncStorage.setItem('pinch', 'true')
+            numberOfTestsChecked++
+        }else
+            await AsyncStorage.setItem('pinch', 'false')
+
+        //Week SAVE
+        if(lundiState)
+            await AsyncStorage.setItem('lundi', 'true')
+        else
+            await AsyncStorage.setItem('lundi', 'false')
+
+        if(mardiState)
+            await AsyncStorage.setItem('mardi', 'true')
+        else
+            await AsyncStorage.setItem('mardi', 'false')
+
+        if(mercrediState)
+            await AsyncStorage.setItem('mercredi', 'true')
+        else
+            await AsyncStorage.setItem('mercredi', 'false')
+
+        if(jeudiState)
+            await AsyncStorage.setItem('jeudi', 'true')
+        else
+            await AsyncStorage.setItem('jeudi', 'false')
+
+        if(vendrediState)
+            await AsyncStorage.setItem('vendredi', 'true')
+        else
+            await AsyncStorage.setItem('vendredi', 'false')
+
+        if(samediState)
+            await AsyncStorage.setItem('samedi', 'true')
+        else
+            await AsyncStorage.setItem('samedi', 'false')
+    
+        if(dimancheState)
+            await AsyncStorage.setItem('dimanche', 'true')
+        else
+            await AsyncStorage.setItem('dimanche', 'false')
+
+        await AsyncStorage.setItem('numberOfTestsChecked', numberOfTestsChecked.toString())
+
         navigation.goBack()
     }
 

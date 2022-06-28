@@ -174,7 +174,7 @@ const Login = ({navigation}) => {
     
                     <View>
                         <ConnectButton disabled={disabled} text='CONNEXION' onPress={Login}/>
-                        <LittleTextComponent littleText='Nouveau chez Lucidity ?' clicText='Inscrivez-vous !' onPress={() => this.props.navigation.navigate('SignUp')}/>
+                        <LittleTextComponent littleText='Nouveau chez Lucidity ?' clicText='Inscrivez-vous !' onPress={() => navigation.navigate('SignUp')}/>
                     </View>
                 </LinearGradient>
             </KeyboardAvoidingView>
