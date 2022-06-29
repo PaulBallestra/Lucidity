@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react'
-import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Image, TurboModuleRegistry } from 'react-native'
 
 import { useIsFocused } from '@react-navigation/native';
 
@@ -16,6 +16,7 @@ import { COLORS } from '../../constants/themes'
 import LandingStats from './components/landing-stats'
 import HeaderComponent from '../../components/header-component'
 import SubHeaderComponent from '../../components/subheader-component'
+import { array } from 'i/lib/util';
 
 //French language
 LocaleConfig.locales['fr'] = {
@@ -34,6 +35,7 @@ const Landing = ({navigation}) => {
     const {authAxios} = useContext(AxiosContext);
 
     const [customDates, setCustomDates] = useState([])
+    const [customLucidDates, setCustomLucidDates] = useState([])
     const [customDay, setCustomDay] = useState()
 
     const [numberOfLucidDreams, setNumberOfLucidDreams] = useState(1)
@@ -67,27 +69,35 @@ const Landing = ({navigation}) => {
             }
         }
 
+        async function getDateDreams(){
+            const value = await Keychain.getGenericPassword();
+            const jwt = JSON.parse(value.username)
+            const token = jwt.accessToken;
+
+            const config = {
+                headers: { 
+                    "Authorization": `Bearer ${token}`
+                }
+            };
+            try{
+                const dreams = await authAxios.get('/dreams', config)
+                
+                dreams.data.dreams.forEach(dream => {
+                    customDates.push(dream.date)
+                    customLucidDates.push({
+                        'date': dream.date,
+                        'isLucid': dream.isLucid
+                    })
+                });
+
+            }catch(error){
+                console.log(error.response.status)
+            }
+        }
+
+        getDateDreams()
         getNumberOfDreams()
     }, [IsFocused])
-
-    //Fonction qui gere la couleur custom des jours du calendrier
-    const changeColor = (date) => {
-        customDates.forEach(customDate => {
-
-            //Si c'est le meme jour
-            if(customDate.date === date){
-                //On vérifie si il est lucide ou non
-                if(customDate.isLucid){
-                    setCustomDay('lucid')
-                }else{
-                    setCustomDay('classic')
-                }
-            }else{
-                setCustomDay('')
-            }
-
-        });
-    }
 
     //LANDING CALENDAR PAGE
     return (
@@ -141,15 +151,27 @@ const Landing = ({navigation}) => {
                                 }}
                                 enableSwipeMonths={true}
                                 dayComponent={({date, state}) => {
+
+                                    let isLucid = false
+                                    let isClassic = false
+
+                                    if(customDates.includes(date.dateString)){
+                                        if(customLucidDates[customDates.indexOf(date.dateString)].isLucid){
+                                            isLucid = true
+                                            isClassic = false
+                                        }else{
+                                            isClassic = true
+                                            isLucid = false
+                                        }
+                                    }
                                     
-                                    //changeColor(date.dateString)
                                     return (
                                         <TouchableOpacity onPress={() => navigation.navigate('CreateDream', {
                                                 dateString: date.dateString,
                                                 timestamp: date.timestamp
                                             })}>
-                                            <View style={[styles.dayDotCustom, state === 'disabled' ? styles.dayDisabled : styles.dayIdle]}>
-                                                <Text style={[{color: state === 'disabled' ? COLORS.customDisabledDark : COLORS.text}, styles.dayTextCustom]}>
+                                            <View style={[styles.dayDotCustom, (state === 'disabled' ? styles.dayDisabled : ( isClassic ? styles.dayClassic : ( isLucid ? styles.dayLucid : styles.dayIdle)))]}>
+                                                <Text style={[{color: (state === 'disabled' ? COLORS.customDisabledDark : COLORS.text)}, styles.dayTextCustom]}>
                                                     {date.day}
                                                 </Text>
                                             </View> 
