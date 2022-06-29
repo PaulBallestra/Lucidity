@@ -52,7 +52,6 @@ const Tools = ({navigation}) => {
               
               setNumberOfClassicDreams(numbers.data.numberOfClassicDreams)
               setNumberOfLucidDreams(numbers.data.numberOfLucidDreams)
-
           }catch(error){
               console.log(error.response.status)
           }

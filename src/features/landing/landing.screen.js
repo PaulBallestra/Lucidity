@@ -53,8 +53,15 @@ const Landing = ({navigation}) => {
             };
             try{
                 const numbers = await authAxios.get('/dreams/count', config)
-                setNumberOfClassicDreams(numbers.data.numberOfClassicDreams)
-                setNumberOfLucidDreams(numbers.data.numberOfLucidDreams)
+
+                if(numbers.data.numberOfClassicDreams !== 0 || numbers.data.numberOfLucidDreams !== 0){
+                    setNumberOfClassicDreams(numbers.data.numberOfClassicDreams)
+                    setNumberOfLucidDreams(numbers.data.numberOfLucidDreams)
+                }else{
+                    setNumberOfClassicDreams(1)
+                    setNumberOfLucidDreams(1)
+                }
+                
             }catch(error){
                 console.log(error.response.status)
             }
