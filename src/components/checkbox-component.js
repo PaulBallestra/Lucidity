@@ -1,10 +1,11 @@
 import { Pressable, StyleSheet, View, Image } from "react-native";
 import React from "react";
+import icons from "../constants/icons";
 
 const CheckBoxComponent = (props) => {
 
     const iconName = props.isChecked ?
-        require('../assets/icons/checkbox-checked.png') : require('../assets/icons/checkbox-idle.png');
+        icons.checkboxChecked : icons.checkboxIdle;
 
     return (
         <View style={styles.container}>

@@ -4,6 +4,8 @@ import { View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, S
 import * as Keychain from 'react-native-keychain';
 import { AxiosContext } from '../../context/AxiosContext';
 
+import icons from '../../constants/icons';
+
 import LinearGradient from 'react-native-linear-gradient';
 import { format } from 'date-fns'
 
@@ -95,7 +97,7 @@ const CreateDream = ({navigation, route}) => {
 
                     <View style={styles.dreamWritingHeader}>
                         <Text style={styles.dreamWritingHeaderTitle}> {dateToString} </Text>
-                        <Image source={require('../../assets/icons/dreambook_picto.png')} style={styles.dreamWritingHeaderImage}/>
+                        <Image source={icons.dreambook_picto} style={styles.dreamWritingHeaderImage}/>
                     </View>
                     <View style={styles.dreamWritingContent}>
                         <View>
@@ -138,11 +140,6 @@ const CreateDream = ({navigation, route}) => {
                         </View>
                         
                     </View>
-                </View>
-
-                {/* LISTE DES REVES DU JOURS SI IL Y EN A */}
-                <View>
-                    
                 </View>
 
             </ScrollView>

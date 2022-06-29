@@ -7,9 +7,7 @@ const {width, height} = Dimensions.get('window');
 class LittleTextComponent extends React.Component {
 
     constructor(props){
-        
         super(props);
-    
     }
 
     render(){

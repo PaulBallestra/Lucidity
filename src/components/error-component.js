@@ -1,6 +1,7 @@
 import { StyleSheet, View, Image, Text, Dimensions } from "react-native";
 import React from "react";
 import { COLORS } from '../constants/themes'
+import icons from "../constants/icons";
 
 const {width, height} = Dimensions.get('window');
 
@@ -10,10 +11,10 @@ const ErrorComponent = ({errorText, errorImage}) => {
 
     switch(errorImage){
         case 'profile_error':
-            iconName = require('../assets/icons/profile_picto.png')
+            iconName = icons.profile_picto  
             break;
         case 'no_dreams_error':
-            iconName = require('../assets/icons/dreambook_picto.png')
+            iconName = icons.dreambook_picto
             break;
     }
 

@@ -3,6 +3,7 @@ import { View, Text, ScrollView, Image } from 'react-native'
 
 import LinearGradient from 'react-native-linear-gradient';
 
+import icons from '../../constants/icons';
 import styles from './learning.styles'
 import { COLORS } from '../../constants/themes'
 
@@ -28,7 +29,7 @@ const Learning = () => {
 
                   <View style={styles.techniqueHeader}>
                     <Text style={styles.techniqueHeaderTitle}> TECHNIQUES </Text>
-                    <Image source={require('../../assets/icons/technique_picto.png')} style={styles.techniqueHeaderImage}/>
+                    <Image source={icons.technique_picto} style={styles.techniqueHeaderImage}/>
                   </View>
 
                     <TechniqueComponent type='WILD'/>

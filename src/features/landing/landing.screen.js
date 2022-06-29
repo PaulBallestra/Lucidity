@@ -10,6 +10,7 @@ import { Calendar, LocaleConfig } from 'react-native-calendars'
 import * as Keychain from 'react-native-keychain';
 import {AxiosContext} from '../../context/AxiosContext';
 
+import icons from '../../constants/icons';
 import styles from './landing.styles'
 import { COLORS } from '../../constants/themes'
 
@@ -118,7 +119,7 @@ const Landing = ({navigation}) => {
 
                         <View style={styles.calendarHeader}>
                             <Text style={styles.calendarHeaderTitle}> CALENDRIER </Text>
-                            <Image source={require('../../assets/icons/calendar_picto.png')} style={styles.calendarHeaderImage}/>
+                            <Image source={icons.calendar_picto} style={styles.calendarHeaderImage}/>
                         </View>
                         <View style={styles.calendarContent}>
                             <Calendar 

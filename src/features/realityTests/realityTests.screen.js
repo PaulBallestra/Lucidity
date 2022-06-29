@@ -7,6 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import PushNotification from 'react-native-push-notification';
 
+import icons from '../../constants/icons';
 import styles from './realityTests.styles'
 import { COLORS } from '../../constants/themes'
 
@@ -240,7 +241,7 @@ const RealityTests = ({navigation}) => {
 
                     <View style={styles.allTestsHeader}>
                         <Text style={styles.allTestsHeaderTitle}> TESTS DE RÉALITÉ </Text>
-                        <Image source={require('../../assets/icons/realitytests_picto.png')} style={styles.allTestsHeaderImage}/>
+                        <Image source={icons.realitytests_picto} style={styles.allTestsHeaderImage}/>
                     </View>
                     <View style={styles.allTestsContent}>
 
@@ -266,7 +267,7 @@ const RealityTests = ({navigation}) => {
 
                     <View style={styles.allTestsHeader}>
                         <Text style={styles.allTestsHeaderTitle}> HORAIRES </Text>
-                        <Image source={require('../../assets/icons/clock_picto.png')} style={styles.allTestsHeaderImage}/>
+                        <Image source={icons.clock_picto} style={styles.allTestsHeaderImage}/>
                     </View>
                     <View style={styles.allTestsContent}>
 

@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, StyleSheet, View, TouchableOpacity, Dimensions, Image} from 'react-native';
 import CheckBoxComponent from '../../../components/checkbox-component';
+
+import icons from '../../../constants/icons';
 import { COLORS } from '../../../constants/themes'
 
 const {width, height} = Dimensions.get('window');
@@ -11,27 +13,27 @@ const RealityTestComponent = ({type, title, subtitle, onPress, isChecked}) => {
 
     switch(type){
         case 'hand':
-            imageSource = require('../../../assets/icons/hand_picto.png');
+            imageSource = icons.hand_picto;
             titleInfoTest = 'Main'
             infoTest = "Lorsque je regarde ma main dans un rêve, il y a quelque chose qui ne va pas. Un doigt en trop ou en moins, pas la meme couleur de peau, ..."
             break;
         case 'nose':
-            imageSource = require('../../../assets/icons/nose_picto.png')
+            imageSource = icons.nose_picto
             titleInfoTest = 'Nez'
             infoTest = "Lorsque je me bouche le nez dans un rêve, je peux toujours respirer."
             break;
         case 'eye':
-            imageSource = require('../../../assets/icons/eye_picto.png')
+            imageSource = icons.eye_picto
             titleInfoTest = 'Oeil'
             infoTest = "Lorsque vous fermez un oeil dans un rêve, vous ne voyez pas votre nez."
             break;
         case 'mirror':
-            imageSource = require('../../../assets/icons/mirror_picto.png')
+            imageSource = icons.mirror_picto
             titleInfoTest = 'Oeil'
             infoTest = "Lorsque vous vous regardez dans un mirroir lors d'un rêve, vous vous verrez de manière différente. Quelque chose qui ne va pas."
             break;
         case 'pinch':
-            imageSource = require('../../../assets/icons/pinch_picto.png')
+            imageSource = icons.pinch_picto
             titleInfoTest = 'Oeil'
             infoTest = "Et oui, si je ne ressens rien au pincement, c'est que je suis dans un rêve."
             break;
@@ -53,7 +55,7 @@ const RealityTestComponent = ({type, title, subtitle, onPress, isChecked}) => {
                     </View>
                     <View style={{flexDirection: 'row', alignItems: 'center', maxWidth: '20%', marginLeft: 5}}>
                         <TouchableOpacity style={{marginHorizontal: 10}} onPress={showInfoTest}>
-                            <Image source={require('../../../assets/icons/info_picto.png')} style={{width: 25, height: 25}}/>
+                            <Image source={icons.info_picto} style={{width: 25, height: 25}}/>
                         </TouchableOpacity>
                         <CheckBoxComponent  onPress={onPress} isChecked={isChecked}/>
                     </View>

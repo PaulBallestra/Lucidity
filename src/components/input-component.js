@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, View, TextInput, Dimensions, Image} from 'react-native';
+
+import icons from '../constants/icons';
 import { COLORS } from '../constants/themes'
 
 const {width, height} = Dimensions.get('window');
@@ -9,9 +11,9 @@ const InputComponent= ({value, onChangeText, type, placeholder}) => {
         var imageSource;
 
         if(type === 'USERNAME'){
-            imageSource = require('../assets/icons/profile_picto.png')
+            imageSource = icons.profile_picto
         }else{
-            imageSource = require('../assets/icons/password_picto.png')
+            imageSource = icons.password_picto
         }
 
         return (

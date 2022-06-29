@@ -1,8 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import { KeyboardAvoidingView, View, Text} from 'react-native'
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import * as Keychain from 'react-native-keychain';
 import { AuthContext } from '../../context/AuthContext';
 import {AxiosContext} from '../../context/AxiosContext';

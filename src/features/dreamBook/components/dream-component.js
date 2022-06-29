@@ -3,6 +3,7 @@ import {Text, StyleSheet, View, TouchableOpacity, Dimensions, Image} from 'react
 import { COLORS } from '../../../constants/themes'
 
 import { format } from 'date-fns'
+import icons from '../../../constants/icons';
 
 const {width, height} = Dimensions.get('window');
 
@@ -72,7 +73,7 @@ class DreamComponent extends React.Component {
 
                 <View style={styles.dreamHeader}>
                     <Text style={styles.dreamHeaderTitle}> {dateToString} </Text>
-                    <Image source={require('../../../assets/icons/dreambook_picto.png')} style={styles.dreamHeaderImage}/>
+                    <Image source={icons.dreambook_picto} style={styles.dreamHeaderImage}/>
                 </View>
 
                 <TouchableOpacity onPress={this.handlerButtonOnClick} style={[styles.dreamContent, dreamColors]}>
