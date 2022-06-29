@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native'
 
 import { useIsFocused } from '@react-navigation/native';
@@ -6,6 +6,9 @@ import { useIsFocused } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { Calendar, LocaleConfig } from 'react-native-calendars'
+
+import * as Keychain from 'react-native-keychain';
+import {AxiosContext} from '../../context/AxiosContext';
 
 import styles from './landing.styles'
 import { COLORS } from '../../constants/themes'
@@ -28,12 +31,36 @@ const Landing = ({navigation}) => {
 
     const IsFocused = useIsFocused();
 
-    const [customDates, setCustomDates] = useState([])
+    const {authAxios} = useContext(AxiosContext);
 
+    const [customDates, setCustomDates] = useState([])
     const [customDay, setCustomDay] = useState()
 
+    const [numberOfLucidDreams, setNumberOfLucidDreams] = useState(1)
+    const [numberOfClassicDreams, setNumberOfClassicDreams] = useState(1)
+
     useEffect(() => {
-        
+
+        async function getNumberOfDreams(){
+            const value = await Keychain.getGenericPassword();
+            const jwt = JSON.parse(value.username)
+            const token = jwt.accessToken;
+
+            const config = {
+                headers: { 
+                    "Authorization": `Bearer ${token}`
+                }
+            };
+            try{
+                const numbers = await authAxios.get('/dreams/count', config)
+                setNumberOfClassicDreams(numbers.data.numberOfClassicDreams)
+                setNumberOfLucidDreams(numbers.data.numberOfLucidDreams)
+            }catch(error){
+                console.log(error.response.status)
+            }
+        }
+
+        getNumberOfDreams()
     }, [IsFocused])
 
     //Fonction qui gere la couleur custom des jours du calendrier
@@ -129,7 +156,7 @@ const Landing = ({navigation}) => {
                         </View>
                     </View>
 
-                    <LandingStats />
+                    <LandingStats nbLucid={numberOfLucidDreams} nbClassic={numberOfClassicDreams} />
 
                 </ScrollView>
                 

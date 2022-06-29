@@ -74,7 +74,7 @@ return (
           headerShown: false
         }}
         initialRouteName={!isAppFirstLaunched ? 
-          (status === 'success' ? 'Landing' : 'Login')
+          (status === 'success' ? 'Landing' : 'Landing')
           : 'OnBoardingScreen'
         }
       >

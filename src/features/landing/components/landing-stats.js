@@ -1,52 +1,31 @@
-import React, {useEffect, useRef, useState, useContext} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {StyleSheet, View, Dimensions, Animated, Easing, Text} from 'react-native';
 
 import Lottie from 'lottie-react-native';
 
-import * as Keychain from 'react-native-keychain';
-import {AxiosContext} from '../../../context/AxiosContext';
+import { useIsFocused } from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('window');
 import { COLORS } from '../../../constants/themes'
 
 
-const LandingStats = () =>  {
+const LandingStats = ({nbLucid, nbClassic}) =>  {
 
-    const {authAxios} = useContext(AxiosContext);
+    const IsFocused = useIsFocused();
 
     const classicAnimation = useRef(new Animated.Value(0))
     const lucidAnimation = useRef(new Animated.Value(0))
-    const animationRef = useRef<Lottie>(null)
 
-    const [numberOfLucidDreams, setNumberOfLucidDreams] = useState(6)
-    const [numberOfClassicDreams, setNumberOfClassicDreams] = useState(4)
+    const numberOfLucidDreams = nbLucid
+    const numberOfClassicDreams = nbClassic
     
     const maxValue = 0.8
     
     useEffect(() => {
 
-        async function getNumberOfDreams(){
-            const value = await Keychain.getGenericPassword();
-            const jwt = JSON.parse(value.username)
-            const token = jwt.accessToken;
-
-            const config = {
-                headers: { 
-                    "Authorization": `Bearer ${token}`
-                }
-            };
-            try{
-                const numbers = await authAxios.get('/dreams/count', config)
-                setNumberOfClassicDreams(numbers.data.numberOfClassicDreams)
-                setNumberOfLucidDreams(numbers.data.numberOfLucidDreams)
-            }catch(error){
-            console.log(error.response.status)
-            }
-        }
-
         let valueAnimeClassicDreams = (maxValue * (numberOfClassicDreams/(numberOfClassicDreams+numberOfLucidDreams)))
-        let valueAnimeLucidDreams = (maxValue * (numberOfLucidDreams/(numberOfClassicDreams+numberOfLucidDreams)))
-
+        let valueAnimeLucidDreams = (maxValue * (numberOfLucidDreams/(numberOfClassicDreams+numberOfLucidDreams)))    
+    
         Animated.timing(classicAnimation.current, {
             toValue: valueAnimeClassicDreams,
             duration: 2000,
@@ -54,16 +33,15 @@ const LandingStats = () =>  {
             useNativeDriver: false
         }).start();
 
-        animationRef.current?.play(30, 120);
-
         Animated.timing(lucidAnimation.current, {
             toValue: valueAnimeLucidDreams,
             duration: 2000,
             easing: Easing.linear,
             useNativeDriver: false
         }).start();
-        getNumberOfDreams
-    }, []);
+        
+        //getNumberOfDreams()
+    }, [IsFocused]);
 
     return (
         <View style={styles.body}>
