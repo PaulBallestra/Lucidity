@@ -5,6 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import LinearGradient from 'react-native-linear-gradient';
 
+import PushNotification from 'react-native-push-notification';
+
 import styles from './realityTests.styles'
 import { COLORS } from '../../constants/themes'
 
@@ -111,6 +113,33 @@ const RealityTests = ({navigation}) => {
         loadValues()
     }, [])
 
+    //Notifications
+    const testPush = () => {
+
+        const allInfos = []
+
+        if(handState)
+            allInfos.push('Regardez votre main, est-elle normale ? Avez vous tout vos doigts ?')
+        if(noseState)
+            allInfos.push('Bouchez vous le nez, arrivez vous a respirer ? Si oui, vous êtes dans un rêve !')
+        if(eyeState)
+            allInfos.push('Fermez un oeil, voyez vous votre nez ? Si non, vous êtes dans un rêve !')
+        if(mirrorState)
+            allInfos.push('Regardez votre reflet dans un mirroir, si quelque chose ne va pas, vous êtes dans un rêve !')
+        if(pinchState)
+            allInfos.push('Pincez-vous ! Si vous ne ressentez rien, vous êtes dans un rêve !')
+
+        PushNotification.localNotificationSchedule({
+            title: 'TEST DE RÉALITÉ',
+            message: allInfos[Math.floor(Math.random() * allInfos.length)], // (required)
+            date: new Date(Date.now() + 10 * 1000), // in 60 secs
+            allowWhileIdle: false, // (optional) set notification to work while on doze, default: false
+
+            /* Android Only Properties  */
+            repeatTime: 1, // (optional) Increment of configured repeatType. Check 'Repeating Notifications' section for more info.
+        });
+    }
+
     //Function qui va save la page et save les valeurs
     const savePage = async () => {
 
@@ -184,6 +213,9 @@ const RealityTests = ({navigation}) => {
             await AsyncStorage.setItem('dimanche', 'false')
 
         await AsyncStorage.setItem('numberOfTestsChecked', numberOfTestsChecked.toString())
+
+        if(numberOfTestsChecked !== 0)
+            testPush()
 
         navigation.goBack()
     }

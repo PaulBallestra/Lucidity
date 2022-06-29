@@ -5,8 +5,6 @@ import { AuthContext } from '../../context/AuthContext';
 import * as Keychain from 'react-native-keychain';
 import {AxiosContext} from '../../context/AxiosContext';
 
-import PushNotification from 'react-native-push-notification';
-
 import LinearGradient from 'react-native-linear-gradient';
 
 import InputComponent from '../../components/input-component';
@@ -54,19 +52,6 @@ const Login = ({navigation}) => {
         setDisabled(disabled)
     }
 
-    const testPush = () => {
-        PushNotification.localNotificationSchedule({
-            //... You can use all the options from localNotifications
-            title: 'TITRE',
-            message: "MESSAGE", // (required)
-            date: new Date(Date.now() + 60 * 1000), // in 60 secs
-            allowWhileIdle: false, // (optional) set notification to work while on doze, default: false
-
-            /* Android Only Properties  */
-            repeatTime: 1, // (optional) Increment of configured repeatType. Check 'Repeating Notifications' section for more info.
-        });
-    }
-
     //FUNCTION LOGIN
     const Login = async () => {
         try {
@@ -103,7 +88,6 @@ const Login = ({navigation}) => {
                 );
 
                 //console.log(JSON.stringify(response.data))
-                testPush()
 
                 //REDIRECTION
                 navigation.navigate('Landing')

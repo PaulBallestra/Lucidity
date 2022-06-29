@@ -72,7 +72,7 @@ const Tools = ({navigation}) => {
         <ScrollView style={{paddingBottom: 25}}>
 
           {/*REVEILS*/}
-          <ToolsComponent type="reveil" valueLeftSide={0} valueRightSide={0} onPress={() => navigation.navigate('AlarmClocks')} />
+          <ToolsComponent type="reveil" valueLeftSide={0} valueRightSide={0} onPress={() => navigation.navigate('AlarmsCustom')} />
 
           {/*DREAMBOOK*/}
           <ToolsComponent type="dreambook" valueLeftSide={numberOfClassicDreams + numberOfLucidDreams} valueRightSide={numberOfLucidDreams} onPress={() => navigation.navigate('DreamBook')}/>

@@ -19,7 +19,7 @@ import DreamBook from './src/features/dreamBook/dreambook.screen'
 import SignUp from './src/features/signup/signup.screen'
 import Login from './src/features/login/login.screen'
 import RealityTests from './src/features/realityTests/realityTests.screen'
-import AlarmClocks from './src/features/alarmClocks/alarmClocks.screen'
+import AlarmsCustom from './src/features/alarmsCustom/alarmsCustom.screen'
 
 export default function App() {
 
@@ -92,7 +92,7 @@ return (
 
         <Stack.Screen name='DreamBook' component={DreamBook}/>
         <Stack.Screen name='RealityTests' component={RealityTests}/>
-        <Stack.Screen name='AlarmClocks' component={AlarmClocks}/>
+        <Stack.Screen name='AlarmsCustom' component={AlarmsCustom}/>
 
       </Stack.Navigator>
     </NavigationContainer>

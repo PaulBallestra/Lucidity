@@ -1,22 +1,28 @@
 import React from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import LinearGradient from 'react-native-linear-gradient';
 
-import styles from './alarmClocks.styles'
+import styles from './alarmsCustom.styles'
 import { COLORS } from '../../constants/themes'
+
+//import AlarmClock from 'react-native-alarm-clock'
+
 
 import HeaderComponent from '../../components/header-component';
 import SubHeaderComponent from '../../components/subheader-component';
 
-const AlarmClocks = ({navigation}) => {
-
-    //console.log(navigation)
+const AlarmsCustom = ({navigation}) => {
 
     //Function qui va save la page et save les valeurs
     const savePage = () => {
+    
+        let date = new Date();
+        date.setDate(date.getDate() + 1);
+        date.setHours(13, 55);
+
+        //AlarmClock.createAlarm(date.toISOString(), 'My Custom Alarm');
+
 
         navigation.goBack()
     }
@@ -33,7 +39,6 @@ const AlarmClocks = ({navigation}) => {
             {/* SUBTITLE PAGE */}
             <SubHeaderComponent subtitle='RÉVEILS' />
 
-
             <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
 
                 <TouchableOpacity onPress={savePage} style={{backgroundColor: COLORS.blue, width: '90%', borderRadius: 5}}> 
@@ -47,4 +52,4 @@ const AlarmClocks = ({navigation}) => {
     );
 }
 
-export default AlarmClocks;
+export default AlarmsCustom;

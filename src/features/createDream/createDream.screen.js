@@ -12,7 +12,7 @@ import { COLORS } from '../../constants/themes'
 import SubHeaderComponent from '../../components/subheader-component';
 import HeaderComponent from '../../components/header-component';
 
-const CreateDream = (props) => {
+const CreateDream = ({navigation, route}) => {
 
     const [isLucidDream, setIsLucidDream] = useState(false)
     const [titleDream, setTitleDream] = useState('')
@@ -24,7 +24,7 @@ const CreateDream = (props) => {
     const {authAxios} = useContext(AxiosContext);
 
     //Date
-    const {dateString} = props.route.params;
+    const {dateString} = route.params;
     const date = new Date(dateString);
     var dateToString = format(date, 'dd-MM-yyyy');
     var dateToSend = format(date, 'yyyy-MM-dd')
@@ -69,7 +69,7 @@ const CreateDream = (props) => {
             )
 
             //console.log(dreamUploaded)
-            props.navigation.goBack()
+            navigation.goBack()
 
         }catch(error){
             //setErrorState('Non Authentifié.')
