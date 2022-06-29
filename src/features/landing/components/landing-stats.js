@@ -46,7 +46,7 @@ const LandingStats = ({nbLucid, nbClassic}) =>  {
     return (
         <View style={styles.body}>
             <View style={styles.dividedView}>
-                <Text style={[styles.dividedText,{color: COLORS.blue}]}> CLASSIQUES </Text>
+                <Text style={[styles.dividedText,{color: COLORS.blue}]}> NORMAUX </Text>
                 <Lottie 
                     progress={classicAnimation.current} 
                     source={require('../../../assets/animations/anim_StatsClassicDreams.json')} 
