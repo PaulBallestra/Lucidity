@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     dayDotCustom: {
-        marginVertical: 2,
         minWidth: 36,
         borderRadius: 36/2
     },

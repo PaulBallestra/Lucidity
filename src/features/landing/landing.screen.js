@@ -37,7 +37,6 @@ const Landing = ({navigation}) => {
 
     const [customDates, setCustomDates] = useState([])
     const [customLucidDates, setCustomLucidDates] = useState([])
-    const [customDay, setCustomDay] = useState()
 
     const [numberOfLucidDreams, setNumberOfLucidDreams] = useState(1)
     const [numberOfClassicDreams, setNumberOfClassicDreams] = useState(1)

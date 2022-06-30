@@ -59,13 +59,13 @@ class TechniqueComponent extends React.Component {
             case 'MILD':
                 titleTechnique = 'MILD',
                 fullTitleTechnique = 'Mnémonique Induction of Lucid Dreams'
-                contentTechnique = ''
-                break;   
+                contentTechnique = "Le but du MILD est d’utiliser cette mémoire prospective pour induire un rêve lucide, là où la mémoire prospective va nous servir dans la vie de tous les jours à se souvenir de ne pas oublier d'aller chercher du pain en passant devant la boulangerie. \n\nDans notre cas, nous allons simplement nous rappeler qu’il faut se souvenir de se rendre compte que l'on rêve à l'intérieur de notre rêve. Le MILD nécessite d’avoir une remémoration onirique suffisante pour se rappeler d’avoir induit un rêve lucide. \n\nLe moment idéal pour effectuer cette méthode est à la suite d'un réveil si possible après plusieurs cycles de sommeil, et pour optimiser davantage les chances d’obtenir un rêve lucide, nous vous conseillons de combiner cette méthode avec une interruption du sommeil WBTB (interruption du sommeil), technique qui consiste à se réveiller pendant la nuit et à rester éveillé 30 min/ 1h, en pratiquant d\'autres techniques dans le but de faire un rêve lucide lors du rendormissement."
+                break;
 
             case 'WBTB':
                 titleTechnique = 'WBTB',
                 fullTitleTechnique = 'Wake Back To Bed'
-                contentTechnique = ''
+                contentTechnique = "Tout d’abord, la technique exige de se réveiller pendant la nuit. Le but est d’atteindre le sommeil paradoxal – le dernier stade du sommeil, où le cerveau est le plus actif et où les rêves apparaissent généralement pendant cette période.\n\nLes cycles paradoxaux les plus longs se produisent après 4,5 à 6 heures de sommeil. Ainsi, se réveiller entre ces heures est un moment parfait parce que vous stimulez votre cerveau conscient à un moment où vous feriez normalement l’expérience d’un sommeil paradoxal. \n\nPar conséquent, le fait d’interrompre votre sommeil pendant cette période augmente considérablement les chances de devenir conscient que vous rêvez. Comment ? Eh bien, la réponse est simple !\n\nL’idée est de retarder temporairement votre sommeil paradoxal régulier. Lorsque vous vous rendormez, vous sautez directement dans le sommeil paradoxal, à partir d’un état conscient.\n\nLe but de la WBTB est de réveiller votre corps et votre esprit au début d’un cycle de sommeil paradoxal.\n\nLorsque vous visez ce cycle, les étapes sont faciles : se réveiller pendant un certain temps, se rendormir, et retomber directement dans le sommeil paradoxal."
                 break; 
 
             case 'AUTO':
