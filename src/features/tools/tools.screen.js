@@ -34,7 +34,11 @@ const Tools = ({navigation}) => {
 
           //LOAD NUMBER OF TESTS ACTIVATED
           const nbTests = await AsyncStorage.getItem('numberOfTestsChecked')
-          setNumberOfTestsChecked(nbTests)
+
+          if(nbTests)
+            setNumberOfTestsChecked(nbTests)
+          else
+            setNumberOfTestsChecked(0)
 
           const value = await Keychain.getGenericPassword();
           const jwt = JSON.parse(value.username)
