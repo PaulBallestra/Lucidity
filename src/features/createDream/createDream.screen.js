@@ -46,7 +46,7 @@ const CreateDream = ({navigation, route}) => {
 
         const user = JSON.parse(value.password)
 
-        //console.log(dateToSend)
+        //console.log(isLucidDream)
 
         const body = {
             'user_id': user.id,
@@ -77,7 +77,6 @@ const CreateDream = ({navigation, route}) => {
             //setErrorState('Non Authentifié.')
             console.log(error)
         }
-
     }
 
     return (
@@ -129,17 +128,25 @@ const CreateDream = ({navigation, route}) => {
                             ></TextInput>
                         </View>
 
-                        <View style={{marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                                <TouchableOpacity onPress={() => setIsLucidDream(!isLucidDream)} style={[styles.btnSave, isLucidDream ? {backgroundColor: COLORS.purple, borderWidth: 1, borderColor: COLORS.purple} : {backgroundColor: COLORS.customLightDark, borderWidth: 1, borderColor: COLORS.blue} ]}>
-                                    <Text style={[styles.btnText, isLucidDream ? {color: COLORS.customDark} : {color: COLORS.blue}]}> {isLucidDream ? 'RÊVE LUCIDE' : 'RÊVE NORMAL'} </Text>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity style={styles.btnSave} onPress={sendNewDream}>
-                                    <Text style={styles.btnText}> SAUVEGARDER </Text>
-                                </TouchableOpacity>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 3}}>
+                            <TouchableOpacity style={[styles.dreamClassicBtn, !isLucidDream ? {borderColor: COLORS.blue} : {borderColor: COLORS.customDark}]} onPress={() => setIsLucidDream(!isLucidDream)}>
+                                <Text style={[styles.dreamTypeBtnText, !isLucidDream ? {color: COLORS.blue} : {color: COLORS.customDark}]}> RÊVE NORMAL </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={[styles.dreamLucidBtn, isLucidDream ? {borderColor: COLORS.purple} : {borderColor: COLORS.customDark}]} onPress={() => setIsLucidDream(!isLucidDream)}>
+                                <Text style={[styles.dreamTypeBtnText, isLucidDream ? {color: COLORS.purple} : {color: COLORS.customDark}]}> RÊVE LUCIDE </Text>
+                            </TouchableOpacity>
                         </View>
                         
                     </View>
+
+                </View>
+
+                <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
+
+                    <TouchableOpacity onPress={sendNewDream} style={{backgroundColor: COLORS.blue, width: '90%', borderRadius: 5}}> 
+                        <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 20, fontWeight: 'bold', textAlign: 'center', padding: 7.5, color: COLORS.customDark}}> SAUVEGARDER </Text>
+                    </TouchableOpacity>
+
                 </View>
 
             </ScrollView>

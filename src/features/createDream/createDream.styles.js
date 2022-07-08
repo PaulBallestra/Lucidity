@@ -89,10 +89,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
     },
-    btnText: {
-        fontWeight: 'bold', 
-        fontSize: 15,
-        color: COLORS.customDark
+    dreamTypeBtnText: {
+        fontFamily: 'Montserrat-Medium',
+        fontSize: 17,
+        textAlign: 'center',
+        color: COLORS.customDark,
+        paddingVertical: 7
+    },
+    dreamClassicBtn: {
+        borderWidth: 1, 
+        borderColor: COLORS.blue, 
+        borderBottomLeftRadius: 5, 
+        borderTopLeftRadius: 5, 
+        width: '50%'
+    },
+    dreamLucidBtn: {
+        borderWidth: 1,
+        borderBottomRightRadius: 5, 
+        borderTopRightRadius: 5, 
+        width: '50%'
     }
 
 
