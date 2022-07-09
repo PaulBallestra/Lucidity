@@ -98,6 +98,8 @@ const Login = ({navigation}) => {
 
             console.log(error)
 
+            setDisabled(true)
+
             //Errors
             switch(error.response.status){
                 case 401:

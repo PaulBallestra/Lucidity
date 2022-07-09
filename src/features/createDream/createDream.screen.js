@@ -13,6 +13,7 @@ import styles from './createDream.styles'
 import { COLORS } from '../../constants/themes'
 import SubHeaderComponent from '../../components/subheader-component';
 import HeaderComponent from '../../components/header-component';
+import SaveButton from '../../components/save-button';
 
 const CreateDream = ({navigation, route}) => {
 
@@ -143,9 +144,7 @@ const CreateDream = ({navigation, route}) => {
 
                 <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
 
-                    <TouchableOpacity onPress={sendNewDream} style={{backgroundColor: COLORS.blue, width: '90%', borderRadius: 5}}> 
-                        <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 20, fontWeight: 'bold', textAlign: 'center', padding: 7.5, color: COLORS.customDark}}> SAUVEGARDER </Text>
-                    </TouchableOpacity>
+                    <SaveButton onLoading={false} text='SAUVEGARDER' onPress={sendNewDream}/>
 
                 </View>
 

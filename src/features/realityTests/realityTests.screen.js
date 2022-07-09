@@ -15,6 +15,7 @@ import RealityTestComponent from './components/realityTest-component';
 import HoraireDayComponent from './components/horaireDay-component';
 import HeaderComponent from '../../components/header-component';
 import SubHeaderComponent from '../../components/subheader-component';
+import SaveButton from '../../components/save-button';
 
 const RealityTests = ({navigation}) => {
 
@@ -286,11 +287,7 @@ const RealityTests = ({navigation}) => {
                 </View>
 
                 <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
-
-                    <TouchableOpacity onPress={savePage} style={{backgroundColor: COLORS.blue, width: '90%', borderRadius: 5}}> 
-                        <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 20, fontWeight: 'bold', textAlign: 'center', padding: 7.5, color: COLORS.customDark}}> SAUVEGARDER </Text>
-                    </TouchableOpacity>
-
+                    <SaveButton onLoading={false} text='SAUVEGARDER' onPress={savePage}/>
                 </View>
 
             </ScrollView>
